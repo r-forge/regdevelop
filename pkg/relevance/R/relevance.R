@@ -333,7 +333,7 @@ termtable <- #f
   lmethod <- paste(c(setdiff(class(object),"regr")[1],
                      if (length(lfamily)) c(" ; family = ", lfamily),
                      if (length(ldist)) c(" ; distribution = ", ldist),
-                     " :  Drop-term effects"),
+                     " :  Drop-term inference"),
                    collapse="")
   ldname <- attr(object, "data.name")
   if (length(ldname)==0) ldname <- object$call$data
@@ -738,7 +738,8 @@ termeffects <- #f
 print.inference <- #f
   function (x, show = getOption("show.inference"), print=TRUE,
             digits = getOption("digits.reduced"), 
-            transpose.ok = TRUE, legend = NULL, na.print = "  ", ...)
+            transpose.ok = TRUE, legend = NULL, na.print = getOption("na.print"),
+            ...)
 {
   lf.mergesy <- function(lx, x, var, place)
   {
@@ -886,9 +887,9 @@ print.inference <- #f
         format(
           if (lnc1) lx[[1]]
           else setNames(paste(format(lx[[1]]),lx[[2]]),
-                        paste(row.names(lx),"    ")), quote=FALSE)
+                        paste(row.names(lx),"    ")))
       } else
-        format(lx, quote=FALSE, na.print=na.print)
+        apply(format(lx), 2, function(x) sub("NA", na.print, x))
   }
   ## --- legend(s)
   if(u.notfalse(legend)) {
@@ -924,13 +925,18 @@ print.printInference <- #f
     if (lInam) cat(lnam[li],"\n")
     lx <- x[[li]]
     class(lx) <- setdiff(class(lx), c("printInference", "inference"))
-    if (length(lt <- attr(lx,"head"))) cat(lt, "\n", sep="")
-    if (length(dim(lx))) print(lx)
+    lhead <- attr(lx,"head")
+    attr(lx, "head") <- NULL
+    ltl <- attr(lx,"tail")
+    attr(lx, "tail") <- NULL
+    if (length(lhead)) cat(lhead, "\n", sep="")
+    if (length(dim(lx))) print(unclass(lx), quote=FALSE)
+    ## unclass needed because ohterwise, the class attribute is printed!
     else {
       if(length(names(lx))) print(c(lx), quote=FALSE) else cat(lx, sep="")
     }
-    if (length(lt <- attr(lx,"tail"))) cat(lt, sep="")
-    cat("\n")
+    if (length(ltl)) cat(ltl, sep="")
+    ## cat("\n")
   }
   if (length(ltail)) cat(ltail, sep="") 
   cat("\n")
@@ -1260,7 +1266,7 @@ relevance.options <- list(
   show.termeffects.test = c("coef","p.symbol"),
   show.termeffects.classical = c("coef","p.symbol"),
   show.symbollegend = TRUE, show.rlv.threshold = TRUE,
-  na.print = ".",
+  na.print = ". ",
   p.symbols = p.symbols,
   rlv.symbols = rlv.symbols
 )

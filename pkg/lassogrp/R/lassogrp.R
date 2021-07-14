@@ -1202,7 +1202,6 @@ extract.lassogrp <-
   }
   result <- if (length(result)==1) result[[1]] else result
   result$data <- ldata
-  browser()
   class(result) <- c('lassofit', class(lreg))
   result
 }

@@ -5,7 +5,9 @@ Version: 1.1
 Date: 2021-06-05
 Author: Lukas Meier, Werner A. Stahel and Martin Maechler, ETH Zurich
 Maintainer: Werner A. Stahel <lassogrp-authors@stat.math.ethz.ch>
-Description: Lasso Regression including group lasso and adaptive lasso
+Description: Implements the Lasso procedure to select regression models.
+  The "group lasso" allows for factors and the like to be either included
+  or excluded as a unit. The "adapted lasso" is a refined version.
 Depends: methods, relevance
 License: GPL (>= 2)
 LazyLoad: yes
