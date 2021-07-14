@@ -18,7 +18,7 @@
 lasso(x, \dots)
 
 \method{lasso}{formula}(formula, data, subset, weights, na.action, offset, nonpen = ~ 1,
-      model="gaussian", lambda=NULL, lstep = 21, adaptive = FALSE,
+      model="gaussian", lambda=NULL, steps = 21, adaptive = FALSE,
       cv.function = cv.lasso, penscale = sqrt,
       cv=NULL, adaptcoef = NULL, adaptlambda = NULL,
       contrasts = NULL, save.x = TRUE,
@@ -26,21 +26,21 @@ lasso(x, \dots)
       control = lassoControl(), \dots)
 
 \method{lasso}{default}(x, y, index, subset, weights = rep(1, length(y)), model='gaussian',
-      lambda=NULL, lstep = 21,
+      lambda=NULL, steps = 21,
       adaptive = FALSE, cv.function = cv.lasso, cv=NULL,
       adaptcoef = NULL, adaptlambda = NULL, penscale = sqrt,
       center=NA, standardize = TRUE,
       save.x = TRUE, control = lassoControl(), \dots)
 
 %% MM: I'd like to get rid of this completely:
-\method{lasso}{lassogrp}(x, lambda=NULL, lstep=21,
+\method{lasso}{lassogrp}(x, lambda=NULL, steps=21,
       cv = NULL, cv.function = cv.lasso,
       adaptcoef = NULL, adaptlambda = NULL,
       penscale = sqrt, weights = NULL, center = NA, 
       save.x = TRUE, control = lassoControl(), \dots)
 
 lassoGrpFit(x, y, index, subset, weights = rep(1, length(y)), model="gaussian",
-           offset = rep(0, length(y)), lambda = NULL, lstep = 21,
+           offset = rep(0, length(y)), lambda = NULL, steps = 21,
            coef.init = rep(0, ncol(x)), penscale = sqrt,
            center = NA, standardize = TRUE,
            save.x = NULL, control = lassoControl(), \dots)
@@ -76,7 +76,7 @@ lassoGrpFit(x, y, index, subset, weights = rep(1, length(y)), model="gaussian",
   \item{nonpen}{\code{\link{formula}} defining the model terms that must
      \emph{not} be included in the lasso penalty term.}
   \item{lambda}{vector of scaling factors of the lasso penalty term.}
-  \item{lstep}{number of lambda values to be chosen if \code{lambda} is
+  \item{steps}{number of lambda values to be chosen if \code{lambda} is
     not provided.}
   \item{cv.function}{\code{\link{function}} used for cross validation.}
   \item{cv}{results of cross validation, if available.}

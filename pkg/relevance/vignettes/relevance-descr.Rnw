@@ -273,7 +273,7 @@ the relevances %and
 for dropping the term and for its contribution to prediction.
 
 Since this leads to 22 columns, the print method selects columns
-according to \T{getOption("show")}.
+according to \T{getOption("show.inference")}.
 
 <<termtable>>=
   data(swiss, package="datasets")
@@ -287,6 +287,13 @@ according to \T{getOption("show")}.
     ## This avoids selection and preparation of columns by 'print.inference'. 
   }
 @ 
+Again, other results can be selected using options.
+<<<termtablePrint>>=
+  t.oldopt <- options(show.inference = "classical")
+  rt
+  options(t.oldopt)  ##  restore the old options
+@ 
+
 \Tit{Plot.}
 \T{inference} objects relate to a specific plotting method that shows 
 the confidence interval(s) on the relevance scale. Here is the example.
@@ -346,7 +353,7 @@ vector of relevance thresholds for
   \end{itemize}
   The choice of any elements of the vector resulting from a call of
   \T{towsamples} or any columns of a \T{termtable} object is achieved by 
-  typing, e.g., \T{options(show.ifc=c("classical","Sig0","Rls"))}.
+  typing, e.g., \T{options(show.inference=c("classical","Sig0","Rls"))}.
 \item \T{rlv.symbols} and \T{p.symbols}:
   symbols to be used for characterizing \T{Rls} or p-values, respectively,
 \item \T{digits.reduced}: digits used for relevance and significance measures 
@@ -358,11 +365,11 @@ The package's defaults can always be restored by typing
 \T{options(relevance.options)}
 
 <<getOption>>=
-  t.opt <- options(show.term.relevance=c("coef", "dropRls", "dropRls.symbol"))
+  t.opt <- options(show.terms.relevance=c("coef", "dropRls", "dropRls.symbol"))
   rt
 ## restore the old options
-  options(list = t.opt) ## the former options
-  options(list=relevance.options) ## restore the package's defaults
+  options(t.opt) ## the former options
+  options(relevance.options) ## restore the package's defaults
 @ 
 
 \Tit{Function \T{print}.} 

@@ -11,7 +11,7 @@
 \usage{
 \method{print}{inference}(x, show = getOption("show.inference"), print=TRUE,
   digits = getOption("digits.reduced"), transpose.ok = TRUE,
-  legend = NULL, na.print = "  ", ...)
+  legend = NULL, na.print = getOption("na.print"), ...)
 
 \method{print}{termtable}(x, show = getOption("show.inference"), ...)
 
@@ -48,8 +48,8 @@
   with its own \code{head} and \code{tail}.
   It is invisibly returned.
 }
-\details{The result, say \code{rr}, can be printed by using
-  \code{print.printInference} writing just \code{print(rr)}, which is just
+\details{The value, if assigned to \code{rr}, say, can be printed by using
+  \code{print.printInference}, writing \code{print(rr)}, which is just
   what happens internally unless \code{print=FALSE} is used.
   This allows for editing the result before printing it, see Examples
   }
