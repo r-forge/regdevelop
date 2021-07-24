@@ -1,46 +1,47 @@
-  importFrom("graphics", "plot", "axis", "box", "lines", "matplot", "mtext",
-             "par")
-  importFrom("stats", ".checkMFClasses", ".getXlevels", "aggregate",
-             "as.formula", "coef", "delete.response", "dummy.coef", "formula",
-             "fitted", "model.frame", "model.matrix", "model.offset",
-             "model.response", "model.weights", "na.omit", "na.pass",
-             "napredict", "nlminb", "predict", "terms", "update", "var",
-             "df.residual", "pt", "qt", "setNames", "vcov")
-importFrom("methods", "new", "validObject")
-importFrom("relevance", "termeffects")
+importFrom("graphics",
+           plot, axis, box, lines, matplot, mtext, par)
+importFrom("stats",
+           .checkMFClasses, .getXlevels, aggregate,
+             as.formula, coef, delete.response, dummy.coef, formula,
+             fitted, model.frame, model.matrix, model.offset,
+             model.response, model.weights, na.omit, na.pass,
+             napredict, nlminb, predict, terms, update, var,
+             df.residual, pt, qt, setNames, vcov)
+importFrom("methods", new, validObject)
+importFrom("relevance", termeffects)
 
 export(
-"[.lassogrp",         
+"[.lassogrp",
 cv.lasso,
 descr,
-"descr<-",            
+"descr<-",
 extract.lassogrp,
-##- factoreffects, print.faceff, 
-fitted.lassogrp,    
-formula.lassogrp,   
-get.blocks,         
-lambdamax,          
-lambdamax.default,  
-lambdamax.formula,  
-lasso,              
-lasso.default,      
-lasso.formula,      
-lasso.lassogrp,     
-lassoControl,       
-lassoGrpFit,        
+##- factoreffects, print.faceff,
+fitted.lassogrp,
+formula.lassogrp,
+get.blocks,
+lambdamax,
+lambdamax.default,
+lambdamax.formula,
+lasso,
+lasso.default,
+lasso.formula,
+lasso.lassogrp,
+lassoControl,
+lassoGrpFit,
 lassogrpModelmatrix,
-lassoModel,         
-LinReg,             
-LogReg,             
-plot.lassogrp,      
-PoissReg,           
-predict.lassogrp,   
-print.lassofit,     
-print.lassogrp,     
-stamp,              
-tit,                
-"tit<-",              
-varBlockStand     
+lassoModel,
+LinReg,
+LogReg,
+plot.lassogrp,
+PoissReg,
+predict.lassogrp,
+print.lassofit,
+print.lassogrp,
+stamp,
+tit,
+"tit<-",
+varBlockStand
        )
 
 
@@ -61,5 +62,3 @@ S3method(lambdamax, formula)
 S3method(lasso, default)
 S3method(lasso, formula)
 S3method(lasso, lassogrp)
-
-

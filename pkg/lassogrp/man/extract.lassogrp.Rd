@@ -5,7 +5,8 @@
 \alias{[}% <- needed for R CMD check {MM thinks this is bogous}
 \alias{[.lassogrp}
 \description{
-  Extract a regression fits from a lasso fit (table).
+  Extract a regression fit from a lasso fit (table) of class
+  \code{"linkS4class{lassogrp}"}.
 }
 \usage{
 extract.lassogrp(object, i = NULL, lambda = NULL, data=NULL, fitfun = "lm", ...)
@@ -14,7 +15,7 @@ extract.lassogrp(object, i = NULL, lambda = NULL, data=NULL, fitfun = "lm", ...)
 %] << for emacs
 }
 \arguments{
-  \item{object, x}{an object of class \code{"lassogrp"}.}
+  \item{object, x}{an object of class \code{"linkS4class{lassogrp}"}.}
   \item{i}{a single index for \code{extract.lassogrp}, or a vector of
     indices for the simple subset operator '\code{[i]}'}
   \item{lambda}{alternatively to specifying \code{i}, a single (numeric)
@@ -28,29 +29,34 @@ extract.lassogrp(object, i = NULL, lambda = NULL, data=NULL, fitfun = "lm", ...)
   \item{\dots}{additional arguments passed to \code{fitfun}.}
 }
 \details{
-  \code{extract.lassogrp} generates an object of a regression class
+  \code{extract.lassogrp()} generates an object of a regression class
   like \code{lm} or \code{regr}.  This is useful for applying the
   respective plot and print methods to the lasso fit.
-  The result of an unpenalized fit to the ``selected'' model
-  (terms with non-zero coefficients) is available as 'fit.unpen'
+  The result of an unpenalized fit to the \dQuote{selected} model
+  (terms with non-zero coefficients) is available as \code{fit.unpen}
   component of the result.
 }
 \value{
-  \code{extract.lassogrp}: object of class \code{lassofit} inheriting from
-  the class specified by \code{fitfun}.
-  \code{$fit.unpen}: The result of fitting the model (by code{fitfun})
-  to the reduced model.
+  \describe{
+    \item{\code{extract.lassogrp()}:}{object of (S3) class \code{"lassofit"},
+      also inheriting from the class specified by \code{fitfun}.
+      Component \code{fit.unpen}: The result of fitting the model (by \code{fitfun})
+      to the reduced model.}
 
-  \code{x[i]}: an object of class \code{lassogrp} containing only the specified
-  fits, i.e. all the information corresponding to these fits.
+    \item{\code{x[i]}:}{an object of class \code{lassogrp} containing only the specified
+      fits, i.e. all the information corresponding to these fits.}
+  }
 }
 \author{Werner Stahel, \email{stahel@stat.math.ethz.ch}}
 \examples{
 data(asphalt)
 rr <- lasso(log10(RUT) ~ log10(VISC) + ASPH+BASE+FINES+VOIDS+RUN,
             data=asphalt, adaptive=TRUE)
-## Extract results for three lambda's:
-rr[c(1,19,20)]
+length(rr$lambda) # 21
+## Extract results for three lambda's (currently works wrongly!)
+rr[c(1,19,20)] %% FIXME !! currently gives the *same* as rr
+%% FIXME(2): The output is *wrong*: does not correctly give variables w/ coef == 0
+extract.lassogrp(rr,  2)
 extract.lassogrp(rr, 19)
 
 ## The above relies on finding the original data;

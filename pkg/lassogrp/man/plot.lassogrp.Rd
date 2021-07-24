@@ -10,8 +10,9 @@
 \usage{
 \method{plot}{lassogrp}(x, type = c("norms", "coefficients", "criteria"),
     cv = NULL, se = TRUE, col = NULL, lty = NULL, lwd=1.5,
-    mar = NULL, axes=TRUE, ylim = NULL, legend = TRUE, main = NULL,
-    xlab = "Lambda", ylab = NULL, ...)
+    mar = NULL, axes=TRUE, frame.plot = axes,
+    xlim = NULL, ylim = NULL, legend = TRUE,
+    main = NULL, xlab = "Lambda", ylab = NULL, ...)
 }
 \arguments{
   \item{x}{object of class 'lassogrp' containing the results of fitting
@@ -45,6 +46,10 @@
   }
   \item{mar}{plot margins}
   \item{axes}{plot axes?}
+  \item{frame.plot}{draw \sQuote{frame} around plot?}
+  \item{xlim}{limits (\code{\link{range}()}) of the horizontal axis; if
+    \code{NULL}, the smart default uses an \emph{inverted}, i.e., from
+    right to left.}
   \item{ylim}{limits of the vertical plotting axis.
     Defaults to the range of the values to be plotted except for the
     values for lambda==0 (if these are contained in \code{x})}

@@ -15,12 +15,12 @@ lassoControl(save.x = FALSE,
 \arguments{
   \item{save.x}{a logical indicating whether the design matrix should be saved.}
   \item{update.hess}{should the hessian be updated in each
-    iteration ("always")? update.hess = "lambda" will update
+    iteration ("always")?  \code{update.hess = "lambda"} will update
     the Hessian once for each component of the penalty
-    parameter "lambda" based on the parameter estimates
+    parameter \code{lambda} based on the parameter estimates
     corresponding to the previous value of the penalty
     parameter.}
-  \item{update.every}{Only used if update.hess = "lambda". E.g. set to 3
+  \item{update.every}{Only used if \code{update.hess = "lambda"}. E.g. set to 3
     if you want to update the Hessian only every third grid point.}
   \item{inner.loops}{How many loops should be done (at maximum) when solving
     only the active set (without considering the remaining
@@ -43,13 +43,14 @@ lassoControl(save.x = FALSE,
     objective function after each sweep through all the parameter groups
     and additional information.}
 }
-\details{For the convergence criteria see chapter 8.2.3.2 of Gill et
-  al. (1981).}
+\details{
+  For the convergence criteria see section 8.2.3.2 of Gill et al. (1981).
+}
 \references{Philip E. Gill, Walter Murray and Margaret H. Wright (1981)
   \emph{Practical Optimization}, Academic Press.
 
   Dimitri P. Bertsekas (2003) \emph{Nonlinear Programming}, Athena Scientific.}
 \value{
-  An object of class \code{lassoControl}.
+  An object of class \code{\linkS4class{lassoControl}}.
 }
 \keyword{misc}

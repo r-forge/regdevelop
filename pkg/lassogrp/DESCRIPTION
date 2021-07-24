@@ -1,13 +1,16 @@
 Package: lassogrp
 Type: Package
-Title: LASSO REGRESSION INCLUDING GROUP LASSO AND ADAPTIVE LASSO
-Version: 1.1
-Date: 2021-06-05
+Title: Lasso Regression Including Group Lasso and Adaptive Lasso
+Version: 1.1-0
+Date: 2021-07-22
 Author: Lukas Meier, Werner A. Stahel and Martin Maechler, ETH Zurich
 Maintainer: Werner A. Stahel <lassogrp-authors@stat.math.ethz.ch>
 Description: Implements the Lasso procedure to select regression models.
   The "group lasso" allows for factors and the like to be either included
-  or excluded as a unit. The "adapted lasso" is a refined version.
-Depends: methods, relevance
+  or excluded as a unit.  The "adaptive lasso" is a refined version.
+Imports: graphics, methods, stats, relevance
+URL: https://regdevelop.r-forge.r-project.org/,
+     https://r-forge.r-project.org/scm/viewvc.php/pkg/lassogrp/?root=regdevelop
+BugReports: https://r-forge.r-project.org/tracker/?group_id=555
 License: GPL (>= 2)
 LazyLoad: yes

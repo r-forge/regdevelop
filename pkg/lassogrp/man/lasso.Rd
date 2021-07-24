@@ -1,5 +1,5 @@
 \name{lasso}
-\title{Fit a (Generalized Linear) Model with Lasso}
+\title{Fit a (Generalized Linear) Model with (Adaptive) (Group) Lasso}
 \Rdversion{1.1}
 \alias{lasso}
 \alias{lasso.default}
@@ -80,8 +80,8 @@ lassoGrpFit(x, y, index, subset, weights = rep(1, length(y)), model="gaussian",
     not provided.}
   \item{cv.function}{\code{\link{function}} used for cross validation.}
   \item{cv}{results of cross validation, if available.}
-  \item{adaptive}{logical: should the adaptive lasso be used?
-    If TRUE, the lasso will be called twice, first in the regular mode,
+  \item{adaptive}{\code{\link{logical}}: should the adaptive lasso be used?
+    If \code{TRUE}, the lasso will be called twice, first in the regular mode,
     then adaptive to the results of the first call.
   }
   \item{adaptcoef}{inverse weights for the coefficients, used for the adaptive
@@ -94,10 +94,10 @@ lassoGrpFit(x, y, index, subset, weights = rep(1, length(y)), model="gaussian",
     for \code{adaptcoef}. Either a lambda value or a negative integer,
     in which case the coefficients corresponding to the
     \code{abs(adaptlambda)}th lambda of \code{object}.
-    If \code{adaptlambda} is null, it will be selected by cross
-    validation.
+    If \code{adaptlambda} is \code{\link{NULL}} as by default, it will be
+    selected by cross validation.
   }
-  \item{contrasts}{an optional list. See the \code{contrasts.arg} of
+  \item{contrasts}{an optional \code{\link{list}}. See the \code{contrasts.arg} of
     \code{\link{model.matrix.default}}.}
   \item{penscale}{rescaling function to adjust the value of the penalty
     parameter to the degrees of freedom of the parameter group. See the
@@ -105,7 +105,7 @@ lassoGrpFit(x, y, index, subset, weights = rep(1, length(y)), model="gaussian",
   \item{center}{logical.  If true, the columns of the design matrix will be
     centered (except a possible intercept column); \code{NA}, the
     default, corresponds to \code{TRUE} iff there is an intercept.}
-  \item{standardize}{logical. I f true, the design matrix will be
+  \item{standardize}{logical. If true, the design matrix will be
     blockwise orthonormalized such that for each block \eqn{X'X = n 1}
     (\emph{after} possible centering).}
   \item{save.x}{logical: should the model matrix be stored in the

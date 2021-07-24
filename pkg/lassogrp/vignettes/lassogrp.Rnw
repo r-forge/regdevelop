@@ -16,35 +16,37 @@
 \interfootnotelinepenalty=10000 % prevent LaTex from two-sided footnotes
 \usepackage{regr-desc}
 
-\addtolength{\textwidth}{2.5cm}%%--- 15.0 + 2.5 = 17.5
+\addtolength{\textwidth}{2.5cm}%%--- 14.5 + 2.5 = 17.0
 \addtolength{\oddsidemargin}{-1.04cm}
 
 %% ================================================================
-
+%%\VignetteIndexEntry{Introduction to the Group Lasso and R Package 'lassogrp'}
+%%\VignetteDepends{lassogrp}
+%%\VignetteDepends{methods}
 \begin{document}
 \SweaveOpts{concordance=TRUE,width=9,height=6, echo=false}
 \setkeys{Gin}{width=1\textwidth}
 \baselineskip 15pt
 
 \title{\vspace*{-10mm}
-R-Package \T{lassogrp} for the group lasso  method}
+R Package \T{lassogrp} for the (Adaptive) Group Lasso}
 \author{Werner A. Stahel, ETH Zurich}
 \maketitle
 
 \begin{abstract}\noindent
-  The lasso is a well known method for automatic model selection 
+  The lasso is a well known method for automatic model selection
   in regression.
-  This package is an extension of the \T{grplasso} package based on 
+  This package is an extension of the \T{grplasso} package based on
   the PhD thesis of Lukas Meier.
   It includes more user-oriented wrapper functions.
-  
+
   This vignette waits to be written.
 \end{abstract}
 
 <<preliminary, echo=F>>=
 require(lassogrp)
 
-@ 
+@
 \section{Introduction}
 
 
@@ -55,7 +57,7 @@ Werner Stahel, \T{stahel at stat.math.ethz.ch}
 }
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:

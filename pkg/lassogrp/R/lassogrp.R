@@ -857,7 +857,7 @@ print.lassogrp <- #f
   if (coefficients) {
     p <- ncol(lcf <- cbind(x$coefficients))
     lsel <- p > 5
-    ljlam <- if (lsel) round(seq(1,p,length=5)) else 1:p
+    ljlam <- if (lsel) round(seq(1,p,length=5)) else seq_len(p) # even for p==0
     cat("\n* Coefficients", if(lsel) "for selected lambdas",
         "(*N* = not penalized) :\n")
     lind <- x$index
@@ -950,41 +950,35 @@ predict.lassogrp <- #f
 }
 
 ## ==================================================================
-fitted.lassogrp <- #f
-  function(object, ...)
-{
-  out <- object$fitted
-  attr(out, "lambda") <- object$lambda
-  out
-}
+fitted.lassogrp <- function(object, ...)
+    structure(object$fitted, lambda = object$lambda)
 
 ## ==================================================================
+## MM (FIXME): This should be compatible  *or*  in a smart way extend / complement the
+##     -----   extract.lassogrp() below
 "[.lassogrp" <- #f
   function(x, i) {
 
   ## First get dimensions of the original object x
   nrlambda <- length(x$lambda)
-  if(missing(i))
-      i <- seq_len(nrlambda)
+  if(missing(i)) i <- seq_len(nrlambda) # select all
 
   ## Error checking
   ## ...
 
-  ## Subset the object
+  ## Subset a copy of the object:
   fit.red <- x
 
-  fit.red$coefficients <- coef(x)[,i,drop = FALSE]
-  if(length(fit.red$coefficients) == 0)
-    stop("![].grplasso! Nothing left")
-
+  ## (NB: should be allowed to select all or none)
   fit.red$call$lambda  <- fit.red$lambda <- x$lambda[i]
-  fit.red$ngradient    <- x$ngradient[,i,drop = FALSE]
   fit.red$nloglik      <- x$nloglik[i]
-  fit.red$fitted       <- fitted(x)[,i]
-  fit.red$linear.predictors <- x$linear.predictors[,i,drop = FALSE]
-  fit.red$fn.val       <- x$fn.val[i]
-  fit.red$fn.val       <- x$fn.val[i]
-  fit.red$norms.pen    <- x$norms.pen[,i,drop = FALSE]
+  fit.red$fn.val       <- x$fn.val [i]
+  fit.red$coefficients <- coef(x)    [ , i, drop = FALSE]
+  fit.red$ngradient    <- x$ngradient[ , i, drop = FALSE]
+  fit.red$fitted       <- fitted(x)  [ , i, drop = FALSE]
+  fit.red$linear.predictors <- x$linear.predictors[
+                                       , i, drop = FALSE]
+  fit.red$norms.pen    <- x$norms.pen[ , i, drop = FALSE]
   fit.red
 }
 
@@ -992,8 +986,9 @@ fitted.lassogrp <- #f
 plot.lassogrp <-
   function(x, type = c("norms","coefficients","criteria"),
            cv = NULL, se = TRUE,
-           col = NULL, lty=NULL, lwd = 1.5, mar = NULL, axes = TRUE, 
-           ylim = NULL,
+           col = NULL, lty=NULL, lwd = 1.5, mar = NULL,
+           axes = TRUE, frame.plot = axes,
+           xlim = NULL, ylim = NULL,
            legend = TRUE, main = NULL, xlab = "Lambda", ylab = NULL, ...)
 {
   ## Purpose: Plots the solution path of a "lassogrp" object. The x-axis
@@ -1011,12 +1006,16 @@ plot.lassogrp <-
   ## Author: Lukas Meier, Date:  7 Apr 2006 / Werner Stahel Aug 2009
 
   lambda <- x$lambda
-  if(length(lambda) == 1)
-    stop("Plot function not available for a single lambda")
+  if(length(lambda) <= 1)
+    stop("Plot function needs at least two lambdas")
+  rtLambda <- sqrt(lambda)
 
   type <- match.arg(type)
 
-  xlim <- rev(range(sqrt(lambda)))
+  if(is.null(xlim))
+    xlim <- rev(range(rtLambda))
+  else
+    stopifnot(length(xlim) == 2, diff(xlim) > 0)
   ind <- unique(x$index)
 
   nr.npen <- sum(x$index<=0)
@@ -1048,7 +1047,7 @@ plot.lassogrp <-
     }
     if (is.null(ylab)) ylab <- type
     if (is.null(ylim)) ylim <- range(yy[,lambda>0])
-    matplot(sqrt(lambda), t(yy), type = "l", axes = FALSE,
+    matplot(rtLambda, t(yy), type = "l", axes = FALSE,
             xlab = xlab, ylab = ylab, col = col, lty=lty,
             main = main, xlim = xlim, ylim = ylim, lwd=lwd, ...)
     if (axes[length(axes)]) axis(4)
@@ -1076,30 +1075,33 @@ plot.lassogrp <-
         if (is.null(main)) lmain <- "log-likelihood, MSE (cv), and penalty"
       }
     }
-    matplot(sqrt(lambda), yy, type = "l", axes=FALSE,
+    matplot(rtLambda, yy, type = "l", axes=FALSE,
             xlab = xlab, ylab = lylab,
             col = col[c(1,2,3,3)], lty=lty[c(1,2,3,3)],
             main = lmain, xlim = xlim, mar=mar, lwd=lwd, ...)
     par(usr=c(par('usr')[1:2], 0,1.05*max(l1)))
-    lines(sqrt(lambda), l1, col=col[4], lty=lty[4], lwd=lwd)
+    lines(rtLambda, l1, col=col[4], lty=lty[4], lwd=lwd)
     if (axes[length(axes)]) {
       axis(4, col=col[4])
       mtext("l1 norm",4,1.8)
     }
   } else warning(':plot.lassogrp: invalid argument "type". No plot')
-  if (axes) {
+  if (frame.plot)
     box()
+  if (axes) {
     axis(2)
+    ## pretty lambda values for SQRT(lambda) scale :
     xlb <- pretty(lambda)
+    xlb <- xlb[xlb != 0 & min(lambda) <= xlb & xlb <= max(lambda)]
+    xlb <- c(pretty(lambda[lambda < min(xlb)]), xlb)
+    ## add the small ones typically missing
     axis(1, at=sqrt(xlb), labels=format(xlb))
-    axis(3, at=sqrt(lambda), labels=rep('',length(lambda)), tcl=0.5,
-         mgp=c(1,0.5,0), xpd=TRUE)
-    ilam <- c(1,length(lambda))
-    if(ilam[2]>8)
+    axis(3, at=rtLambda, labels=FALSE, tcl=0.5, mgp=c(1,0.5,0), xpd=TRUE)
+    ilam <- c(1, length(lambda))
+    if(ilam[2] > 8) # thin them
       ilam <- c(seq(1,length(lambda)-3,by=5),length(lambda))
     la <- lambda[ilam]
-    axis(3, at=sqrt(la), labels=rep("",length(la)), tcl=-0.3, xpd=TRUE)
-    mtext(names(la),3,0.3,at=sqrt(la))
+    axis(3, at=sqrt(la), labels=names(la), tcl=-0.3, mgp=c(1, .5, 0), xpd=TRUE)
   }
   stamp(sure=FALSE)
   invisible(yy)
@@ -1122,9 +1124,9 @@ extract.lassogrp <-
     stop('extract.lassogrp needs an object with formula')
   ## which model(s)?
   if (is.null(i)) {
-    if (is.null(lambda))
-      stop('!extract.lassogrp! Either arg.  i  or  lambda  must be given')
-    if (length(lambda)>1 || lambda<0 || lambda>max(object$lambda))
+      if (is.null(lambda))
+          stop("Must specify either 'i' or 'lambda' argument for extract.lassogrp()")
+    if (length(lambda) !=1 || lambda < 0 || lambda > max(object$lambda))
       stop('!extract.lassogrp! argument "lambda" not suitable')
     i <- which.min(abs(sqrt(lambda)-sqrt(object$lambda)))
   }
@@ -1164,12 +1166,11 @@ extract.lassogrp <-
                family=c('gaussian','binomial','poisson')[lmod],
                subset=lcall$subset, weights=lcall$weights,
                na.action=lcall$na.action) # , '...'=...
-  else {
-    if (fitfun=='lm')
+  else if (fitfun=='lm')
     call(fitfun, formula=lform, data=lcall$data,
                subset=lcall$subset, weights=lcall$weights)
              #  ,na.action=lcall$na.action) # , '...'=...
-    else
+  else {
     call(fitfun, formula=lform, data=lcall$data,
                family=c('gaussian','binomial','poisson')[lmod],
                subset=lcall$subset, weights=lcall$weights,
@@ -1278,8 +1279,8 @@ cv.lasso <-
   lx <- x[,lj]
   ## crossvalidate
   K <- length(blocklist)
-  blockmse <- matrix(0, K, length(object$lambda))
-  fitted <- matrix(0, n, length(object$lambda))
+  blockmse <- matrix(NA_real_, K, length(object$lambda))
+  fitted   <- matrix(NA_real_, n, length(object$lambda))
   for (i in seq(K)) {
     omit <- blocklist[[i]]
     fit <-
@@ -1640,16 +1641,13 @@ setClass("lassoControl",
            trace        = 0),
 
          validity = function(object){
-           if(ceiling(object@update.every) != floor(object@update.every) ||
-              object@update.every <= 0)
+           if(object@update.every != as.integer(object@update.every) || object@update.every <= 0)
              return("update.every has to be a natural number")
 
-           if(ceiling(object@inner.loops) != floor(object@inner.loops) ||
-              object@inner.loops < 0)
+           if(object@inner.loops != as.integer(object@inner.loops) || object@inner.loops < 0)
              return("inner.loops has to be a natural number or 0")
 
-           if(ceiling(object@max.iter) != floor(object@max.iter) ||
-              object@max.iter <= 0)
+           if(object@max.iter != as.integer(object@max.iter) || object@max.iter <= 0)
              return("inner.loops has to be a natural number or greater than 0")
 
            if(object@beta <= 0 || object@beta >= 1)
@@ -1708,12 +1706,9 @@ lassoControl <- function(save.x = FALSE,
   ## ----------------------------------------------------------------------
   ## Author: Lukas Meier, Date:  1 Jun 2006, 10:02
 
-
-  update.hess <- match.arg(update.hess)
-
-  RET <- new("lassoControl",
+  new("lassoControl",
              save.x       = save.x,
-             update.hess  = update.hess,
+             update.hess  = match.arg(update.hess),
              update.every = update.every,
              inner.loops  = inner.loops,
              line.search  = line.search,
@@ -1724,7 +1719,6 @@ lassoControl <- function(save.x = FALSE,
              beta         = beta,
              sigma        = sigma,
              trace        = trace)
-  RET
 }
 ## ===========================================================================
 setClass("lassoModel", representation = representation(
@@ -1766,7 +1760,7 @@ lassoModel <- function(invlink, link, nloglik, ngradient, nhessian,
   ## ----------------------------------------------------------------------
   ## Author: Lukas Meier, Date:  1 Jun 2006, 10:12
 
-    RET <- new("lassoModel",
+    new("lassoModel",
                invlink   = invlink,
                link      = link,
                nloglik   = nloglik,
@@ -1775,7 +1769,6 @@ lassoModel <- function(invlink, link, nloglik, ngradient, nhessian,
                check     = check,
                name      = name,
                comment   = comment)
-    RET
 }
 ## ===========================================================================
 ## family.R
