@@ -226,7 +226,7 @@ and can be modified by setting these options again, see below.
 %%- For regression models, the new measures are obtained by calling
 %%- \T{ciSgRl}.
 %%- It is programmed to 
-
+%% =======================================================================
 \section{Functions}
 \label{sec:functions}
 
@@ -317,7 +317,20 @@ As seen here, there are \T{print} and \T{plot} methods for the resulting objects
   plot(termeffects(r.blast))  ## plot effects for terms with >1 df
 @ 
 
+\Tit{Function \T{inference}.}
+This function generates statistics describing relevance and significance 
+for many situations, mainly for regression models. 
+When it is applied to a model fit object, it calls \T{termtable} 
+and \T{termeffects} and stores the \T{summary} of the object.
+The corresponding printing method includes a final part that describes 
+the global aspects of the model as shown here.
+<<inference>>=
+  ( rr <- inference(r.blast) )
+@
+\T{inference} also applies to other situations where an estimate, 
+its standard error and the number of observations is available.
 
+%% =====================================================================
 \section{Options}
 \label{sec:options}
 

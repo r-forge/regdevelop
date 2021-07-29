@@ -4,6 +4,13 @@ u.notfalse <-
   function (x) !(length(x)==1 && is.logical(x) && (!is.na(x)) && !x)
 u.isnull <- function(x)  length(x)==0||all(is.na(x))
 "%nin%" <- function (x,y) !x%in%y
+
+formatNA <- function(x, na.print=" .", digits=getOption("digits"),...) {
+  if (length(dim(x)))
+    as.data.frame(lapply(x, formatNA, na.print=na.print, digits=digits))
+  else sub("NaN",na.print,sub("NA",na.print,format(x,digits=digits,...)))
+}
+
 i.last <- function(data, n=1) data[sign(n)*(((ldt <- length(data))-abs(n)+1):ldt)]
 ## u.debug <- function () u.true(rlvoptions("debug"))
 DB <- function (on=TRUE) options(error=if(on) recover else NULL, warn=on)

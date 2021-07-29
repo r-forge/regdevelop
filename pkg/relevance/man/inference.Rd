@@ -8,31 +8,46 @@
   relevance, additional quantities. 
 }
 \usage{
-inference(estimate = NULL, se = NULL, n = NULL, df = Inf, testlevel = 0.05,
-  stcoef=TRUE, rlv=TRUE, rlv.threshold=0.1, object=NULL)
+inference(estimate = NULL, se = NULL, n = NULL, df = NULL, stcoef=TRUE,
+  rlv=TRUE, rlv.threshold=getOption("rlv.threshold"),
+  testlevel = getOption("testlevel"), object=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{estimate}{vector of estimates or matrix containing
     estimates and their standard errors. The latter is needed if
-    \code{se} is not given.
+    \code{se} is not given --
+
+    ... or a model fit object
   }
   \item{se}{vector of standard errors of the estimates
   }
-  \item{df}{degrees of freedom of the residuals
-  }
   \item{n}{number of observations
   }
-  \item{testlevel}{test level
+  \item{df}{degrees of freedom of the residuals
   }
   \item{stcoef}{standardized coefficients, suitable for 
     If \code{NULL}, these will be calculated from \code{object}.
   }
   \item{rlv}{logical: Should relevances be calculated?
   }
-  \item{rlv.threshold}{Relevance threshold
+  \item{rlv.threshold}{Relevance threshold(s).
+    May be a simple number for simple inference, or a
+    vector containing the  elements
+    \describe{
+      \item{\code{stand}:}{threshold for (simple) standardized effects}
+      \item{\code{rel}:}{for relative effects,}
+      \item{\code{coef}:}{for standardized coefficients,}
+      \item{\code{drop}:}{for drop effects,}
+      \item{\code{pred}:}{for prediction intervals.}
+    }
+  }
+  \item{testlevel}{1 - confidence level
   }
   \item{object}{model fit, needed for calculating \code{stcoef}.
+  }
+  \item{...}{furter arguments, passed to
+    \code{termtable} and \code{termeffects}
   }
 }
 \details{The coefficients divided by standard errors are assumed to be
@@ -62,6 +77,10 @@ inference(estimate = NULL, se = NULL, n = NULL, df = Inf, testlevel = 0.05,
   \item{Rls.symbol}{symbols for the secured relevance}
 }
 \author{Werner A. Stahel}
+
+\seealso{
+   \code{link{termtable}, link{termeffects}}
+}
 
 \examples{
 data(d.blast)

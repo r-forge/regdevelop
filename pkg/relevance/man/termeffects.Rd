@@ -5,7 +5,8 @@
 A list of all coefficients of a model fit, possibly with respective statistics
 }
 \usage{
-termeffects(object, se = 2, df = df.residual(object), rlv = TRUE)
+termeffects(object, se = 2, df = df.residual(object), rlv = TRUE,
+  rlv.threshold = getOption("rlv.threshold"), ...)
 }
 
 \arguments{
@@ -14,6 +15,8 @@ termeffects(object, se = 2, df = df.residual(object), rlv = TRUE)
   \item{se}{logical: Should inference statistics be generated?}
   \item{df}{degrees of freedom for t-test}
   \item{rlv}{logical: Should relevances be calculated?}
+  \item{rlv.threshold}{Relevance thresholds, see \code{\link{inference}} }
+  \item{...}{further arguments, passed to \code{\link{inference}}}
 }
 \value{a \code{\link{list}} with a component for each term in the model formula.
   Each component is a \code{\link{termtable}} for the coefficients
@@ -23,7 +26,7 @@ termeffects(object, se = 2, df = df.residual(object), rlv = TRUE)
 Werner A. Stahel
 }
 \seealso{
-  \code{\link{dummy.coef}, \link{termtable}}
+  \code{\link{dummy.coef}, \link{inference}, \link{termtable}}
 }
 \examples{
   data(d.blast)

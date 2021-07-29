@@ -14,7 +14,7 @@ importFrom("utils",
 importFrom("graphics",
            box, par, plot, abline, segments, axis, mtext
            )
-
+importFrom("grDevices", palette)
 ##- importFrom("MASS", rlm, polr)
 ##- importFrom("nnet", multinom, nnet.default) ## , VR_summ2, multinomHess (not exported!)
 ##- importFrom("survival", coxph, survreg, Surv, strata, cluster)
