@@ -401,11 +401,11 @@ rr <- print(termeffects(r.blast), print=FALSE)
 attr(rr, "head") <- sub("lm", "Linear Regression", attr(rr, "head"))
 print(rr)
 @ 
-
+See \T{?print.printInference} for details.
 
 %% ============================================================================
 \section{Examples}
-Here, we document the examples that appear in the basic reference.
+This section documents the examples that appear in the basic reference.
 
 \Tit{sleep data.}
 

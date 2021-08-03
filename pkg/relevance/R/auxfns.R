@@ -6,8 +6,9 @@ u.isnull <- function(x)  length(x)==0||all(is.na(x))
 "%nin%" <- function (x,y) !x%in%y
 
 formatNA <- function(x, na.print=" .", digits=getOption("digits"),...) {
-  if (length(dim(x)))
-    as.data.frame(lapply(x, formatNA, na.print=na.print, digits=digits))
+  if (is.data.frame(x))
+    as.data.frame(lapply(x, formatNA, na.print=na.print, digits=digits),
+                  row.names=row.names(x))
   else sub("NaN",na.print,sub("NA",na.print,format(x,digits=digits,...)))
 }
 

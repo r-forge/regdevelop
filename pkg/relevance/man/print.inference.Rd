@@ -51,7 +51,13 @@
 \details{The value, if assigned to \code{rr}, say, can be printed by using
   \code{print.printInference}, writing \code{print(rr)}, which is just
   what happens internally unless \code{print=FALSE} is used.
-  This allows for editing the result before printing it, see Examples
+  This allows for editing the result before printing it, see Examples.
+
+  \code{printInference} objects can be a vector, a data.frame or a
+  matrix, or a list of such items.
+  Each item can have an attribute \code{head} of mode character that is
+  printed by \code{cat} before the item, and analogous with a
+  \code{tail} attribute. 
   }
 \author{Werner A. Stahel}
 
@@ -73,6 +79,8 @@ rr <- print(te, print=FALSE)
 attr(rr, "head") <- sub("lm", "Linear Regression", attr(rr, "head"))
 class(rr) # "printInference"
 rr # <==>  print(rr)
+
+str(rr)
 }
 \keyword{regression}
 \keyword{utility}

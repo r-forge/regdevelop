@@ -95,8 +95,8 @@ twosamples.default <- #f
       lt <- fisher.test(table, conf.int=TRUE, conf.level=1-testlevel)
       lest <- table[,2]/(table[,1]+table[,2]) ## c(mean(x), mean(y))
       leff <- unname(log(lt$estimate))
-      ## lse <-  # !!!
       leffci <- log(lt$conf.int) ## c("ci.low","ci.up") ))
+      lse <- diff(leffci)/(2*qnorm(1-ltlev2))
       lsig <- leff/(leff-ifelse(leff>0, leffci[1], leffci[2]))
       effname <- "log odds ratio"
       method <- "Two proportions, Fisher's exact inference"
@@ -282,8 +282,9 @@ inference <- #f
     }
     return(structure(
       list(summary = lsum, termtable = ltt, 
-           termeffects = termeffects(object, ...), intercepts = lic,
-           deviancetable = NULL), ##!!!
+           termeffects = termeffects(object, ...), intercepts = lic
+           ## , deviancetable = NULL  !!!
+           ), 
       class=c("inference", "data.frame"), type = "model",
       method=as.character(lcl[1]), formula=lcl$formula, data.name=ldn,
       rlv.threshold=attr(ltt, "rlv.threshold")))
@@ -793,7 +794,7 @@ termeffects <- #f
 "[.termeffects" <- #f
   function(x, i=NULL)  structure(unclass(x)[i], class="termeffects")
     ## unclass  avoids infinite recursion!
-## -------------------------------------------------------------------------
+## ============================================================================
 print.inference <- #f
   function (x, show = getOption("show.inference"), print=TRUE,
             digits = getOption("digits.reduced"), 
@@ -871,7 +872,7 @@ print.inference <- #f
       } else "\n"
     )
     ## ---
-    if ("test"%in%lshow) {
+    if (any(c("statistic","p.value","Sig0")%in%lshow)) {
       lpv <- x["p.value"]
       lps <-
         if (length(lpv)& ("p.symbol"%in%lshow | getOption("show.signif.stars")) )
@@ -980,9 +981,9 @@ print.coeftable <- #f
   lx <- as.data.frame(x)[,lcols, drop=FALSE]
   ## --- round some columns to 3 digits
   ljrp <- lcols[pmatch(c("R2","p.v"), lcols, nomatch=0)]
-  if (length(ljrp)) lx[,ljrp] <- round(as.matrix(lx[,ljrp]),digits)
+  if (length(ljrp)) lx[,ljrp] <- round(lx[,ljrp],digits) ## as.matrix()
   ljrp <- lcols[c(grep("Rl", lcols),grep("Sig", lcols))]
-  if (length(ljrp)) lx[,ljrp] <- round(as.matrix(lx[,ljrp]),i.last(digits)-1)
+  if (length(ljrp)) lx[,ljrp] <- round(lx[,ljrp],i.last(digits)-1)
   ## --- paste symbols to numbers
   if ("p.symbol"%in%lshow & "p.value"%in%colnames(x)) {
     lx <- lf.mergesy(lx, x, "p.value", "Sig0", concatenate=TRUE)
@@ -1023,8 +1024,10 @@ print.printInference <- #f
   function(x, ...)
 {
   ltail <- NULL
-  if (is.list(x)&!is.data.frame(x)) {
-    if (length(lt <- attr(x,"head"))) cat(lt, "\n", sep="")
+  if (is.list(x)&!is.data.frame(x)) { ## print global head
+    if (length(lt <- attr(x,"head")))
+      cat(lt, "\n", sep="")
+    ##---
     ltail <- attr(x,"tail")
   } else x <- list(x)
   lInam <- length(lnam <- names(x))
@@ -1033,18 +1036,17 @@ print.printInference <- #f
     if (lInam) cat("$", lnam[li], "\n")
     lx <- x[[li]]
     class(lx) <- setdiff(class(lx), c("printInference", "inference"))
-    lhead <- attr(lx,"head")
-    attr(lx, "head") <- NULL
-    ltl <- attr(lx,"tail")
-    attr(lx, "tail") <- NULL
-    if (length(lhead)) cat(lhead, "\n", sep="")
-    if (length(dim(lx))) print(as.data.frame(lx))
-    ## ??? justify has no effect
-    ## unclass needed because ohterwise, the class attribute is printed!
+    ## attr(lx, "tail") <- NULL
+    ## print
+    if (length(lhead <- attr(lx,"head"))) cat(lhead, "\n", sep="")
+    ## attr(lx, "head") <- NULL
+    if (length(dim(lx))) print(as.data.frame(lx), ...)
+    ## as.data.frame justifies the (character) columns correctly
     else {
-      if(length(names(lx))) print(c(lx), quote=FALSE) else cat(lx, "\n", sep="")
+      if(length(names(lx))) print(c(lx), quote=FALSE, ...)
+      else cat(if(is.character(lx)) lx else format(lx), "\n", sep="")
     }
-    if (length(ltl)) cat("\n", ltl, sep="")
+    if (length(ltl <- attr(lx,"tail"))) cat("\n", ltl, sep="")
   ##   cat("\n")
   }
   if (length(ltail)) cat("\n", ltail, sep="") 
@@ -1066,10 +1068,10 @@ i.getshow <- #f
     ## if (length(ltype)==0)
     lc <- paste("show", c("simple","terms","termeffects")[ltype], lcoll, sep=".")
     for (l in lc)
-      show <- c(getOption(l), show)
+      show <- c(show, getOption(l))
   }
   if (all(c("nocoef","coef")%nin%show)) show <- c("coef", show)
-  if (any(c("statistic","p.value","Sig0")%in%show)) show <- c(show,"test")
+  ## if (any(c("statistic","p.value","Sig0")%in%show)) show <- c(show,"test")
   setdiff(show,lcoll)
 }
 ## =============================================================================
