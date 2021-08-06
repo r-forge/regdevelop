@@ -7,16 +7,17 @@ twosamples.default <- #f
   function(x, y=NULL, paired=FALSE, table=NULL,
            hypothesis=0, var.equal=TRUE,
            testlevel=getOption("testlevel"),
-           log=NULL, standardize=TRUE, 
+           log=NULL, standardize=NULL, 
            rlv.threshold=getOption("rlv.threshold"), ...)
 { ## effect (group difference) and relevance
   lcheck <-
     list(x=cnr(na.ok=FALSE), y=cnr(na.ok=TRUE), paired=clg(),
          table=cnr(dim=c(2,2)), hypothesis=cnr(), var.equal=clg(na.ok=FALSE),
-         testlevel=cnr(range=c(0.001,0.5)), log=clg(),
+         testlevel=cnr(range=c(0.001,0.5)), log=list(clg(), cch()),
          standardize=clg(), rlv.threshold=cnr(range=c(0,Inf))
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
@@ -107,17 +108,16 @@ twosamples.default <- #f
     ltype <- "proportion"
     lsigth <- NA
     ldf <- lv <- NULL
-  } else { ## quantitative data
-    log <- i.def(log, FALSE, TRUE, FALSE)
+  } else { ## ----------- quantitative data
+    log <- i.def(log, "", "log", "")
     llogrescale <- 1
-    if (is.character(log)) {
-      if(log=="log10") llogrescale <- 1/log(10)
-      log <- substr(log,1,3)=="log"
-    }
-    lirl <- ifelse(log,"rel","stand")
+    if(log=="log10") llogrescale <- 1/log(10)
+    llog <- substr(log,1,3)=="log"
+    lirl <- ifelse(llog,"rel","stand")
     lrlvth <-
       i.def(rlv.threshold[lirl],
-            c(rlv.threshold, relevance.options[["rlv.threshold"]]["stand"])[1])
+            c(rlv.threshold, getOption("rlv.threshold")[lirl],
+            relevance.options[["rlv.threshold"]][lirl])[1])
     lssx <- sum((x-lmnx)^2)
     lpq <- 1-ltlev2
     if (lonegroup) { ## one quantitative sample
@@ -155,9 +155,10 @@ twosamples.default <- #f
     lciwid <- lq*lse
     leffci <- leff + c(-1,1)*lciwid
     lpv <- 2*pt(-abs(ltst), ldf)
+    ## 
     lsc <- 1
     ltype <- "raw"
-    if (log) {
+    if (llog) {
       lsc <- llogrescale
       ltype <- "relative"
     } else if(u.notfalse(standardize)) {
@@ -184,13 +185,27 @@ twosamples.default <- #f
 }
 ## ============================================================================
 twosamples.formula <- #f
-  function (formula, data, subset, na.action, ...)
+  function (x, data=NULL, subset, na.action, log=NULL, ...)
 { ## adapted from t.test.formula
-  if (missing(formula) || (length(formula) != 3L))
+  lcheck <-
+    list(data=cdf(), na.action=cfn())
+  lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
+  largs <- check.args(lcall, lcheck, envir=parent.frame())
+  for (lnm in names(largs)) assign(lnm, largs[[lnm]])
+  ## --------------
+  if (missing(x) || (length(x) != 3L))
     stop("!twosamples! 'formula' must have left and right term")
+  lfy <- x[[2]]
+  llog <- 
+    if(length(lfy)>1) 
+      if(as.character(lfy[1])=="log") "log"
+      else if(as.character(lfy[1])%in%c("log10", "logst")) "log10"
+  llog <- i.def(log, if(is.null(llog)) "" else llog)
+  ## ---
   oneSampleOrPaired <- FALSE
-  if (length(attr(terms(formula[-2L]), "term.labels")) != 1L)
-    if (formula[[3]] == 1L)
+  if (length(attr(terms(x[-2L]), "term.labels")) != 1L)
+    if (x[[3]] == 1L)
       oneSampleOrPaired <- TRUE
     else stop("!twosamples! 'formula' incorrect")
   m <- match.call(expand.dots = FALSE)
@@ -198,6 +213,7 @@ twosamples.formula <- #f
     m$data <- as.data.frame(data)
   m[[1L]] <- quote(stats::model.frame)
   m$... <- NULL
+  names(m)[2] <- "formula"
   mf <- eval(m, parent.frame())
   ## DNAME <- paste(paste("`",names(mf),"'",sep=""), collapse = " by ")
   names(mf) <- NULL
@@ -206,22 +222,25 @@ twosamples.formula <- #f
     g <- factor(mf[[-response]])
     if (nlevels(g) != 2L)
       stop("grouping factor must have exactly 2 levels")
-    DATA <- setNames(split(mf[[response]], g), c("x", "y"))
-    rr <- do.call("twosamples", c(DATA, paired=FALSE, list(...)))
+    rr <- do.call("twosamples",
+                  c(setNames(split(mf[[response]], g), c("x", "y")),
+                    list(paired=FALSE, log=llog, ...)))
+##    rr <- twosamples.default(DATA$x, DATA$y, paired=FALSE, log=llog, ...)
     names(attr(rr, "n")) <- levels(g)
   } else { ## one sample
     respVar <- mf[[response]]
     if (inherits(respVar, "Pair")) {
-      DATA <- list(x = respVar[, 1], y = respVar[, 2])
-      rr <- do.call("twosamples", c(DATA, paired = TRUE, list(...)))
+      rr <- do.call("twosamples",
+                    list(x = respVar[, 1], y = respVar[, 2],
+                         paired = TRUE, log=llog, ...))
     } else {
-      DATA <- list(x = respVar)
-      rr <- do.call("twosamples", c(DATA, paired = FALSE, list(...)))
+      rr <- do.call("twosamples",
+                    list(x = respVar, paired = FALSE, log=llog, ...))
     }
   }
   ##  attr(rr, "data.name") <- DNAME
   ldn <- substitute(data)
-  structure(rr, formula=formula, data.name=if (is.name(ldn)) format.default(ldn))
+  structure(rr, formula=x, data.name=if (is.name(ldn)) format.default(ldn))
 }
 ## -------------------------------------------------------------------------
 twosamples.table <- #f
@@ -252,6 +271,7 @@ inference <- #f
          testlevel=cnr(range=c(0.001,0.5)), object=cls()
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
@@ -366,6 +386,7 @@ termtable <- #f
          testlevel=cnr(range=c(0.001,0.5))
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
@@ -628,6 +649,7 @@ termeffects <- #f
          rlv=clg(), rlv.threshold=cnr(range=c(0,Inf))
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
@@ -1235,6 +1257,7 @@ plconfint <- #f
          bty=cch(), col=ccl(), plpars=cls(), xlab=cch()
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
@@ -1297,6 +1320,7 @@ pltwosamples.default <- #f
     list(x=list(cnr(na.ok=FALSE),cdf()), y=cnr(), overlap=clg()
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
@@ -1348,6 +1372,7 @@ plot.termeffects <- #f
          termeffects.gap=cnr()
          )
   lcall <- match.call(expand.dots = FALSE)
+  lcall$... <- NULL
   largs <- check.args(lcall, lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
@@ -1383,22 +1408,17 @@ plot.termeffects <- #f
     mtext(names(x)[li], side=2, at=pos[lii]+1, las=1)
   }
 }
-## ----------------------------------------------------------------
-##- shortenstring <- function (x, n=50, endstring="..", endchars=NULL)
-##- { ## from plgraphics
-##-   if (length(endchars)==0) endchars <- pmin(3,ceiling(n/10))
-##-   if (any(li <- 1 >= (ncut <- n-nchar(endstring)-endchars))) {
-##-     warning(":shortenstring: argument 'n' too small for given 'endstring' and 'endchar'")
-##-     endstring <- ifelse(li, ".", endstring)
-##-     endchars <- ifelse(li, 0, endchars)
-##-     ncut <- n-nchar(endstring)-endchars
-##-   }
-##-   if (length(x) && any(n < (lnc <- nchar(x))))
-##-     ifelse(n<lnc & ncut>1, paste(substring(x, 1, ncut), endstring,
-##-                                  substring(x, lnc-endchars+1, lnc), sep=""), x)
-##-   else x
-##- }
-##- ## ======================================================================
+## =============================================================================
+i.logscale <- #f
+  function(object)
+{
+  substring(as.character(formula(object)[[2]]),1,3)=="log" ||
+    (inherits(object, "glm") &&
+     object$family%in%
+     c("binomial","poisson","quasibinomial","quasipoisson")) ||
+    inherits(object,"survreg")&&object$dist!="gaussian"
+}
+## --------------------------------------------------------------------
 getscalepar <- #f
   function(object)
 { ## get scale parameter of a fit
@@ -1409,7 +1429,7 @@ getscalepar <- #f
 }
 ## -----------------------------------------------------------
 getcoeffactor <- #f
-  function(object)
+  function(object, standardize=TRUE)
 {
   ## get factor for converting coef to coef effect
   ## model matrix
@@ -1417,22 +1437,9 @@ getcoeffactor <- #f
   if (length(lmmt)==0)  object$x <- lmmt <- model.matrix(object)
   lfamily <- object$family$family
   ldist   <- object$dist
-  lsigma <- getscalepar(object)
-##-   lsigma <-
-##-     if (inherits(object,"glm")&&lfamily%in%c("binomial", "quasibinomial"))
-##-       1.6683*lsigma   ## qlogis(pnorm(1)) ???
-##-     else {
-##-       if (inherits(object, c("lm","lmrob","rlm"))||
-##-         (inherits(object,"survreg")&&ldist=="gaussian"))
-##-         lsigma  else 1
-##-     }
+  lsigma <- if (standardize) getscalepar(object) else 1
   lfac <- apply(lmmt, 2, sd)/lsigma
   lfac[lfac==0] <- NA
-##  lnm <- names(object$coefficients)
-##-   if (any(lna <- is.na(match(lnm,names(lfac))))) {
-##-     warning(":getcoeffactor: error, possibly singular case", paste(lnm[lna], collapse=", "))
-##-     lfac <- 1
-##-   } else lfac <- lfac[lnm] ## needed for singular designs
   structure(lfac, sigma=lsigma, fitclass=class(object),
             family=lfamily, dist=ldist)
 }

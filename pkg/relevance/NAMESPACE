@@ -1,11 +1,11 @@
 
 importFrom("stats",
            setNames, uniroot, sd, symnum, plogis, qlogis, 
-           binom.test, fisher.test,
+           binom.test, fisher.test, quantile,
            drop.scope, na.omit,
            pt, pf, pchisq, qnorm, qt, qf, qchisq, 
            df.residual, terms, formula, update.formula, delete.response,
-           coefficients,
+           coefficients, naresid,
            model.matrix, model.frame, model.offset, drop1, vcov
            )
 importFrom("utils",
@@ -29,6 +29,7 @@ export(confintF, drop1Wald,
        p.symbols, rlv.symbols,
        relevance.options, relevance.modelclasses, 
        termeffects, termtable, twosamples, plot.inference, 
+       showd, dropdata, logst, sumNA, dropNA, replaceNA, formatNA, last,
        DB
        )
 

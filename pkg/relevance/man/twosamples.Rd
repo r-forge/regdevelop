@@ -16,9 +16,9 @@ onesample(x, ...)
 
 \method{twosamples}{default}(x, y = NULL, paired = FALSE, table = NULL, 
   hypothesis = 0,var.equal = TRUE,
-  testlevel=getOption("testlevel"), log = NULL, standardize = TRUE, 
+  testlevel=getOption("testlevel"), log = NULL, standardize = NULL, 
   rlv.threshold=getOption("rlv.threshold"), ...)
-\method{twosamples}{formula}(formula, data, subset, na.action, ...)
+\method{twosamples}{formula}(x, data = NULL, subset, na.action, log = NULL, ...)
 \method{twosamples}{table}(x, ...)
 }
 \arguments{
@@ -43,7 +43,8 @@ onesample(x, ...)
   \item{testlevel}{level for the test,
     also determining the confidence level
   }
-  \item{log}{logical: Is the target variable on log scale?
+  \item{log}{logical...: Is the target variable on log scale? --
+    or character: either "log" or "log10" (or "logst").
     If so, no standardization is applied to it.
     By default, the function examines the formula to check whether
     the left hand side of the formula contains a log transformation.
@@ -99,6 +100,11 @@ onesample(x, ...)
     \item{\code{rlv.threshold}: }{relevance threshold}
   }
 }
+\details{Argument \code{log}: If \code{log10} (or \code{logst} from
+  package \code{plgraphics}) is used, rescaling is done
+  (by \code{log(10)}) to obtain the correct relevance.
+  Therefore, \code{log} needs to be set appropriately in this case.
+}    
 \note{\code{onesample} and \code{twosamples} are identical.
   \code{twosamples.table(x,...)} just calls
   \code{twosamples.default(table=x, ...)}.

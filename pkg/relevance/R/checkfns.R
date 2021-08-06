@@ -7,10 +7,10 @@ check.args <- #f
   args <- as.list(call[-1])
   defaults <- as.list(args(get(lfname)))
   lnl <- length(args)
-  largnames <- names(args)
+  lchecknm <- intersect(names(args), names(check))
   lerror <- FALSE
   lmessage <- FALSE
-  for (lnm in largnames) {
+  for (lnm in lchecknm) {
     lvalue <- eval(args[[lnm]], envir=envir)
     args[[lnm]] <- lvalue ## !!! I will return evaluated arguments!
     lcheck <- check[[lnm]]
@@ -51,7 +51,7 @@ check.args <- #f
   }
   if (lmessage) cat("\n")
   if (lerror) stop("see above", call.=FALSE)
-  args
+  args[lchecknm]
 }
 ## -----------------------------------------------------------
 check.color <- #f
@@ -159,6 +159,12 @@ check.listnum <- #f
   }
   "be a list"
   }
+check.class <- #f
+  function(x, class, na.ok=TRUE) {
+  if (inherits(x, class))  return("")
+  if (na.ok && (u.isnull(x) || all(is.na(x))) ) return("")
+  paste("be an object of class ", paste(class, collapse="  or  "), ".")
+}
 check.function <- #f
   function(x, values, na.ok=TRUE) {
   if (is.function(x)) return("")
@@ -182,5 +188,6 @@ clg <- function(na.ok=TRUE) list("check.logical", na.ok=na.ok)
 cfn <- function(na.ok=TRUE) list("check.function", na.ok=na.ok)
 cdf <- function(na.ok=TRUE) list("check.dataframe", na.ok=na.ok)
 cls <- function(na.ok=TRUE) list("check.list", na.ok=na.ok)
+ccls <- function(class, na.ok=TRUE) list("check.class", class=class, na.ok=na.ok)
 cln <- function(values=NA) list("check.listnum", values=values)
 ## ---------------------------------------------------------------------

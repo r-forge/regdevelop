@@ -13,11 +13,15 @@
 \usage{
 getcoeftable(object)
 getscalepar(object)
-getcoeffactor(object)
+getcoeffactor(object, standardize = TRUE)
 }
 
 \arguments{
-  \item{object}{an \R object resulting from a model fitting function.}
+  \item{object}{an \R object resulting from a model fitting function}
+  \item{standardize}{ligical: should a scaling factor for
+    the response variable be determined (calling \code{getscalepar})
+    and used?
+  }
 }
 
 \details{Object \code{regrModelClasses} contains the names of the %% <<< FIXME: not existing!
@@ -32,7 +36,8 @@ getcoeffactor(object)
 
   For \code{getscalepar}: scale parameter.
 
-  For \code{getcoeffactor}: vector of factors, with attributes
+  For \code{getcoeffactor}: vector of multiplicative factors,
+  with attributes
   \code{scale}, \code{fitclass} and \code{family} or \code{dist}
   according to \code{object}.
 }
