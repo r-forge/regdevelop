@@ -230,7 +230,7 @@ and can be modified by setting these options again, see below.
 \section{Functions}
 \label{sec:functions}
 
-\Tit{Function \T{twosamples}.}
+\subsection{Function \T{twosamples}}
 (\T{onesample} is a synonym.)
 This function provides inference for the comparison of two samples, paired
 or unpaired, and also for a single sample.
@@ -257,33 +257,37 @@ t.oldopt <- options(show.inference = "classical")
 r.sleep
 options(t.oldopt)  ##  restore the old options
 @ 
-The function also compares two samples of binary data, resulting in inference 
+The function also calculates inference about the mean of a single sample.
+It accepts the formula version of arguments: The statement
+\T{twosamples(extra~group, data=sleep)} yields the same results as the 
+more complicated call above.
+It also compares two samples of binary data, resulting in inference 
 based on Fisher's test. A single sample leads to binomial inference. 
 See the Examples section below.
 
 %% =========================================================
-\Tit{Function \T{termtable}.}
+\subsection{Function \T{termtable}}
 For regression models with a linear predictor, the basic function is
 \T{termtable}, which is applied to a model fit object.
 For each term reflecting a scalar predictor, its result contains the 
 ordinary and standardized coefficient, their confidence intervals,
 significance against 0, p-value, and relevances.
 For all types of terms, with one or more degrees of freedom, it adds
-the relevances %and
-for dropping the term and for its contribution to prediction.
+the relevances for dropping the term and 
+for its contribution to prediction.
 
 Since this leads to 22 columns, the print method selects columns
-according to \T{getOption("show.inference")}.
+according to \Hneed{50mm} \T{getOption("show.inference")}.
 
 <<termtable>>=
   data(swiss, package="datasets")
   rr <- lm(Fertility ~ . , data = swiss)
   rt <- termtable(rr)
   rt
-  names(rt)
+  names(rt) ## The result of termtable has 22 columns
   if(interactive()) { ## too much avoidable output for the vignette
     str(rt)  
-    print(data.frame(rt)) ## or  print(rt, show="all")
+    data.frame(rt) ## or  print(rt, show="all")
     ## This avoids selection and preparation of columns by 'print.inference'. 
   }
 @ 
@@ -301,7 +305,7 @@ the confidence interval(s) on the relevance scale. Here is the example.
 plot(rt)
 @
 
-\Tit{Function \T{termeffects}.}
+\subsection{Function \T{termeffects}}
 For terms with more than one degree of freedom, notably for factors with
 more than two levels,
 the function \T{termeffects} calculates effects of levels and 
@@ -310,16 +314,16 @@ As seen here, there are \T{print} and \T{plot} methods for the resulting objects
 <<termeffects, fig.width=9, fig.height=6>>=
   data(d.blast)
   r.blast <-
-    lm(log10(tremor)~location+log10(distance)+log10(charge), data=d.blast)
+    lm(log10(tremor)~location+log10(distance)+log10(charge), 
+       data=d.blast)
   ( rte <- termeffects(r.blast) )
-  print(rte, show=c("classical","coefRls","coefRls.symbol"), single=TRUE)
 
   plot(termeffects(r.blast))  ## plot effects for terms with >1 df
 @ 
 
-\Tit{Function \T{inference}.}
+\subsection{Function \T{inference}}
 This function generates statistics describing relevance and significance 
-for many situations, mainly for regression models. 
+for several situations, mainly for regression models. 
 When it is applied to a model fit object, it calls \T{termtable} 
 and \T{termeffects} and stores the \T{summary} of the object.
 The corresponding printing method includes a final part that describes 
@@ -327,23 +331,39 @@ the global aspects of the model as shown here.
 <<inference>>=
   ( rr <- inference(r.blast) )
 @
-\T{inference} also applies to other situations where an estimate, 
+\T{\!\!inference} also applies to other situations where an estimate, 
 its standard error and the number of observations is available.
+
+\subsection{Generally useful functions}
+The package includes several functions that are not directly related to 
+relevance or significance, see their help pages for details and examples.
+
+\T{!\!showd} allows for inspecting a data.frame or vector in a 
+brief informative way.
+<<show>>=
+  showd(d.blast)
+@
+\T{\!\!logst} is a version of a "started log" that copes with zeros and 
+even with negative values in a suitable way, and 
+\T{asinp} implements an appropriate transformation for percentages.
+
+Functions that apply to data with missing values (\T{NA}s) are
+\T{sumNA, dropNA, replaceNA} and \T{formatNA}.
 
 %% =====================================================================
 \section{Options}
 \label{sec:options}
 
-The package works with some specific options, see \T{relevance.options}.
+The package works with some specific options, see \T{?relevance.options}.
 The more important ones are the following. 
 \begin{itemize}
 \item \T{rlv.threshold}:
 vector of relevance thresholds for 
   \begin{itemize}
-  \item \T{stand}: an effect standardized by a standard deviation, 
-    like Cohen's d for two samples,
   \item \T{rel}: a relative effect, that is, a change in a prameter 
     expressed as a percentage of the parameter, %% !!! log scale?
+  \item \T{stand}: an effect standardized by a standard deviation, 
+    like Cohen's d for two samples,
   \item \T{prop}: a proportion, expressed in logit units,
   \item \T{corr}: a correlation coefficient,
   \item \T{coef}: a coefficient in the linear predictor of a regression model,
@@ -360,13 +380,15 @@ vector of relevance thresholds for
     and \T{getOption("show.termeffects.relevance")}, for the three 
     print methods (see below), repectively; 
     these are the important columns for inference based on relevance;
-  \item \T{classical, test}: selects \T{getOption("show.?.classical")}, 
+  \item \T{classical} and \T{test}: these select 
+    \T{getOption("show.?.classical")}, 
     in the same manner, suitable for inference based on p values or
     significance, respectively.
   \end{itemize}
   The choice of any elements of the vector resulting from a call of
   \T{towsamples} or any columns of a \T{termtable} object is achieved by 
-  typing, e.g., \T{options(show.inference=c("classical","Sig0","Rls"))}.
+  typing, e.g.,\\
+  \T{options(show.inference=c("classical","Sig0","Rls"))}.
 \item \T{rlv.symbols} and \T{p.symbols}:
   symbols to be used for characterizing \T{Rls} or p-values, respectively,
 \item \T{digits.reduced}: digits used for relevance and significance measures 
@@ -377,29 +399,37 @@ vector of relevance thresholds for
 The package's defaults can always be restored by typing
 \T{options(relevance.options)}
 
+Here is an example of choosing more detailed ouput for termeffects.
 <<getOption>>=
   t.opt <- options(show.terms.relevance=c("coef", "dropRls", "dropRls.symbol"))
   rt
+  
 ## restore the old options
   options(t.opt) ## the former options
   options(relevance.options) ## restore the package's defaults
 @ 
 
-\Tit{Function \T{print}.} 
+\subsection{Function \T{print}} 
 These options are used when calling the \T{print} methods on the objects 
 produced by the functions in Section \ref{sec:functions}.
 These objects are either of class \T{inference} or \T{termeffects}.
 The methods \T{print.inference} and \T{print.termeffects}
-convert such objects into printable form by producing an object of
+accept an argument \T{show} that acts as if the corresponding 
+printing options had been changed. Thus,\\
+\T{print(rt, show=c("coef", "dropRls", "dropRls.symbol"))}
+leads to the output shown above.
+
+The printing methods convert their first argument into 
+printable form by producing an object of
 class \T{printInference}. They terminate by calling the method
 \T{print.printInference}, which in turn produces the output---unless 
 \T{print=FALSE} is set.
 This two-step procedure allows for editing the output in the following
 manner: 
 <<printlist>>=
-rr <- print(termeffects(r.blast), print=FALSE)
-attr(rr, "head") <- sub("lm", "Linear Regression", attr(rr, "head"))
-print(rr)
+rpr <- print(termeffects(r.blast), print=FALSE)
+attr(rpr, "head") <- sub("lm", "Linear Regression", attr(rpr, "head"))
+rpr
 @ 
 
 
@@ -407,7 +437,7 @@ print(rr)
 \section{Examples}
 Here, we document the examples that appear in the basic reference.
 
-\Tit{sleep data.}
+\subsection{sleep data}
 
 <<sleep>>=
 data(sleep)
@@ -415,7 +445,7 @@ dd <- subset(sleep, group==2)
 onesample(60*dd$extra, rlv.threshold=60, standardize=FALSE)
 @
 
-\Tit{Anchoring.}
+\subsection{Anchoring}
 The experiment is described as follows:
 “Students were asked to guesstimate the height of
 Mount Everest. One group was ‘anchored’ by telling them that it was more than 2000 feet, the
@@ -433,7 +463,7 @@ rr
 pltwosamples(log(y)~g, data=d.everest)
 @
 
-\Tit{Blasting.}
+\subsection{Blasting}
 When digging a tunnel in a populated area, it is important to make sure that the blasting does not damage nearby buildings. 
 To this end, the tremor caused by the blastings is measured in the basement of such houses, along with the distance and the charge used,
 and a model is used to predict the resulting tremor.

@@ -91,7 +91,7 @@ dropdata <- #f
       if (is.na(incol)) stop("misspecified argument 'incol'")
       li <- match(rowid,data[,incol],nomatch=0)
     }
-    if (any(li==0)) notice(":dropdata: observations  ",
+    if (any(li==0)) warning(":dropdata: observations  ", ## notice
               paste(rowid[li==0],collapse=", "),"  not found")
     li <- li[li>0]
     if (length(li)) {
@@ -102,7 +102,7 @@ dropdata <- #f
   ## drop variables
   if (length(colid)) {
     lj <- match(as.character(colid),names(data),nomatch=0)
-    if (any(lj==0)) notice(":dropdata: variables  ",
+    if (any(lj==0)) warning(":dropdata: variables  ", ## notice
               paste(colid[lj==0],collapse=", "),"  not found")
     lj <- lj[lj>0]
     if (length(lj)) data <- data[,-lj,drop=FALSE]
@@ -244,4 +244,4 @@ last <- function (data,n = NULL, ncol=NULL, drop=is.matrix(data))
        sign(ncol)*((ldim[2]-abs(ncol)+1):ldim[2]), drop=drop]
 }
 ## -----------------------------------------------------------------
-notice <- warning ## will be changed
+

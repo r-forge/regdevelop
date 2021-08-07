@@ -29,7 +29,9 @@ export(confintF, drop1Wald,
        p.symbols, rlv.symbols,
        relevance.options, relevance.modelclasses, 
        termeffects, termtable, twosamples, plot.inference, 
-       showd, dropdata, logst, sumNA, dropNA, replaceNA, formatNA, last,
+       showd, dropdata, logst, asinp,
+       sumNA, dropNA, replaceNA, formatNA,
+       last,
        DB
        )
 
