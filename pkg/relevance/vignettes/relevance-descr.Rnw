@@ -266,6 +266,14 @@ based on Fisher's test. A single sample leads to binomial inference.
 See the Examples section below.
 
 %% =========================================================
+\subsection{Function \T{correlation}}
+Inference about a correlation coefficient is produced by the function
+\T{correlation}. It is based on \T{cor.test} from the \T{stats} package
+and thus allows for choosing Spearman's nonparametric correlation.
+<<correlation>>=
+correlation(iris[1:50,1:2], method="spearman")
+@
+%% =========================================================
 \subsection{Function \T{termtable}}
 For regression models with a linear predictor, the basic function is
 \T{termtable}, which is applied to a model fit object.

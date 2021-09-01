@@ -1,11 +1,16 @@
 ## -----------------------------------------------------------------------
 check.args <- #f
 ##-   function(args, check=NULL, defaults=NULL, functionname)
-  function(call, check, envir)
+  function(check, envir)
 { ## check arguments of a function and return them in evaluated form
-  lfname <- as.character(call[1])
+  call <- sys.call(-1)
+  defaults <- as.list(args(sys.function(-1)))
   args <- as.list(call[-1])
-  defaults <- as.list(args(get(lfname)))
+  lfname <- as.character(call[1])
+  ##-   lfn <-
+##-     if(length(lfname)>1)
+##-       get(lfname[[1]], paste("packagbe",lfname[[2]],sep=":")) else get(lfname[[1]])
+##-   defaults <- as.list(args(lfn))
   lnl <- length(args)
   lchecknm <- intersect(names(args), names(check))
   lerror <- FALSE
@@ -25,11 +30,12 @@ check.args <- #f
         lmsg[lj] <- lmsgj <-
           switch(paste("v",length(lch),sep=""), v0="", v1=lfn(lvalue),
                  v2=lfn(lvalue, lch[[2]]), v3=lfn(lvalue, lch[[2]], lch[[3]]),
-                 v4=lfn(lvalue, lch[[2]], lch[[3]], lch[[4]]),"")
+                 v4=lfn(lvalue, lch[[2]], lch[[3]], lch[[4]]),
+                 v5=lfn(lvalue, lch[[2]], lch[[3]], lch[[4]], lch[[5]]),"")
         if (lmsgj=="") break
       }
       if (all(lmsg!="")) {
-        ldf <- defaults[[lnm]]
+        ldf <- eval(defaults[[lnm]])
         if (missing(ldf)) ldf <- NULL
         lms <-
           paste("argument '", lnm, "' is not suitable. It should\n    ",
@@ -38,7 +44,8 @@ check.args <- #f
         if (length(ldf)) {
           cat("\n* Warning in ", lfname, ": ", lms)
           str(lvalue)
-          cat("  default will be used")
+          cat("  default will be used",
+              if(length(ldf)) paste(": ",paste(ldf, collapse=", ")))
           args[lnm] <- ldf
         } else {
           cat("\n*** Error in ", lfname, ": ", lms)

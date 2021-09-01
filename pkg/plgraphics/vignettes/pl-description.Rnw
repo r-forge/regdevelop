@@ -1,9 +1,7 @@
-
 % -*- Mode: noweb; noweb-default-code-mode: R-mode; -*-
 %\SweaveUTF8
 \documentclass[11pt]{article}
 \usepackage{graphicx}
-%% \usepackage{Sweave}
 \usepackage[utf8]{inputenc}
 %% \usepackage{germanU}
 %%- \usepackage[noae]{Sweave}

@@ -1,7 +1,7 @@
 
 importFrom("stats",
            setNames, uniroot, sd, symnum, plogis, qlogis, 
-           binom.test, fisher.test, quantile,
+           binom.test, cor.test, fisher.test, quantile,
            drop.scope, na.omit,
            pt, pf, pchisq, qnorm, qt, qf, qchisq, 
            df.residual, terms, formula, update.formula, delete.response,
@@ -23,7 +23,7 @@ importFrom("grDevices", palette)
 ##-
 ##- importFrom("quantreg", rq)
 
-export(confintF, drop1Wald,
+export(confintF, correlation, drop1Wald,
        getcoeftable, getcoeffactor, getscalepar, 
        inference, onesample, plconfint, pltwosamples,
        p.symbols, rlv.symbols,

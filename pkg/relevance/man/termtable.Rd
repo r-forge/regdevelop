@@ -9,7 +9,7 @@
 \usage{
 termtable(object, summary = summary(object), testtype = NULL,
   r2x = TRUE, rlv = TRUE, rlv.threshold = getOption("rlv.threshold"), 
-  testlevel = getOption("testlevel"))
+  testlevel = getOption("testlevel"), ...)
 
 relevance.modelclasses
 }
@@ -38,6 +38,7 @@ relevance.modelclasses
    }
   }
   \item{testlevel}{1 - confidence level}
+  \item{...}{further arguments, ignored}
 }
 \details{
   \code{relevance.modelclasses} collects the names of classes of model

@@ -11,14 +11,12 @@ twosamples.default <- #f
            rlv.threshold=getOption("rlv.threshold"), ...)
 { ## effect (group difference) and relevance
   lcheck <-
-    list(x=cnr(na.ok=FALSE), y=cnr(na.ok=TRUE), paired=clg(),
-         table=cnr(dim=c(2,2)), hypothesis=cnr(), var.equal=clg(na.ok=FALSE),
+    list(x=list(cnr(na.ok=FALSE), cdf()), y=cnr(na.ok=TRUE), paired=clg(),
+         table=list(cnr(dim=c(2,2)), cdf()), hypothesis=cnr(), var.equal=clg(na.ok=FALSE),
          testlevel=cnr(range=c(0.001,0.5)), log=list(clg(), cch()),
          standardize=clg(), rlv.threshold=cnr(range=c(0,Inf))
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
   ltlev2 <- testlevel/2
@@ -178,7 +176,7 @@ twosamples.default <- #f
     class = c("inference", "twosamples"), type="simple",
     method = method, effectname = effname, hypothesis = hypothesis,
     n = c(lnx, lny), estimate=lest, statistic = ltst, V = lv, df = ldf,
-    data = list(x=x, y=y),
+    data = if (ltb) table else {if (lonegroup) x else list(x=x, y=y)},
     rlv.threshold = lrlvth,
     rlv.type = ltype
   )
@@ -189,9 +187,7 @@ twosamples.formula <- #f
 { ## adapted from t.test.formula
   lcheck <-
     list(data=cdf(), na.action=cfn())
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
   if (missing(x) || (length(x) != 3L))
@@ -246,18 +242,71 @@ twosamples.formula <- #f
 twosamples.table <- #f
   function(x, ...) twosamples.default(table=x, ...)
 ## ========================================================================
-qintpol <- function(p, par1, par2, dist="binom")
-{
-  ## interpolated (theoretical) quantile for discrete distributions
-  lqfn <- get(paste("q",dist,sep=""))
-  lpfn <- get(paste("p",dist,sep=""))
-  lq <- lqfn(p, par1, par2)
-  lp <- lpfn(lq, par1, par2)
-  lmaxx <- if (dist=="binom") par1 else Inf
-  lp0 <- lpfn(pmin(pmax(0,lq-1),lmaxx), par1, par2)
-  lq - (lp-p)/(lp-lp0)
-}
-## ===========================================================================
+correlation <- #f
+  function(x, y = NULL, method = c("pearson", "spearman"), ## , "kendall"
+           hypothesis = 0, testlevel=getOption("testlevel"),
+           rlv.threshold=getOption("rlv.threshold"), ...)
+{ ## ---
+  lcheck <-
+    list(x=cnr(na.ok=FALSE), y=cnr(na.ok=TRUE), hypothesis=cnr(c(-1,1)), 
+         testlevel=cnr(range=c(0.001,0.5)),
+         method=cch(c("pearson", "spearman")), ## , "kendall"
+         rlv.threshold=cnr(range=c(0,Inf))
+         )
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
+  for (lnm in names(largs)) assign(lnm, largs[[lnm]])
+  ## --------------
+  if (length(y)) {
+    if (length(x)!=length(y))
+      stop("!correlation! 'x' and 'y' must have the same length")
+    x <- cbind(x,y)
+  }
+  if (NCOL(x)!=2) 
+    stop("!correlation! argument 'x' not suitable")
+  x <- stats::na.omit(x)
+  ln <- nrow(x)
+  if (ln<=3)
+    stop("!correlation! not enough observations")
+  ## ---------  
+  testlevel = i.def(testlevel, getOption("testlevel"))
+  lrlvth <-
+    i.def(rlv.threshold["corr"],
+          c(rlv.threshold, getOption("rlv.threshold")["corr"],
+            relevance.options[["rlv.threshold"]]["corr"])[1])
+  lmethod <- i.def(method, "pearson")
+  ## ---
+  lt <- cor.test(x[,1], x[,2], method=lmethod[1], conf.level=1-testlevel, ...)
+  lest <- unname(lt$estimate) 
+  lci <- lt$conf.int
+  lci <- if (length(lci)) atanh(lci)
+         else atanh(lest) + c(-1,1)*qnorm(1-testlevel/2)/sqrt(ln-3)
+  ## !!! this may not be quite adequate for nonparametric correlation ...
+  ## ---
+  leffci <- c(atanh(lest),lci)-atanh(hypothesis)
+  lrlvci <- leffci/lrlvth
+  lrlvwid <- lrlvci[1]-ifelse(lrlvci[1]>0, lrlvci[2], lrlvci[3])
+  lsig <- lrlvci[1]/lrlvwid
+  lsigth <- (lrlvci[1]-1)/lrlvwid
+  leffnm <- "correlation, z-transformed"
+  lmeth <- paste("Correlation --",
+                  switch(lmethod[1],
+                         pearson="Pearson product moment c.",
+                         spearman="Spearman's rank c.",
+                         kendall="Kendall's nonparametric c.") )
+  structure(
+    c(effect = c(correlation=atanh(lest)), statistic=lt$statistic,
+      p.value=lt$p.value, Sig0=lsig, ciLow=leffci[2], ciUp=leffci[3],
+      Rle=lrlvci[1], Rls=lrlvci[2], Rlp=lrlvci[3], Sigth=lsigth),
+    class = c("inference"), type="simple",
+    method = lmeth, effectname = leffnm, hypothesis = hypothesis,
+    n = length(x)-sumNA(x),
+    estimate = c(lest, ciLow=lt$conf.int[1], ciUp=lt$conf.int[2]),
+    data = x, rlv.threshold = lrlvth
+  )
+} ## end correlation
+## ========================================================================
 inference <- #f
   function (estimate=NULL, se=NULL, n=NULL, df=NULL, stcoef=TRUE, 
             rlv=TRUE, rlv.threshold=getOption("rlv.threshold"),
@@ -270,9 +319,9 @@ inference <- #f
          rlv=clg(), rlv.trheshold=cnr(range=c(0,Inf)),
          testlevel=cnr(range=c(0.001,0.5)), object=cls()
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
   if (length(estimate)==0) estimate <- object
@@ -376,7 +425,7 @@ inference <- #f
 termtable <- #f
   function (object, summary=summary(object), testtype=NULL, r2x = TRUE,
             rlv = TRUE, rlv.threshold = getOption("rlv.threshold"), 
-            testlevel = getOption("testlevel"))
+            testlevel = getOption("testlevel"), ...)
 {
   ## Purpose:  generate term table for various models
   ## --------------------------------------------------------
@@ -385,9 +434,9 @@ termtable <- #f
          rlv=clg(), rlv.threshold=cnr(range=c(0,Inf)),
          testlevel=cnr(range=c(0.001,0.5))
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
   ## thresholds
@@ -594,51 +643,6 @@ i.drop1 <- #F
   dr1
 }
 ## ===========================================================
-confintF <- #f
-  function(f, df1, df2=Inf, testlevel=0.05) {
-  ## confidence interval for non-centrality of F distribution
-  p <- testlevel/2
-  lf.fq <- function(x, fvalue, df1, df2, p) qf(p,df1,df2,x)-fvalue
-  lf.ciup <- function(fvalue, df, p) { ## upper bound for upper limit
-    lq <- 1.5*qnorm(p)
-    lu <- lq^2*2/df
-    df*(fvalue-1+lu+sqrt(lu*(lu+2*fvalue-1)))
-  }
-  ln <- max(length(f), length(df1), length(df2), length(p))
-  f <- rep(f, length=ln)
-  df1 <- rep(df1, length=ln)
-  df2 <- rep(df2, length=ln)
-  p <- rep(p, length=ln)
-  p <- pmin(p,1-p)
-  ## ---------------------------
-  rr <- matrix(NA, ln, 2)
-  for (li in 1:ln) {
-    lx <- f[li]
-    if (!is.finite(lx)) next
-    if (lx>100)
-      rr[li,] <- df1[li]*(sqrt(lx)+c(-1,1)*abs(qt(p[li],df2[li]))/sqrt(df1[li]))^2
-    else {
-      ldf1i <- df1[li]
-      if (ldf1i==0) next
-      rr[li,1] <- { ## lower limit
-        lf0 <- lf.fq(0, f[li], ldf1i, df2[li], 1-p[li])
-        if (lf0>=0) 0
-        else
-          pmax(0, ## !!! something wrong, should not be needed
-               uniroot(lf.fq, c(0,df1[li]*f[li]),
-                       fvalue=f[li], df1=ldf1i, df2=df2[li], p=1-p[li])$root
-               )
-      }
-      rr[li,2] <- ## upper limit
-        if (pf(f[li], ldf1i, df2[li])<=p[li]) 0  ## tiny F value
-        else
-        uniroot(lf.fq, interval=c(df1[li]*f[li], lf.ciup(f[li], df1[li], 1-p[li])),
-                fvalue=f[li], df1=ldf1i, df2=df2[li], p=p[li], extendInt="upX")$root
-    }
-  }
-  if (ln==1) c(rr) else rr
-}
-## ===========================================================================
 termeffects <- #f
   function (object, se = 2, df = df.residual(object),
             rlv = TRUE, rlv.threshold=getOption("rlv.threshold"), ...)
@@ -648,9 +652,9 @@ termeffects <- #f
     list(object=cls(), se=cnr(), df=cnr(),
          rlv=clg(), rlv.threshold=cnr(range=c(0,Inf))
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
   if (is.atomic(object)||is.null(terms(object)))
@@ -817,6 +821,63 @@ termeffects <- #f
   function(x, i=NULL)  structure(unclass(x)[i], class="termeffects")
     ## unclass  avoids infinite recursion!
 ## ============================================================================
+qintpol <- function(p, par1, par2, dist="binom")
+{
+  ## interpolated (theoretical) quantile for discrete distributions
+  lqfn <- get(paste("q",dist,sep=""))
+  lpfn <- get(paste("p",dist,sep=""))
+  lq <- lqfn(p, par1, par2)
+  lp <- lpfn(lq, par1, par2)
+  lmaxx <- if (dist=="binom") par1 else Inf
+  lp0 <- lpfn(pmin(pmax(0,lq-1),lmaxx), par1, par2)
+  lq - (lp-p)/(lp-lp0)
+}
+## ------------------------------------------------------------------
+confintF <- #f
+  function(f, df1, df2=Inf, testlevel=0.05) {
+  ## confidence interval for non-centrality of F distribution
+  p <- testlevel/2
+  lf.fq <- function(x, fvalue, df1, df2, p) qf(p,df1,df2,x)-fvalue
+  lf.ciup <- function(fvalue, df, p) { ## upper bound for upper limit
+    lq <- 1.5*qnorm(p)
+    lu <- lq^2*2/df
+    df*(fvalue-1+lu+sqrt(lu*(lu+2*fvalue-1)))
+  }
+  ln <- max(length(f), length(df1), length(df2), length(p))
+  f <- rep(f, length=ln)
+  df1 <- rep(df1, length=ln)
+  df2 <- rep(df2, length=ln)
+  p <- rep(p, length=ln)
+  p <- pmin(p,1-p)
+  ## ---------------------------
+  rr <- matrix(NA, ln, 2)
+  for (li in 1:ln) {
+    lx <- f[li]
+    if (!is.finite(lx)) next
+    if (lx>100)
+      rr[li,] <- df1[li]*(sqrt(lx)+c(-1,1)*abs(qt(p[li],df2[li]))/sqrt(df1[li]))^2
+    else {
+      ldf1i <- df1[li]
+      if (ldf1i==0) next
+      rr[li,1] <- { ## lower limit
+        lf0 <- lf.fq(0, f[li], ldf1i, df2[li], 1-p[li])
+        if (lf0>=0) 0
+        else
+          pmax(0, ## !!! something wrong, should not be needed
+               uniroot(lf.fq, c(0,df1[li]*f[li]),
+                       fvalue=f[li], df1=ldf1i, df2=df2[li], p=1-p[li])$root
+               )
+      }
+      rr[li,2] <- ## upper limit
+        if (pf(f[li], ldf1i, df2[li])<=p[li]) 0  ## tiny F value
+        else
+        uniroot(lf.fq, interval=c(df1[li]*f[li], lf.ciup(f[li], df1[li], 1-p[li])),
+                fvalue=f[li], df1=ldf1i, df2=df2[li], p=p[li], extendInt="upX")$root
+    }
+  }
+  if (ln==1) c(rr) else rr
+}
+## ===========================================================================
 print.inference <- #f
   function (x, show = getOption("show.inference"), print=TRUE,
             digits = getOption("digits.reduced"), 
@@ -1068,11 +1129,11 @@ print.printInference <- #f
       if(length(names(lx))) print(c(lx), quote=FALSE, ...)
       else cat(if(is.character(lx)) lx else format(lx), "\n", sep="")
     }
-    if (length(ltl <- attr(lx,"tail"))) cat("\n", ltl, sep="")
+    if (length(ltl <- attr(lx,"tail"))) cat(ltl) ## cat("\n", ltl, sep="")
   ##   cat("\n")
   }
-  if (length(ltail)) cat("\n", ltail, sep="") 
-  cat("\n")
+  if (length(ltail)) cat(ltail) ## cat("\n", ltail, sep="") 
+  ##  cat("\n")
 }
 ## -----------------------------------------------------------
 i.getshow <- #f
@@ -1256,9 +1317,9 @@ plconfint <- #f
     list(x=cnr(na.ok=FALSE), pos=cnr(), xlim=cnr(), add=clg(),
          bty=cch(), col=ccl(), plpars=cls(), xlab=cch()
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
   i.extendrange <- function(range, ext=0.04)  range + c(-1,1)*ext*diff(range)
@@ -1319,9 +1380,9 @@ pltwosamples.default <- #f
   lcheck <-
     list(x=list(cnr(na.ok=FALSE),cdf()), y=cnr(), overlap=clg()
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
   if (is.matrix(x)) x <- as.data.frame(x)
@@ -1371,9 +1432,9 @@ plot.termeffects <- #f
     list(x=cnr(na.ok=FALSE), single=clg(), overlap=clg(), 
          termeffects.gap=cnr()
          )
-  lcall <- match.call(expand.dots = FALSE)
-  lcall$... <- NULL
-  largs <- check.args(lcall, lcheck, envir=parent.frame())
+##-   lcall <- match.call(expand.dots = FALSE)
+##-   lcall$... <- NULL
+  largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------
   li <- sapply(x, is.atomic)

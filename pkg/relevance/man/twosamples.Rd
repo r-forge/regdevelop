@@ -71,8 +71,8 @@ onesample(x, ...)
   }
 }
 %% --------------
-\value{an object of \code{\link{class}} \code{'effecttable'}, a
-  \code{\link{data.frame}} with columns (components)
+\value{an object of \code{\link{class}} \code{'inference'}, a
+  vector with elements
   \describe{
     \item{\code{effect}: }{for quantitative data:
       estimated difference between expectations of the two
@@ -97,6 +97,9 @@ onesample(x, ...)
     \item{\code{statistic}: }{test statistic}
     \item{\code{V}: }{single observation variance}
     \item{\code{df}: }{degrees of freedom for the t distribution}
+    \item{\code{data: }}{if paired, vector of differences;
+	if single sample, vector of data;
+	if two independent samples, list containing the two samples}
     \item{\code{rlv.threshold}: }{relevance threshold}
   }
 }

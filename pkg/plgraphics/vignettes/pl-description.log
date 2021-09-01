@@ -1,576 +1,210 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.4)  1 APR 2021 16:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.7.30)  3 AUG 2021 10:41
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**pl-description.tex
-(./pl-description.tex
-LaTeX2e <2016/03/31>
-Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+**\nonstopmode \input ./pl-description.tex \input ./pl-description.tex
+(./pl-description.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
-\c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
-\abovecaptionskip=\skip41
-\belowcaptionskip=\skip42
-\bibindent=\dimen102
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks15
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+Package graphics Info: Driver file: pdftex.def on input line 105.
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count87
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
-) (/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+\Gin@req@height=\dimen135
+\Gin@req@width=\dimen136
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count175
+\Gm@cntv=\count176
+\c@Gm@tempcnt=\count177
+\Gm@bindingoffset=\dimen137
+\Gm@wd@mp=\dimen138
+\Gm@odd@mp=\dimen139
+\Gm@even@mp=\dimen140
+\Gm@layoutwidth=\dimen141
+\Gm@layoutheight=\dimen142
+\Gm@layouthoffset=\dimen143
+\Gm@layoutvoffset=\dimen144
+\Gm@dimlist=\toks18
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip43
-\fb@frw=\dimen105
-\fb@frh=\dimen106
-\FrameRule=\dimen107
-\FrameSep=\dimen108
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen145
+\lightrulewidth=\dimen146
+\cmidrulewidth=\dimen147
+\belowrulesep=\dimen148
+\belowbottomsep=\dimen149
+\aboverulesep=\dimen150
+\abovetopsep=\dimen151
+\cmidrulesep=\dimen152
+\cmidrulekern=\dimen153
+\defaultaddspace=\dimen154
+\@cmidla=\count178
+\@cmidlb=\count179
+\@aboverulesep=\dimen155
+\@belowrulesep=\dimen156
+\@thisruleclass=\count180
+\@lastruleclass=\count181
+\@thisrulewidth=\dimen157
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/alltt.sty
-Package: alltt 1997/06/16 v2.0g defines alltt environment
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2015/03/17 v1.2c Input encoding file
-\inpenc@prehook=\toks15
-\inpenc@posthook=\toks16
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2016/02/28 v1.1s UTF-8 support for inputenc
-Now handling font encoding OML ...
-... no UTF-8 mapping file for font encoding OML
-Now handling font encoding T1 ...
-... processing UTF-8 mapping file for font encoding T1
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/t1enc.dfu
-File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
-   defining Unicode char U+00A1 (decimal 161)
-   defining Unicode char U+00A3 (decimal 163)
-   defining Unicode char U+00AB (decimal 171)
-   defining Unicode char U+00AD (decimal 173)
-   defining Unicode char U+00BB (decimal 187)
-   defining Unicode char U+00BF (decimal 191)
-   defining Unicode char U+00C0 (decimal 192)
-   defining Unicode char U+00C1 (decimal 193)
-   defining Unicode char U+00C2 (decimal 194)
-   defining Unicode char U+00C3 (decimal 195)
-   defining Unicode char U+00C4 (decimal 196)
-   defining Unicode char U+00C5 (decimal 197)
-   defining Unicode char U+00C6 (decimal 198)
-   defining Unicode char U+00C7 (decimal 199)
-   defining Unicode char U+00C8 (decimal 200)
-   defining Unicode char U+00C9 (decimal 201)
-   defining Unicode char U+00CA (decimal 202)
-   defining Unicode char U+00CB (decimal 203)
-   defining Unicode char U+00CC (decimal 204)
-   defining Unicode char U+00CD (decimal 205)
-   defining Unicode char U+00CE (decimal 206)
-   defining Unicode char U+00CF (decimal 207)
-   defining Unicode char U+00D0 (decimal 208)
-   defining Unicode char U+00D1 (decimal 209)
-   defining Unicode char U+00D2 (decimal 210)
-   defining Unicode char U+00D3 (decimal 211)
-   defining Unicode char U+00D4 (decimal 212)
-   defining Unicode char U+00D5 (decimal 213)
-   defining Unicode char U+00D6 (decimal 214)
-   defining Unicode char U+00D8 (decimal 216)
-   defining Unicode char U+00D9 (decimal 217)
-   defining Unicode char U+00DA (decimal 218)
-   defining Unicode char U+00DB (decimal 219)
-   defining Unicode char U+00DC (decimal 220)
-   defining Unicode char U+00DD (decimal 221)
-   defining Unicode char U+00DE (decimal 222)
-   defining Unicode char U+00DF (decimal 223)
-   defining Unicode char U+00E0 (decimal 224)
-   defining Unicode char U+00E1 (decimal 225)
-   defining Unicode char U+00E2 (decimal 226)
-   defining Unicode char U+00E3 (decimal 227)
-   defining Unicode char U+00E4 (decimal 228)
-   defining Unicode char U+00E5 (decimal 229)
-   defining Unicode char U+00E6 (decimal 230)
-   defining Unicode char U+00E7 (decimal 231)
-   defining Unicode char U+00E8 (decimal 232)
-   defining Unicode char U+00E9 (decimal 233)
-   defining Unicode char U+00EA (decimal 234)
-   defining Unicode char U+00EB (decimal 235)
-   defining Unicode char U+00EC (decimal 236)
-   defining Unicode char U+00ED (decimal 237)
-   defining Unicode char U+00EE (decimal 238)
-   defining Unicode char U+00EF (decimal 239)
-   defining Unicode char U+00F0 (decimal 240)
-   defining Unicode char U+00F1 (decimal 241)
-   defining Unicode char U+00F2 (decimal 242)
-   defining Unicode char U+00F3 (decimal 243)
-   defining Unicode char U+00F4 (decimal 244)
-   defining Unicode char U+00F5 (decimal 245)
-   defining Unicode char U+00F6 (decimal 246)
-   defining Unicode char U+00F8 (decimal 248)
-   defining Unicode char U+00F9 (decimal 249)
-   defining Unicode char U+00FA (decimal 250)
-   defining Unicode char U+00FB (decimal 251)
-   defining Unicode char U+00FC (decimal 252)
-   defining Unicode char U+00FD (decimal 253)
-   defining Unicode char U+00FE (decimal 254)
-   defining Unicode char U+00FF (decimal 255)
-   defining Unicode char U+0100 (decimal 256)
-   defining Unicode char U+0101 (decimal 257)
-   defining Unicode char U+0102 (decimal 258)
-   defining Unicode char U+0103 (decimal 259)
-   defining Unicode char U+0104 (decimal 260)
-   defining Unicode char U+0105 (decimal 261)
-   defining Unicode char U+0106 (decimal 262)
-   defining Unicode char U+0107 (decimal 263)
-   defining Unicode char U+0108 (decimal 264)
-   defining Unicode char U+0109 (decimal 265)
-   defining Unicode char U+010A (decimal 266)
-   defining Unicode char U+010B (decimal 267)
-   defining Unicode char U+010C (decimal 268)
-   defining Unicode char U+010D (decimal 269)
-   defining Unicode char U+010E (decimal 270)
-   defining Unicode char U+010F (decimal 271)
-   defining Unicode char U+0110 (decimal 272)
-   defining Unicode char U+0111 (decimal 273)
-   defining Unicode char U+0112 (decimal 274)
-   defining Unicode char U+0113 (decimal 275)
-   defining Unicode char U+0114 (decimal 276)
-   defining Unicode char U+0115 (decimal 277)
-   defining Unicode char U+0116 (decimal 278)
-   defining Unicode char U+0117 (decimal 279)
-   defining Unicode char U+0118 (decimal 280)
-   defining Unicode char U+0119 (decimal 281)
-   defining Unicode char U+011A (decimal 282)
-   defining Unicode char U+011B (decimal 283)
-   defining Unicode char U+011C (decimal 284)
-   defining Unicode char U+011D (decimal 285)
-   defining Unicode char U+011E (decimal 286)
-   defining Unicode char U+011F (decimal 287)
-   defining Unicode char U+0120 (decimal 288)
-   defining Unicode char U+0121 (decimal 289)
-   defining Unicode char U+0122 (decimal 290)
-   defining Unicode char U+0123 (decimal 291)
-   defining Unicode char U+0124 (decimal 292)
-   defining Unicode char U+0125 (decimal 293)
-   defining Unicode char U+0128 (decimal 296)
-   defining Unicode char U+0129 (decimal 297)
-   defining Unicode char U+012A (decimal 298)
-   defining Unicode char U+012B (decimal 299)
-   defining Unicode char U+012C (decimal 300)
-   defining Unicode char U+012D (decimal 301)
-   defining Unicode char U+012E (decimal 302)
-   defining Unicode char U+012F (decimal 303)
-   defining Unicode char U+0130 (decimal 304)
-   defining Unicode char U+0131 (decimal 305)
-   defining Unicode char U+0132 (decimal 306)
-   defining Unicode char U+0133 (decimal 307)
-   defining Unicode char U+0134 (decimal 308)
-   defining Unicode char U+0135 (decimal 309)
-   defining Unicode char U+0136 (decimal 310)
-   defining Unicode char U+0137 (decimal 311)
-   defining Unicode char U+0139 (decimal 313)
-   defining Unicode char U+013A (decimal 314)
-   defining Unicode char U+013B (decimal 315)
-   defining Unicode char U+013C (decimal 316)
-   defining Unicode char U+013D (decimal 317)
-   defining Unicode char U+013E (decimal 318)
-   defining Unicode char U+0141 (decimal 321)
-   defining Unicode char U+0142 (decimal 322)
-   defining Unicode char U+0143 (decimal 323)
-   defining Unicode char U+0144 (decimal 324)
-   defining Unicode char U+0145 (decimal 325)
-   defining Unicode char U+0146 (decimal 326)
-   defining Unicode char U+0147 (decimal 327)
-   defining Unicode char U+0148 (decimal 328)
-   defining Unicode char U+014A (decimal 330)
-   defining Unicode char U+014B (decimal 331)
-   defining Unicode char U+014C (decimal 332)
-   defining Unicode char U+014D (decimal 333)
-   defining Unicode char U+014E (decimal 334)
-   defining Unicode char U+014F (decimal 335)
-   defining Unicode char U+0150 (decimal 336)
-   defining Unicode char U+0151 (decimal 337)
-   defining Unicode char U+0152 (decimal 338)
-   defining Unicode char U+0153 (decimal 339)
-   defining Unicode char U+0154 (decimal 340)
-   defining Unicode char U+0155 (decimal 341)
-   defining Unicode char U+0156 (decimal 342)
-   defining Unicode char U+0157 (decimal 343)
-   defining Unicode char U+0158 (decimal 344)
-   defining Unicode char U+0159 (decimal 345)
-   defining Unicode char U+015A (decimal 346)
-   defining Unicode char U+015B (decimal 347)
-   defining Unicode char U+015C (decimal 348)
-   defining Unicode char U+015D (decimal 349)
-   defining Unicode char U+015E (decimal 350)
-   defining Unicode char U+015F (decimal 351)
-   defining Unicode char U+0160 (decimal 352)
-   defining Unicode char U+0161 (decimal 353)
-   defining Unicode char U+0162 (decimal 354)
-   defining Unicode char U+0163 (decimal 355)
-   defining Unicode char U+0164 (decimal 356)
-   defining Unicode char U+0165 (decimal 357)
-   defining Unicode char U+0168 (decimal 360)
-   defining Unicode char U+0169 (decimal 361)
-   defining Unicode char U+016A (decimal 362)
-   defining Unicode char U+016B (decimal 363)
-   defining Unicode char U+016C (decimal 364)
-   defining Unicode char U+016D (decimal 365)
-   defining Unicode char U+016E (decimal 366)
-   defining Unicode char U+016F (decimal 367)
-   defining Unicode char U+0170 (decimal 368)
-   defining Unicode char U+0171 (decimal 369)
-   defining Unicode char U+0172 (decimal 370)
-   defining Unicode char U+0173 (decimal 371)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
-   defining Unicode char U+0178 (decimal 376)
-   defining Unicode char U+0179 (decimal 377)
-   defining Unicode char U+017A (decimal 378)
-   defining Unicode char U+017B (decimal 379)
-   defining Unicode char U+017C (decimal 380)
-   defining Unicode char U+017D (decimal 381)
-   defining Unicode char U+017E (decimal 382)
-   defining Unicode char U+01CD (decimal 461)
-   defining Unicode char U+01CE (decimal 462)
-   defining Unicode char U+01CF (decimal 463)
-   defining Unicode char U+01D0 (decimal 464)
-   defining Unicode char U+01D1 (decimal 465)
-   defining Unicode char U+01D2 (decimal 466)
-   defining Unicode char U+01D3 (decimal 467)
-   defining Unicode char U+01D4 (decimal 468)
-   defining Unicode char U+01E2 (decimal 482)
-   defining Unicode char U+01E3 (decimal 483)
-   defining Unicode char U+01E6 (decimal 486)
-   defining Unicode char U+01E7 (decimal 487)
-   defining Unicode char U+01E8 (decimal 488)
-   defining Unicode char U+01E9 (decimal 489)
-   defining Unicode char U+01EA (decimal 490)
-   defining Unicode char U+01EB (decimal 491)
-   defining Unicode char U+01F0 (decimal 496)
-   defining Unicode char U+01F4 (decimal 500)
-   defining Unicode char U+01F5 (decimal 501)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
-   defining Unicode char U+1E02 (decimal 7682)
-   defining Unicode char U+1E03 (decimal 7683)
-   defining Unicode char U+200C (decimal 8204)
-   defining Unicode char U+2010 (decimal 8208)
-   defining Unicode char U+2011 (decimal 8209)
-   defining Unicode char U+2012 (decimal 8210)
-   defining Unicode char U+2013 (decimal 8211)
-   defining Unicode char U+2014 (decimal 8212)
-   defining Unicode char U+2015 (decimal 8213)
-   defining Unicode char U+2018 (decimal 8216)
-   defining Unicode char U+2019 (decimal 8217)
-   defining Unicode char U+201A (decimal 8218)
-   defining Unicode char U+201C (decimal 8220)
-   defining Unicode char U+201D (decimal 8221)
-   defining Unicode char U+201E (decimal 8222)
-   defining Unicode char U+2030 (decimal 8240)
-   defining Unicode char U+2031 (decimal 8241)
-   defining Unicode char U+2039 (decimal 8249)
-   defining Unicode char U+203A (decimal 8250)
-   defining Unicode char U+2423 (decimal 9251)
-)
-Now handling font encoding OT1 ...
-... processing UTF-8 mapping file for font encoding OT1
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/ot1enc.dfu
-File: ot1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
-   defining Unicode char U+00A0 (decimal 160)
-   defining Unicode char U+00A1 (decimal 161)
-   defining Unicode char U+00A3 (decimal 163)
-   defining Unicode char U+00AD (decimal 173)
-   defining Unicode char U+00B8 (decimal 184)
-   defining Unicode char U+00BF (decimal 191)
-   defining Unicode char U+00C5 (decimal 197)
-   defining Unicode char U+00C6 (decimal 198)
-   defining Unicode char U+00D8 (decimal 216)
-   defining Unicode char U+00DF (decimal 223)
-   defining Unicode char U+00E6 (decimal 230)
-   defining Unicode char U+00EC (decimal 236)
-   defining Unicode char U+00ED (decimal 237)
-   defining Unicode char U+00EE (decimal 238)
-   defining Unicode char U+00EF (decimal 239)
-   defining Unicode char U+00F8 (decimal 248)
-   defining Unicode char U+0131 (decimal 305)
-   defining Unicode char U+0141 (decimal 321)
-   defining Unicode char U+0142 (decimal 322)
-   defining Unicode char U+0152 (decimal 338)
-   defining Unicode char U+0153 (decimal 339)
-   defining Unicode char U+0174 (decimal 372)
-   defining Unicode char U+0175 (decimal 373)
-   defining Unicode char U+0176 (decimal 374)
-   defining Unicode char U+0177 (decimal 375)
-   defining Unicode char U+0218 (decimal 536)
-   defining Unicode char U+0219 (decimal 537)
-   defining Unicode char U+021A (decimal 538)
-   defining Unicode char U+021B (decimal 539)
-   defining Unicode char U+2013 (decimal 8211)
-   defining Unicode char U+2014 (decimal 8212)
-   defining Unicode char U+2018 (decimal 8216)
-   defining Unicode char U+2019 (decimal 8217)
-   defining Unicode char U+201C (decimal 8220)
-   defining Unicode char U+201D (decimal 8221)
-)
-Now handling font encoding OMS ...
-... processing UTF-8 mapping file for font encoding OMS
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/omsenc.dfu
-File: omsenc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
-   defining Unicode char U+00A7 (decimal 167)
-   defining Unicode char U+00B6 (decimal 182)
-   defining Unicode char U+00B7 (decimal 183)
-   defining Unicode char U+2020 (decimal 8224)
-   defining Unicode char U+2021 (decimal 8225)
-   defining Unicode char U+2022 (decimal 8226)
-)
-Now handling font encoding OMX ...
-... no UTF-8 mapping file for font encoding OMX
-Now handling font encoding U ...
-... no UTF-8 mapping file for font encoding U
-   defining Unicode char U+00A9 (decimal 169)
-   defining Unicode char U+00AA (decimal 170)
-   defining Unicode char U+00AE (decimal 174)
-   defining Unicode char U+00BA (decimal 186)
-   defining Unicode char U+02C6 (decimal 710)
-   defining Unicode char U+02DC (decimal 732)
-   defining Unicode char U+200C (decimal 8204)
-   defining Unicode char U+2026 (decimal 8230)
-   defining Unicode char U+2122 (decimal 8482)
-   defining Unicode char U+2423 (decimal 9251)
-))
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count88
-\Gm@cntv=\count89
-\c@Gm@tempcnt=\count90
-\Gm@bindingoffset=\dimen109
-\Gm@wd@mp=\dimen110
-\Gm@odd@mp=\dimen111
-\Gm@even@mp=\dimen112
-\Gm@layoutwidth=\dimen113
-\Gm@layoutheight=\dimen114
-\Gm@layouthoffset=\dimen115
-\Gm@layoutvoffset=\dimen116
-\Gm@dimlist=\toks17
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen117
-\lightrulewidth=\dimen118
-\cmidrulewidth=\dimen119
-\belowrulesep=\dimen120
-\belowbottomsep=\dimen121
-\aboverulesep=\dimen122
-\abovetopsep=\dimen123
-\cmidrulesep=\dimen124
-\cmidrulekern=\dimen125
-\defaultaddspace=\dimen126
-\@cmidla=\count91
-\@cmidlb=\count92
-\@aboverulesep=\dimen127
-\@belowrulesep=\dimen128
-\@thisruleclass=\count93
-\@lastruleclass=\count94
-\@thisrulewidth=\dimen129
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/06/28 v2.15d AMS math features
-\@mathmargin=\skip44
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks18
-\ex@=\dimen130
+\@emptytoks=\toks19
+\ex@=\dimen158
 ))
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen131
+\pmbraise@=\dimen159
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count95
-LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count96
-\leftroot@=\count97
-LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count98
-\DOTSCASE@=\count99
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
-\Mathstrutbox@=\box26
-\strutbox@=\box27
-\big@size=\dimen132
-LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
-\macc@depth=\count100
-\c@MaxMatrixCols=\count101
-\dotsspace@=\muskip10
-\c@parentequation=\count102
-\dspbrk@lvl=\count103
-\tag@help=\toks19
-\row@=\count104
-\column@=\count105
-\maxfields@=\count106
-\andhelp@=\toks20
-\eqnshift@=\dimen133
-\alignsep@=\dimen134
-\tagshift@=\dimen135
-\tagwidth@=\dimen136
-\totwidth@=\dimen137
-\lineht@=\dimen138
-\@envbody=\toks21
-\multlinegap=\skip45
-\multlinetaggap=\skip46
-\mathdisplay@stack=\toks22
-LaTeX Info: Redefining \[ on input line 2739.
-LaTeX Info: Redefining \] on input line 2740.
+\inf@bad=\count182
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count183
+\leftroot@=\count184
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count185
+\DOTSCASE@=\count186
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen160
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count187
+\c@MaxMatrixCols=\count188
+\dotsspace@=\muskip16
+\c@parentequation=\count189
+\dspbrk@lvl=\count190
+\tag@help=\toks20
+\row@=\count191
+\column@=\count192
+\maxfields@=\count193
+\andhelp@=\toks21
+\eqnshift@=\dimen161
+\alignsep@=\dimen162
+\tagshift@=\dimen163
+\tagwidth@=\dimen164
+\totwidth@=\dimen165
+\lineht@=\dimen166
+\@envbody=\toks22
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
 )
-(./pldescr.sty
-\Litemskip=\skip47
-\Litemwidth=\skip48
-\Lparskip=\skip49
+(/scratch/users/stahel/R/regdevelop/pkg/plgraphics/vignettes/pldescr.sty
+\Litemskip=\skip52
+\Litemwidth=\skip53
+\Lparskip=\skip54
 )
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/upquote/upquote.sty
-Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
-tim
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count194
+\l__pdf_internal_box=\box47
 )
-(./pl-description.aux)
+(/scratch/users/stahel/R/regdevelop/pkg/plgraphics/vignettes/pl-description.aux
+)
 \openout1 = `pl-description.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count107
-\scratchdimen=\dimen139
-\scratchbox=\box28
-\nofMPsegments=\count108
-\nofMParguments=\count109
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count110
-\MPscratchDim=\dimen140
-\MPnumerator=\count111
-\makeMPintoPDFobject=\count112
-\everyMPtoPDFconversion=\toks24
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/kvdefinekeys.st
-y
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-)) (/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+\scratchcounter=\count195
+\scratchdimen=\dimen167
+\scratchbox=\box48
+\nofMPsegments=\count196
+\nofMParguments=\count197
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count198
+\MPscratchDim=\dimen168
+\MPnumerator=\count199
+\makeMPintoPDFobject=\count266
+\everyMPtoPDFconversion=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
+85.
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/latexconfig/epstopdf-sys.c
-fg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -608,213 +242,1117 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(./pl-description.toc [1
 
-{/scratch/local/app/teTeX/08.16/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+(/scratch/users/stahel/R/regdevelop/pkg/plgraphics/vignettes/pl-description.toc
+[1
+
+{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write3
 \openout3 = `pl-description.toc'.
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 145--147
+Underfull \hbox (badness 10000) in paragraph at lines 92--94
 
  []
 
-Package color Info: Redefining color shadecolor on input line 154.
+
+./pl-description.tex:100: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.100 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:101: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:103: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.103 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:104: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.104 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [3]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 156.
- <figure/plyx-1.pdf, id=20, 433.62pt x 289.08pt>
-File: figure/plyx-1.pdf Graphic file (type pdf)
- <use figure/plyx-1.pdf>
-Package pdftex.def Info: figure/plyx-1.pdf used on input line 159.
-(pdftex.def)             Requested size: 433.61894pt x 289.09251pt.
-Package color Info: Redefining color shadecolor on input line 172.
 
-<figure/plyx_pchar-1.pdf, id=21, 578.16pt x 433.62pt>
-File: figure/plyx_pchar-1.pdf Graphic file (type pdf)
+./pl-description.tex:114: LaTeX Error: Environment Schunk undefined.
 
-<use figure/plyx_pchar-1.pdf>
-Package pdftex.def Info: figure/plyx_pchar-1.pdf used on input line 178.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [4 <./figure/plyx-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 197.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<figure/plyx_smooth-1.pdf, id=30, 578.16pt x 289.08pt>
-File: figure/plyx_smooth-1.pdf Graphic file (type pdf)
 
-<use figure/plyx_smooth-1.pdf>
-Package pdftex.def Info: figure/plyx_smooth-1.pdf used on input line 206.
-(pdftex.def)             Requested size: 483.69684pt x 241.8463pt.
- [5 <./figure/plyx_pchar-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 223.
+./pl-description.tex:115: LaTeX Error: Environment Sinput undefined.
 
-<figure/plyx_group-1.pdf, id=39, 578.16pt x 289.08pt>
-File: figure/plyx_group-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.115 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/plyx_group-1.pdf>
-Package pdftex.def Info: figure/plyx_group-1.pdf used on input line 228.
-(pdftex.def)             Requested size: 483.69684pt x 241.8463pt.
- [6 <./figure/plyx_smooth-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 251.
+./pl-description.tex:117: Missing $ inserted.
+<inserted text> 
+                $
+l.117 +      psize=Petal.Length^
+                                2, pcol=Species, pch=Species, cex=1.3)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-<figure/innerrange-1.pdf, id=48, 505.89pt x 252.945pt>
-File: figure/innerrange-1.pdf Graphic file (type pdf)
 
-<use figure/innerrange-1.pdf>
-Package pdftex.def Info: figure/innerrange-1.pdf used on input line 264.
-(pdftex.def)             Requested size: 483.69684pt x 241.8518pt.
- [7 <./figure/plyx_group-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 295.
+./pl-description.tex:118: LaTeX Error: \begin{document} ended by \end{Sinput}.
 
-<figure/plyx-multipley-1.pdf, id=58, 578.16pt x 433.62pt>
-File: figure/plyx-multipley-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/plyx-multipley-1.pdf>
-Package pdftex.def Info: figure/plyx-multipley-1.pdf used on input line 300.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [8 <./figure/innerrange-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 310.
+./pl-description.tex:118: Missing $ inserted.
+<inserted text> 
+                $
+l.118 \end{Sinput}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-Overfull \hbox (33.68506pt too wide) in paragraph at lines 319--320
-[]\OT1/cmtt/m/n/10.95 ## Warning in lf.tickat(ldtk$smallunit[lidtk], ldtk$small
-int[lidtk], llev = llev, : debug
+
+./pl-description.tex:119: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.119 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:135: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.135 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:136: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.136 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:141: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.141 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:142: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.142 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (63.34785pt too wide) in paragraph at lines 137--147
+[]\OT1/cmr/m/n/10.95 > plm-frames(1,2) > plyx(Sepal.Width Sepal.Length, data=ir
+is, smooth.col="red") > plyx(Sepal.Width Sepal.Length,
  []
 
 
-Overfull \hbox (10.6903pt too wide) in paragraph at lines 321--322
-[]\OT1/cmtt/m/n/10.95 ## Warning in lf.tickat(ldtk$bigunit[lidtk], ldtk$bigint[
-lidtk], llev = llev, : debug
+./pl-description.tex:156: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:157: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:159: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:160: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.160 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:180: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:181: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.181 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:189: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.189 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:189: Missing $ inserted.
+<inserted text> 
+                $
+l.189 \end{Sinput}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./pl-description.tex:190: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.190 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (16.27913pt too wide) in paragraph at lines 182--191
+[]\OT1/cmr/m/n/10.95 > data(d.blast) > dd <- d.blast > dd$\OML/cmm/m/it/10.95 d
+istance\OT1/cmr/m/n/10.95 [2] \OML/cmm/m/it/10.95 < \OMS/cmsy/m/n/10.95 ^^@\OT1
+/cmr/m/n/10.95 200 \OML/cmm/m/it/10.95 > plmframes\OT1/cmr/m/n/10.95 (1\OML/cmm
+/m/it/10.95 ; \OT1/cmr/m/n/10.95 3) \OML/cmm/m/it/10.95 > plyx\OT1/cmr/m/n/10.9
+5 (\OML/cmm/m/it/10.95 tremor []distance; data \OT1/cmr/m/n/10.95 =
+ []
+
+[4]
+
+./pl-description.tex:218: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.218 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:219: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.219 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:221: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.221 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:222: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:229: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.229 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:230: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.230 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:233: Misplaced alignment tab character &.
+l.233 +        subset=date<as.Date("2010-03-31")&
+                                                 hour==14,
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+
+./pl-description.tex:235: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.235 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:236: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.236 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (13.40363pt too wide) in paragraph at lines 231--237
+[]\OT1/cmr/m/n/10.95 > data(d.river) > plyx(T+O2+ra+Q date, data=d.river, + sub
+set=date<as.Date("2010-03-31")hour==14,
  []
 
 
-Overfull \hbox (10.6903pt too wide) in paragraph at lines 323--323
-[]\OT1/cmtt/m/n/10.95 ## Warning in lf.tickat(llunit, llint, llev = llev, llvlg
- = llvlg, ystart = lystart, :
+./pl-description.tex:239: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.239 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:240: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.240 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:244: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.244 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:245: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.245 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:269: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.269 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:270: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.270 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:273: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.273 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:274: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Reference `multiplex' on page 5 undefined on input line 277.
+
+[5]
+
+./pl-description.tex:300: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.300 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:301: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.301 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:304: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:305: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.305 \begin{Soutput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:316: LaTeX Error: \begin{document} ended by \end{Soutput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.316 \end{Soutput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:317: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.317 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:319: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.319 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:320: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.320 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:327: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.327 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:328: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.328 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:332: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.332 > #
+         # different proportions marked in different margins:
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:332: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.332 > ##
+           different proportions marked in different margins:
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:335: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.335 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:336: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.336 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (61.58359pt too wide) in paragraph at lines 329--340
+\OT1/cmr/m/n/10.95 markex-tremes=0.1, cex=0.7) >  dif-fer-ent pro-por-tions mar
+ked in dif-fer-ent mar-gins: > plyx(Sepal.Width Sepal.Length,
  []
 
-<figure/plyx-time-1.pdf, id=67, 578.16pt x 433.62pt>
-File: figure/plyx-time-1.pdf Graphic file (type pdf)
 
-<use figure/plyx-time-1.pdf>
-Package pdftex.def Info: figure/plyx-time-1.pdf used on input line 324.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [9 <./figure/plyx-multipley-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 330.
+./pl-description.tex:361: LaTeX Error: Environment Schunk undefined.
 
-<figure/plyx-multiplex-1.pdf, id=76, 578.16pt x 289.08pt>
-File: figure/plyx-multiplex-1.pdf Graphic file (type pdf)
-
-<use figure/plyx-multiplex-1.pdf>
-Package pdftex.def Info: figure/plyx-multiplex-1.pdf used on input line 337.
-(pdftex.def)             Requested size: 483.69684pt x 241.8463pt.
- [10 <./figure/plyx-time-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 364.
-
-<figure/pluntransformed-1.pdf, id=85, 578.16pt x 433.62pt>
-File: figure/pluntransformed-1.pdf Graphic file (type pdf)
-
-<use figure/pluntransformed-1.pdf>
-Package pdftex.def Info: figure/pluntransformed-1.pdf used on input line 370.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [11 <./figure/plyx-multiplex-1.pdf>]
-
-LaTeX Warning: Reference `multiplex' on page 12 undefined on input line 375.
-
-Package color Info: Redefining color shadecolor on input line 399.
-[12 <./figure/pluntransformed-1.pdf>]
-<figure/plyx-plscale-1.pdf, id=103, 578.16pt x 289.08pt>
-File: figure/plyx-plscale-1.pdf Graphic file (type pdf)
-
-<use figure/plyx-plscale-1.pdf>
-Package pdftex.def Info: figure/plyx-plscale-1.pdf used on input line 420.
-(pdftex.def)             Requested size: 483.69684pt x 241.8463pt.
-Package color Info: Redefining color shadecolor on input line 430.
-
-<figure/markextremes-1.pdf, id=104, 578.16pt x 289.08pt>
-File: figure/markextremes-1.pdf Graphic file (type pdf)
-
-<use figure/markextremes-1.pdf>
-Package pdftex.def Info: figure/markextremes-1.pdf used on input line 441.
-(pdftex.def)             Requested size: 483.69684pt x 241.8463pt.
- [13 <./figure/plyx-plscale-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 469.
-
-<figure/mboxes-1.pdf, id=115, 578.16pt x 433.62pt>
-File: figure/mboxes-1.pdf Graphic file (type pdf)
- <use figure/mboxes-1.pdf>
-Package pdftex.def Info: figure/mboxes-1.pdf used on input line 476.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
-
-[14 <./figure/markextremes-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 490.
-
-<figure/mboxes2-1.pdf, id=124, 578.16pt x 433.62pt>
-File: figure/mboxes2-1.pdf Graphic file (type pdf)
- <use figure/mboxes2-1.pdf>
-Package pdftex.def Info: figure/mboxes2-1.pdf used on input line 496.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
-
-[15 <./figure/mboxes-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 508.
- [16 <./figure/mboxes2-1.pdf>]
-<figure/censored-1.pdf, id=141, 578.16pt x 325.215pt>
-File: figure/censored-1.pdf Graphic file (type pdf)
-
-<use figure/censored-1.pdf>
-Package pdftex.def Info: figure/censored-1.pdf used on input line 524.
-(pdftex.def)             Requested size: 483.69684pt x 272.07709pt.
-Package color Info: Redefining color shadecolor on input line 535.
- <figure/plmatrix-1.pdf, id=142, 722.7pt x 722.7pt>
-File: figure/plmatrix-1.pdf Graphic file (type pdf)
-
-<use figure/plmatrix-1.pdf>
-Package pdftex.def Info: figure/plmatrix-1.pdf used on input line 540.
-(pdftex.def)             Requested size: 483.69684pt x 483.69922pt.
- [17 <./figure/censored-1.pdf>]
-<figure/plmatrix-2.pdf, id=151, 722.7pt x 722.7pt>
-File: figure/plmatrix-2.pdf Graphic file (type pdf)
- <use figure/plmatrix-2.pdf>
-Package pdftex.def Info: figure/plmatrix-2.pdf used on input line 546.
-(pdftex.def)             Requested size: 483.69684pt x 483.69922pt.
-
-[18 <./figure/plmatrix-1.pdf>] [19 <./figure/plmatrix-2.pdf>]
-Package color Info: Redefining color shadecolor on input line 573.
-
-<figure/plcond-1.pdf, id=170, 578.16pt x 650.43pt>
-File: figure/plcond-1.pdf Graphic file (type pdf)
- <use figure/plcond-1.pdf>
-Package pdftex.def Info: figure/plcond-1.pdf used on input line 578.
-(pdftex.def)             Requested size: 483.69684pt x 544.15417pt.
-
-[20] [21 <./figure/plcond-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 619.
-
-<figure/plotregr-1.pdf, id=182, 578.16pt x 542.025pt>
-File: figure/plotregr-1.pdf Graphic file (type pdf)
-
-<use figure/plotregr-1.pdf>
-Package pdftex.def Info: figure/plotregr-1.pdf used on input line 627.
-(pdftex.def)             Requested size: 483.69684pt x 453.4618pt.
- [22]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 634.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.361 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 634.
- [23 <./figure/plotregr-1.pdf>]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 675.
+./pl-description.tex:362: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.362 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:363: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.363 > plmframes()  #
+                      # reset to just 1 figure per plot
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:363: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.363 > plmframes()  ##
+                        reset to just 1 figure per plot
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:364: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.364 > #
+         # plyx(Sepal.Width~Species, data=iris)  ## -- or --
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:364: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.364 > ##
+           plyx(Sepal.Width~Species, data=iris)  ## -- or --
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:364: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.364 > ## plyx(Sepal.Width~Species, data=iris)  #
+                                                  # -- or --
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:364: You can't use `macro parameter character #' in horizo
+ntal mode.
+l.364 ... plyx(Sepal.Width~Species, data=iris)  ##
+                                                   -- or --
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-(/scratch/local/app/teTeX/08.16/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 675.
- [24]
-Overfull \hbox (8.88408pt too wide) in paragraph at lines 743--744
+./pl-description.tex:366: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.366 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:367: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.367 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:378: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.378 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:379: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.379 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:382: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.382 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:383: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.383 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[6]
+
+./pl-description.tex:392: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.392 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:393: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.393 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:398: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.398 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:399: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.399 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (49.66037pt too wide) in paragraph at lines 394--400
+[]\OT1/cmr/m/n/10.95 > re-quire("survival") > data(lung, pack-age="survival") >
+ plm-frames(1,2,mar=c(3,3,1,1)) > plyx(Surv(time,status)
+ []
+
+
+./pl-description.tex:407: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.407 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:408: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.408 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:412: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.412 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:413: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.413 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (98.35742pt too wide) in paragraph at lines 409--414
+[]\OT1/cmr/m/n/10.95 > plma-trix(iris, smooth.group=Species, pcol=Species) > pl
+ma-trix( Petal.Length+Petal.Width,  Sepal.Length+Sepal.Width,
+ []
+
+
+./pl-description.tex:437: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.437 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:438: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.438 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:440: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.440 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:441: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.441 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[7]
+
+./pl-description.tex:479: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.479 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:480: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.480 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:485: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.485 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:486: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.486 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[8] [9]
+Overfull \hbox (8.88408pt too wide) in paragraph at lines 600--601
 \OT1/cmtt/m/n/10 iter=smooth.iter)\OT1/cmr/m/n/10 , where  \OT1/cmtt/m/n/10 smo
 oth.par \OT1/cmr/m/n/10 and  \OT1/cmtt/m/n/10 smooth.iter \OT1/cmr/m/n/10 are g
 iven in  \OT1/cmtt/m/n/10 ploptions \OT1/cmr/m/n/10 and the de-fault  \OT1/cmtt
@@ -822,255 +1360,1879 @@ iven in  \OT1/cmtt/m/n/10 ploptions \OT1/cmr/m/n/10 and the de-fault  \OT1/cmtt
  []
 
 
-Underfull \hbox (badness 10000) detected at line 772
+Underfull \hbox (badness 10000) detected at line 629
 []
  []
 
 
-Underfull \hbox (badness 10000) detected at line 777
+Underfull \hbox (badness 10000) detected at line 634
 []
  []
 
-[25]
+[10]
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 841.
+(amsmath)                 on input line 698.
 
-[26]
-Package color Info: Redefining color shadecolor on input line 882.
- <figure/plresx-1.pdf, id=212, 578.16pt x 542.025pt>
-File: figure/plresx-1.pdf Graphic file (type pdf)
+[11]
 
-<use figure/plresx-1.pdf>
-Package pdftex.def Info: figure/plresx-1.pdf used on input line 887.
-(pdftex.def)             Requested size: 483.69684pt x 453.4618pt.
- [27 <./figure/plresx-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 936.
+./pl-description.tex:738: LaTeX Error: Environment Schunk undefined.
 
-<figure/plresx_trs-1.pdf, id=221, 578.16pt x 325.215pt>
-File: figure/plresx_trs-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.738 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/plresx_trs-1.pdf>
-Package pdftex.def Info: figure/plresx_trs-1.pdf used on input line 941.
-(pdftex.def)             Requested size: 483.69684pt x 272.07709pt.
- [28]
-Overfull \hbox (54.88145pt too wide) in paragraph at lines 951--952
+
+./pl-description.tex:739: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.739 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:741: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.741 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:742: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.742 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:788: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.788 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:789: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.789 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:791: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.791 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:792: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.792 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (54.88145pt too wide) in paragraph at lines 800--801
 \OT1/cmr/m/n/10 formed in-put vari-ables are those ap-pear-ing in the terms of 
 the for-mula, as de-liv-ered by  
  []
 
-Package color Info: Redefining color shadecolor on input line 975.
-<figure/plres2x-1.pdf, id=225, 578.16pt x 433.62pt>
-File: figure/plres2x-1.pdf Graphic file (type pdf)
- <use figure/plres2x-1.pdf>
-Package pdftex.def Info: figure/plres2x-1.pdf used on input line 983.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
+[12]
 
-[29 <./figure/plresx_trs-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 992.
+./pl-description.tex:823: LaTeX Error: Environment Schunk undefined.
 
-<figure/plresxgroup-1.pdf, id=234, 578.16pt x 397.485pt>
-File: figure/plresxgroup-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.823 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/plresxgroup-1.pdf>
-Package pdftex.def Info: figure/plresxgroup-1.pdf used on input line 997.
-(pdftex.def)             Requested size: 483.69684pt x 332.53867pt.
- [30 <./figure/plres2x-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 1023.
- [31 <./figure/plresxgroup-1.pdf>] <figure/survresiduals-1.pdf, id=252, 578.16p
-t x 433.62pt>
-File: figure/survresiduals-1.pdf Graphic file (type pdf)
 
-<use figure/survresiduals-1.pdf>
-Package pdftex.def Info: figure/survresiduals-1.pdf used on input line 1035.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [32 <./figure/survresiduals-1.pdf>]
+./pl-description.tex:824: LaTeX Error: Environment Sinput undefined.
 
-LaTeX Warning: Reference `sec:censored' on page 33 undefined on input line 1076
-.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.824 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-Package color Info: Redefining color shadecolor on input line 1080.
-<figure/ordered-1.pdf, id=261, 578.16pt x 361.35pt>
-File: figure/ordered-1.pdf Graphic file (type pdf)
- <use figure/ordered-1.pdf>
-Package pdftex.def Info: figure/ordered-1.pdf used on input line 1094.
-(pdftex.def)             Requested size: 483.69684pt x 302.30788pt.
 
-[33 <./figure/ordered-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 1106.
+./pl-description.tex:829: LaTeX Error: \begin{document} ended by \end{Sinput}.
 
-<figure/resfitbin-1.pdf, id=270, 578.16pt x 722.7pt>
-File: figure/resfitbin-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.829 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/resfitbin-1.pdf>
-Package pdftex.def Info: figure/resfitbin-1.pdf used on input line 1116.
-(pdftex.def)             Requested size: 483.69684pt x 604.61575pt.
- [34] [35 <./figure/resfitbin-1.pdf>]
-Overfull \hbox (54.03178pt too wide) in paragraph at lines 1173--1185
+
+./pl-description.tex:830: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.830 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (122.17366pt too wide) in paragraph at lines 825--831
+[]\OT1/cmr/m/n/10.95 > data(d.blast) > dd <- plsub-set(d.blast, as.numeric(loca
+tion)> rsubs <- lm(log10(tremor) log10(distance)+log10(charge)+location,
+ []
+
+
+./pl-description.tex:836: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.836 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:837: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.837 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:839: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.839 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:840: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.840 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:863: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.863 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:864: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.864 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:869: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.869 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:870: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.870 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[13]
+
+LaTeX Warning: Reference `sec:censored' on page 14 undefined on input line 909.
+
+
+
+./pl-description.tex:912: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.912 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:913: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.913 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:918: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.918 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:919: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.919 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:928: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.928 \begin{Schunk}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:929: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.929 \begin{Sinput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:936: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.936 \end{Sinput}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:937: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.937 \end{Schunk}
+                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (36.45947pt too wide) in paragraph at lines 930--938
+[]\OT1/cmr/m/n/10.95 > data(d.babysurvival) > r.babys <- glm(Survival Weight+Ag
+e+Apgar1,data=d.babysurvival,family=binomial)
+ []
+
+[14]
+Overfull \hbox (54.03178pt too wide) in paragraph at lines 992--1004
 []\OT1/cmr/m/n/10.95 The dis-tance pairs and the re-spec-tive dif-fer-ences of 
 resid-u-als are cal-cu-lated by the func-tion  
  []
 
-[36]
-Package color Info: Redefining color shadecolor on input line 1204.
- <figure/xdist-1.pdf, id=286, 505.89pt x 361.35pt>
-File: figure/xdist-1.pdf Graphic file (type pdf)
 
-<use figure/xdist-1.pdf>
-Package pdftex.def Info: figure/xdist-1.pdf used on input line 1213.
-(pdftex.def)             Requested size: 483.69684pt x 345.5026pt.
- [37 <./figure/xdist-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 1244.
+./pl-description.tex:1022: LaTeX Error: Environment Schunk undefined.
 
-<figure/ploptions-1.pdf, id=296, 578.16pt x 361.35pt>
-File: figure/ploptions-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1022 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/ploptions-1.pdf>
-Package pdftex.def Info: figure/ploptions-1.pdf used on input line 1250.
-(pdftex.def)             Requested size: 483.69684pt x 302.30788pt.
- [38 <./figure/ploptions-1.pdf>] [39] [40]
-Package color Info: Redefining color shadecolor on input line 1432.
- [41]
-Overfull \hbox (4.02797pt too wide) in paragraph at lines 1482--1492
+
+./pl-description.tex:1023: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1023 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1026: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1026 > #
+          # an inadequate model!
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1026: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1026 > ##
+            an inadequate model!
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1029: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1029 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1030: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1030 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[15]
+
+./pl-description.tex:1058: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1058 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1059: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1059 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1062: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1062 > #
+          # restore the old optios
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1062: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1062 > ##
+            restore the old optios
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1064: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1064 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1065: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1065 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (14.10315pt too wide) in paragraph at lines 1060--1066
+[]\OT1/cmr/m/n/10.95 > t.plopt <- plop-tions(col="magenta", pch=3, smooth.lty=3
+) > plyx(Sepal.Width Sepal.Length, data=iris)
+ []
+
+[16] [17]
+
+./pl-description.tex:1240: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1240 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1241: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1241 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1243: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1243 > #
+          # plyx(Sepal.Width~Sepal.Length, data=iris, group=Species, mar=c(3...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1243: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1243 > ##
+            plyx(Sepal.Width~Sepal.Length, data=iris, group=Species, mar=c(3...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1246: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1246 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1247: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1247 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1249: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1249 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1250: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1250 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[18]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+1259.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Overfull \hbox (4.02797pt too wide) in paragraph at lines 1289--1299
 [] \OT1/cmtt/m/n/10.95 pcol\OT1/cmr/m/n/10.95 : color of the sym-bol. This can 
 be a fac-tor. Then, the col-ors in  \OT1/cmtt/m/n/10.95 ploptions("group.color"
 )
  []
 
-Package color Info: Redefining color shadecolor on input line 1503.
-<figure/plyx_pattr-1.pdf, id=314, 578.16pt x 433.62pt>
-File: figure/plyx_pattr-1.pdf Graphic file (type pdf)
 
-<use figure/plyx_pattr-1.pdf>
-Package pdftex.def Info: figure/plyx_pattr-1.pdf used on input line 1509.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [42] [43 <./figure/plyx_pattr-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 1571.
+./pl-description.tex:1309: LaTeX Error: Environment Schunk undefined.
 
-<figure/varattributes-1.pdf, id=327, 578.16pt x 433.62pt>
-File: figure/varattributes-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1309 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/varattributes-1.pdf>
-Package pdftex.def Info: figure/varattributes-1.pdf used on input line 1580.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
- [44]
-Package color Info: Redefining color shadecolor on input line 1607.
 
-<figure/plscale-1.pdf, id=331, 578.16pt x 433.62pt>
-File: figure/plscale-1.pdf Graphic file (type pdf)
- <use figure/plscale-1.pdf>
-Package pdftex.def Info: figure/plscale-1.pdf used on input line 1613.
-(pdftex.def)             Requested size: 483.69684pt x 362.76945pt.
+./pl-description.tex:1310: LaTeX Error: Environment Sinput undefined.
 
-[45 <./figure/varattributes-1.pdf>] [46 <./figure/plscale-1.pdf>]
-Package color Info: Redefining color shadecolor on input line 1665.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1310 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-Overfull \hbox (24.08873pt too wide) in paragraph at lines 1677--1677
-[][]\OT1/cmtt/m/n/10.95 mtext[][]([][]"wrong place for text"[][],[][]3[][],[][]
-1[][],[] []col[][]=[][]"red"[][])[]  []\OT1/cmtt/m/it/10.95 ## margins not appr
-opriate for active plot[][] 
+
+./pl-description.tex:1314: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1314 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1314: Missing $ inserted.
+<inserted text> 
+                $
+l.1314 \end{Sinput}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./pl-description.tex:1315: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1315 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1318: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1318 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1319: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1319 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[19]
+
+./pl-description.tex:1370: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1370 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1371: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1371 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1372: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1372 > dd <- iris #
+                     # (avoid a modified version of  iris  in .GlobalEnv)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1372: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1372 > dd <- iris ##
+                       (avoid a modified version of  iris  in .GlobalEnv)
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1376: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1376 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1377: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1377 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1379.
+
+
+./pl-description.tex:1401: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1401 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1402: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1402 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1405: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1405 >   #
+            # or, in order to fix the plotting scale for further use
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1405: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1405 >   ##
+              or, in order to fix the plotting scale for further use
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1410: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1410 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1411: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1411 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1413: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1413 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1414: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1414 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1416: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1416 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1416: Missing $ inserted.
+<inserted text> 
+                $
+l.1416 \end{Sinput}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./pl-description.tex:1417: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1417 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1424: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1424 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1425: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1425 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1426: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1426 >   #
+            # or  dd <- genvarattributes(dd, plscale=c(Weight="log",SurvPerc...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1426: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1426 >   ##
+              or  dd <- genvarattributes(dd, plscale=c(Weight="log",SurvPerc...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1427: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1427 >   #
+            # plyx(SurvPerc~Weight, data=dd) ## now produces the same plot a...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1427: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1427 >   ##
+              plyx(SurvPerc~Weight, data=dd) ## now produces the same plot a...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1427: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1427 >   ## plyx(SurvPerc~Weight, data=dd) #
+                                              # now produces the same plot a...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1427: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1427 >   ## plyx(SurvPerc~Weight, data=dd) ##
+                                                now produces the same plot a...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1428: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1428 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1429: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1429 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[20]
+
+./pl-description.tex:1453: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1453 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1454: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1454 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1457: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1457 ...x(Sepal.Width~Sepal.Length, data=iris) #
+                                                  # margins according to plo...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1457: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1457 ...(Sepal.Width~Sepal.Length, data=iris) ##
+                                                   margins according to plop...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1458: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1458 > par("mar") #
+                     # paramteres have been recovered
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1458: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1458 > par("mar") ##
+                       paramteres have been recovered
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1459: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1459 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1460: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1460 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1462: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1462 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1463: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1463 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1464: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1464 ...wrong place for text",3,1, col="red")  #
+                                                  # margins not appropriate ...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1464: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1464 ...rong place for text",3,1, col="red")  ##
+                                                   margins not appropriate f...
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1468: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1468 > t.plo <- plmarginpar() #
+                                 # get margin parameters from pl.envir
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1468: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1468 > t.plo <- plmarginpar() ##
+                                   get margin parameters from pl.envir
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1469: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1469 >   #
+            # generated by the last pl graphics call
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1469: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1469 >   ##
+              generated by the last pl graphics call
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1471: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1471 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1472: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1472 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1474: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1474 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1475: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1475 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1478: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1478 > par(attr(t.plo, "oldpar"))  #
+                                      # restores old 'margin parameters'
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1478: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1478 > par(attr(t.plo, "oldpar"))  ##
+                                        restores old 'margin parameters'
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1479: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1479 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1480: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1480 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1482: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1482 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1483: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1483 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1485: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1485 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1486: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1486 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1488: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1488 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1489: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1489 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1492: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1492 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1493: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1493 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1495: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1495 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1496: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1496 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1498: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1498 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1499: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1499 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (12.39975pt too wide) in paragraph at lines 1455--1500
+\OT1/cmr/m/n/10.95 text",3,1, col="red")  mar-gins not ap-pro-pri-ate for ac-ti
+ve plot > t.usr <- par("usr") > points(t.usr[2],t.usr[4],
  []
 
-[47] <figure/marginpars-1.pdf, id=352, 505.89pt x 289.08pt>
-File: figure/marginpars-1.pdf Graphic file (type pdf)
 
-<use figure/marginpars-1.pdf>
-Package pdftex.def Info: figure/marginpars-1.pdf used on input line 1715.
-(pdftex.def)             Requested size: 483.69684pt x 276.40207pt.
-Package color Info: Redefining color shadecolor on input line 1725.
+./pl-description.tex:1506: LaTeX Error: Environment Schunk undefined.
 
-<figure/parproblem-1.pdf, id=353, 505.89pt x 289.08pt>
-File: figure/parproblem-1.pdf Graphic file (type pdf)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1506 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-<use figure/parproblem-1.pdf>
-Package pdftex.def Info: figure/parproblem-1.pdf used on input line 1733.
-(pdftex.def)             Requested size: 483.69684pt x 276.40207pt.
- [48 <./figure/marginpars-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1751--1757
+
+./pl-description.tex:1507: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1507 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1510: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1510 > plpoints(8,9, col="red") #
+                                   # wrong
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1510: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1510 > plpoints(8,9, col="red") ##
+                                     wrong
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1511: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1511 > plpoints(8,9, col="blue", setpar=FALSE) #
+                                                  # correct
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./pl-description.tex:1511: You can't use `macro parameter character #' in horiz
+ontal mode.
+l.1511 ...points(8,9, col="blue", setpar=FALSE) ##
+                                                   correct
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./pl-description.tex:1512: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1512 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1513: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1513 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 1529--1535
 
  []
 
 
-Overfull \hbox (8.58017pt too wide) in paragraph at lines 1758--1766
+Overfull \hbox (8.48985pt too wide) in paragraph at lines 1536--1544
 [] \OT1/cmtt/m/n/10.95 plpoints \OT1/cmr/m/n/10.95 also in-cludes the ca-pa-bil
 -i-ties of  \OT1/cmtt/m/n/10.95 text\OT1/cmr/m/n/10.95 : If the ar-gu-ment  \OT
 1/cmtt/m/n/10.95 plab \OT1/cmr/m/n/10.95 is set (or  \OT1/cmtt/m/n/10.95 plargs
-$pladata
+\TS1/cmtt/m/n/10.95 $\OT1/cmtt/m/n/10.95 pladata
  []
 
 
-Overfull \hbox (139.81343pt too wide) in paragraph at lines 1767--1773
+Overfull \hbox (139.81343pt too wide) in paragraph at lines 1545--1551
 \OT1/cmtt/m/n/10.95 "Surv"\OT1/cmr/m/n/10.95 ), the cen-sored ob-ser-va-tions a
 re shown by the ap-pro-pri-ate sym-bol from  
  []
 
 
-Overfull \hbox (15.54422pt too wide) in paragraph at lines 1767--1773
+Overfull \hbox (15.54422pt too wide) in paragraph at lines 1545--1551
 \OT1/cmtt/m/n/10.95 ploptions("censored.pch") \OT1/cmr/m/n/10.95 and with paled
  color (ac-cord-ing to  \OT1/cmtt/m/n/10.95 ploptions("censored.pale")\OT1/cmr/
 m/n/10.95 ). 
  []
 
-[49 <./figure/parproblem-1.pdf>] [50]
-Package color Info: Redefining color shadecolor on input line 1954.
- [51]
-Overfull \hbox (109.44745pt too wide) in paragraph at lines 1992--2005
+[22] [23]
+
+./pl-description.tex:1731: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1731 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1732: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1732 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1734: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1734 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./pl-description.tex:1734: Missing $ inserted.
+<inserted text> 
+                $
+l.1734 \end{Sinput}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./pl-description.tex:1735: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1735 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1738: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1738 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1739: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1739 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[24]
+Overfull \hbox (109.44745pt too wide) in paragraph at lines 1767--1780
 \OT1/cmtt/m/n/10.95 pl \OT1/cmr/m/n/10.95 func-tion, scon-dar-ily by the  \OT1/
 cmtt/m/n/10.95 vcol \OT1/cmr/m/n/10.95 at-tribute of the vari-ables. Thirdly,  
 
  []
 
-[52] [53]
+[25]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2115.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1890.
 
- [54]
-Overfull \hbox (52.81514pt too wide) in paragraph at lines 2156--2164
+ [26]
+Overfull \hbox (52.81514pt too wide) in paragraph at lines 1931--1939
 \OT1/cmr/m/n/10.95 This stamp can of course be sup-pressed, e.g., for pro-duc-i
 ng pub-li-ca-tion graph-ics: set  
  []
 
-Package color Info: Redefining color shadecolor on input line 2171.
-[55] (./pl-description.aux)
+
+./pl-description.tex:1945: LaTeX Error: Environment Schunk undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1945 \begin{Schunk}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1946: LaTeX Error: Environment Sinput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1946 \begin{Sinput}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1950: LaTeX Error: \begin{document} ended by \end{Sinput}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1950 \end{Sinput}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1951: LaTeX Error: Environment Soutput undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1951 \begin{Soutput}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1964: LaTeX Error: \begin{document} ended by \end{Soutput}
+.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1964 \end{Soutput}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./pl-description.tex:1965: LaTeX Error: \begin{document} ended by \end{Schunk}.
+
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1965 \end{Schunk}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[27] [28]
+(/scratch/users/stahel/R/regdevelop/pkg/plgraphics/vignettes/pl-description.aux
+)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3351 strings out of 493014
- 47080 string characters out of 6130583
- 117698 words of memory out of 5000000
- 6779 multiletter control sequences out of 15000+600000
- 14288 words of font info for 53 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 40i,7n,31p,336b,247s stack positions out of 5000i,500n,10000p,200000b,80000s
-</scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
-x10.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmex10.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmitt10.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></scratch/local/app/teTeX/08.16/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></scratch/local/app/teTeX/08.16/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></scratch/local/app/teTeX/08.1
-6/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></scratch/local/app/teT
-eX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></scratch/local/ap
-p/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></scratch/loc
-al/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></scratc
-h/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></sc
-ratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-</scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy8.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmti10.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmtt10.pfb></scratch/local/app/teTeX/08.16/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmtt12.pfb>
-Output written on pl-description.pdf (55 pages, 1153521 bytes).
+ 2519 strings out of 480623
+ 35138 string characters out of 5906692
+ 286358 words of memory out of 6000000
+ 18386 multiletter control sequences out of 15000+600000
+ 543792 words of font info for 65 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 30i,7n,33p,332b,187s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-sup
+er/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt
+1095.pfb>
+Output written on pl-description.pdf (28 pages, 303649 bytes).
 PDF statistics:
- 457 PDF objects out of 1000 (max. 8388607)
- 312 compressed objects within 4 object streams
+ 184 PDF objects out of 1000 (max. 8388607)
+ 130 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
