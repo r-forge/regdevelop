@@ -354,7 +354,7 @@ inference <- #f
            termeffects = termeffects(object, ...), intercepts = lic
            ## , deviancetable = NULL  !!!
            ), 
-      class=c("inference", "data.frame"), type = "model",
+      class=c("inference", "list"), type = "model",
       method=as.character(lcl[1]), formula=lcl$formula, data.name=ldn,
       rlv.threshold=attr(ltt, "rlv.threshold")))
   } ## end model

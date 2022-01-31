@@ -1008,7 +1008,7 @@ u.varsin2terms <- function(formula) {
 i.extendrange <- function(range, ext=0.05)  range + c(-1,1)*ext*diff(range)
 i.factor <- function(x)  {
   if (is.logical(x)) factor(x, labels=c("F","T"))
-  else if(is.factor(x)) factor(x) else factor(x)
+  else if(is.factor(x)) factor(x) else factor(x) ## ???
 }
 ## ==========================================================================
 c.weekdays <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",

@@ -65,7 +65,7 @@ plyx(x = NULL, y = NULL, by=NULL, group = NULL, data = NULL, type = "p",
   }
 }
 \details{
-    Defaults to \code{plpanel}, which results essentially in
+    \code{panel} defaults to \code{plpanel}, which results essentially in
     \code{\link{points}} or \code{\link{text}}
     depending on the argument \code{pch} including a smooth line,
     to \code{\link{plmboxes}} if  'x'  is a factor and  'y'  is not or
@@ -73,7 +73,7 @@ plyx(x = NULL, y = NULL, by=NULL, group = NULL, data = NULL, type = "p",
     or to a modification of \code{sunflowers} if both are factors.\cr
     The function must have the arguments \code{x} and \code{y}
     to take the coordinates of the points and may have the arguments
-    \code{indx} and \code{indy} to transfer the variables\' index and
+    \code{indx} and \code{indy} to transfer the two variables' indexes and
     \code{panelargs} for any additional objects to be passed on.
 }
 \value{None.}
