@@ -7,7 +7,7 @@
   based on interpolation 
 }
 \usage{
-quinterpol(x, probs = c(0.25, 0.5, 0.75), extend = TRUE)
+quinterpol(x, probs = c(0.25, 0.5, 0.75), extend = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +18,8 @@ quinterpol(x, probs = c(0.25, 0.5, 0.75), extend = TRUE)
 }
   \item{extend}{logical: Should quantiled be calculated outside the
     range of the data by linear extrapolation?
+    This may make sense if the sample is small or the data is rounded
+    or grouped or a score.
 }
 }
 \details{The empirical quantile function jumps at the data values

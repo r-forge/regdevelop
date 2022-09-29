@@ -1,5 +1,6 @@
 \name{plregr}
 \alias{plregr}
+\alias{plot.regr}
 \alias{plresx}
 \title{Diagnostic Plots for Regr Objects}
 \description{

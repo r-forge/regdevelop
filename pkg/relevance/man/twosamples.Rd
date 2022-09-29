@@ -80,21 +80,26 @@ onesample(x, ...)
 
       For binary data: log odds (for one sample or paired samples) or
       log odds ratio (for two samples)}
+    \item{\code{se}: }{standard error of \code{effect}}
+    \item{\code{teststatistic}: }{test statistic}
+    \item{\code{p.value}: }{p value for test against 0}
+    \item{\code{Sig0}: }{significance measure for test or 0 effect}
     \item{\code{ciLow, ciUp}: }{confidence interval for the effect}
     \item{\code{Rle, Rls, Rlp}: }{relevance measures: estimated, secured, potential}
-    \item{\code{Sig0}: }{significance measure for test or 0 effect}
     \item{\code{Sigth}: }{significance measure for test of
       \code{effect}  == relevance threshold}
-    \item{\code{p.value}: }{p value for test against 0}
   }
   In addition to the columns/components, it has \code{\link{attributes}}
   \describe{
+    \item{\code{type}: }{type of relevance: simple}
     \item{\code{method}: }{problem and inference method}
     \item{\code{effectname}: }{label for the effect}
     \item{\code{hypothesis}: }{the null effect}
     \item{\code{n}: }{number(s) of observations}
-    \item{\code{means}: }{in the case of 2 independent samples: their means}
-    \item{\code{statistic}: }{test statistic}
+    \item{\code{estimate}: }{estimated parameter,
+      with standard error or confidence interval, if applicable;
+      in the case of 2 independent samples: their means}
+    \item{\code{teststatistic}: }{test statistic}
     \item{\code{V}: }{single observation variance}
     \item{\code{df}: }{degrees of freedom for the t distribution}
     \item{\code{data: }}{if paired, vector of differences;

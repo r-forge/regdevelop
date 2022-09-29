@@ -442,7 +442,7 @@ robrange <-
             location=lmn, scale=lsd)
 }
 ## =======================================================================
-quinterpol <- function (x, probs = c(0.25,0.5,0.75), extend=TRUE)
+quinterpol <- function (x, probs = c(0.25,0.5,0.75), extend=FALSE)
 {
   ## Purpose:
   ## ----------------------------------------------------------------------
@@ -450,17 +450,19 @@ quinterpol <- function (x, probs = c(0.25,0.5,0.75), extend=TRUE)
   ## ----------------------------------------------------------------------
   ## Author: Werner Stahel, Date: 15 Nov 2014, 16:04
   lx <- x[!is.na(x)]
-  ltb <- table(lx)
+  ldig <- log10(max(abs(lx)))
+  lx <- round(lx,5-ldig)
   ln <- length(lx)
-  lnn <- length(ltb)
-  ln1 <- lnn+1
-  lxx <- sort(unique(lx))
-  lxm <- (lxx[-1]+lxx[-lnn])/2
+  lxx <- sort(unique(lx)) ## rounding needed to align  unique() with table()
+  ltb <- table(lx)
+  lntb <- length(ltb)
+  ln1 <- lntb+1
+  lxm <- (lxx[-1]+lxx[-lntb])/2
   lx0 <- lxx[1]
-  lxn <- lxx[lnn]
+  lx1 <- lxx[lntb]
   if(extend) {
     lx0 <- 2*lxx[1]-lxm[1]
-    lx1 <- 2*lxx[lnn]-lxm[lnn-1]
+    lx1 <- 2*lxx[lntb]-lxm[lntb-1]
   }
   lxe <- c(rbind(c(lx0,lxm),lxx),lx1)
   lp <- c(0,cumsum(ltb)/ln)

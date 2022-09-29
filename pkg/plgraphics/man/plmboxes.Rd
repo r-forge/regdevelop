@@ -27,7 +27,7 @@ plmboxes(x, ...)
     .subdefault=NULL, plargs = NULL, ploptions = NULL, ...)
 
 plmbox(x, at=0, probs=NULL, outliers=TRUE, na.pos=NULL, horizontal=FALSE,
-    width=1, wfac=NULL, minheight=NULL, adj=0.5, extquant=TRUE, 
+    width=1, wfac=NULL, minheight=NULL, adj=0.5, extquant=FALSE, 
     widthfac=c(max=2, med=1.3, medmin=0.3, outl=NA),
     colors=c(box="lightblue2",med="blue",na="gray90"),
     lwd=c(med=3, range=2), warn=options("warn"))
@@ -179,6 +179,8 @@ Specific arguments for 'plmbox':
 }
 \item{extquant}{logical, passed to \code{\link{quinterpol}}:
   Should the quantiles be extrapolated beyond the range of the data?
+  This may make sense if the sample is small or the data is rounded
+  or grouped or a score.
 }
 \item{warn}{level of warning for the case when there is no non-missing data}
 }

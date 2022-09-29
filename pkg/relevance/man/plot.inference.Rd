@@ -9,9 +9,11 @@
 }
 \usage{
 \method{plot}{inference}(x, pos = NULL, overlap = FALSE, 
-  reflines = c(0,1,-1), xlab = "relevance", ...)
+  refline = c(0,1,-1), xlab = "relevance", ...)
 \method{plot}{termeffects}(x, pos = NULL, single=FALSE,
-  overlap = TRUE, termeffects.gap = 0.2, ...)
+  overlap = TRUE, termeffects.gap = 0.2, refline = c(0, 1, -1),
+  xlim=NULL, ylim=NULL, xlab = "relevance", mar=NA,
+  labellength=getOption("labellength"), ...)
 }
 
 \arguments{
@@ -25,14 +27,20 @@
   %%-   \item{col}{color to be used for the confidence intervals,
   %%-     usually a vector of colors if used.
   %%-   }
-  \item{reflines}{values for vertical reference lines
-  }
-  \item{xlab}{label for horizontal axis
+  \item{refline}{values for vertical reference lines
   }
   \item{single}{logical: should terms with a single degree of freedom
     be plotted?
   }
   \item{termeffects.gap}{gap between blocks corresponding to terms
+  }
+  \item{xlim, ylim}{limits of plotting area, as usual}
+  \item{xlab}{label for horizontal axis}
+  \item{mar}{plot margins. If \code{NULL} (default),
+    the left side margin will be adjusted to accomodate the labels
+    of effects of factor levels
+  }
+  \item{labellength}{maximum number of characters for label strings
   }
   \item{\dots}{further arguments to the call of \code{plot.inference}
     (for\code{plot.termeffects}) and \code{plot}

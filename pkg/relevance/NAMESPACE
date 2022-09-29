@@ -3,7 +3,7 @@ importFrom("stats",
            setNames, uniroot, sd, symnum, plogis, qlogis, 
            binom.test, cor.test, fisher.test, quantile,
            drop.scope, na.omit,
-           pt, pf, pchisq, qnorm, qt, qf, qchisq, 
+           pt, pf, pchisq, pnorm, qnorm, qt, qf, qchisq, 
            df.residual, terms, formula, update.formula, delete.response,
            coefficients, naresid,
            model.matrix, model.frame, model.offset, drop1, vcov
@@ -12,7 +12,7 @@ importFrom("utils",
            str, recover
            )
 importFrom("graphics",
-           box, par, plot, abline, segments, axis, mtext
+           box, par, plot, abline, segments, axis, mtext, text
            )
 importFrom("grDevices", palette)
 ##- importFrom("MASS", rlm, polr)
@@ -28,10 +28,12 @@ export(confintF, correlation, drop1Wald,
        inference, onesample, plconfint, pltwosamples,
        p.symbols, rlv.symbols,
        relevance.options, relevance.modelclasses, 
-       termeffects, termtable, twosamples, plot.inference, 
+       termeffects, termtable, twosamples, plot.inference,
+       rlvClass,
+       replication, rplConfint, rplClass, 
        showd, dropdata, logst, asinp,
        sumNA, dropNA, replaceNA, formatNA,
-       last,
+       last, shortenstring, 
        DB
        )
 

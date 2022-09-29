@@ -2,10 +2,9 @@
 %\SweaveUTF8
 \documentclass[11pt]{article}
 \usepackage{graphicx}
-%% \usepackage{Sweave}
 \usepackage[utf8]{inputenc}
 %% \usepackage{germanU}
-%%- \usepackage[noae]{Sweave}
+\usepackage[noae]{Sweave}
 \usepackage[a4paper]{geometry}  %% , text={14.5cm,22cm}
 \usepackage{color} %uncomment BF
 \usepackage{booktabs} % nice tables with \toprule \middlerule \bottomrule
@@ -17,6 +16,7 @@
 \usepackage{relevance-descr}
 \usepackage{parskip}
 %\VignetteEngine{knitr::knitr}
+% \usepackage{knitr}
 %\VignetteDepends{relevance}
 %\VignetteIndexEntry{'Package relevance for calculating Relevance and Significance Measures'}
 \addtolength{\textwidth}{2.5cm}%%--- 15.0 + 2.5 = 17.5
@@ -53,7 +53,7 @@ Package \T{relevance} for calculating Relevance and Significance Measures}
 library(relevance) ##, lib.loc="/u/stahel/R/regdevelop/pkg/relevance.Rcheck")
 ## options(warn=1)
 @ 
-\section{Introduction}
+\section{Introduction to the relevance measure}
 
 This package implements the concepts of relevance and significance as
 introduced by Stahel (2021). 
@@ -222,10 +222,127 @@ getOption("rlv.threshold")
 @ 
 and can be modified by setting these options again, see below.
 
-%%- \Tit{Package \T{regr}.}
-%%- For regression models, the new measures are obtained by calling
-%%- \T{ciSgRl}.
-%%- It is programmed to 
+\Tit{A classification of results.}
+Based on the relevance measure and its confidence interval -- 
+or on the confidence interval for the original parameter and its 
+position relative to the threshold -- the result can be classified into the
+following cases:
+\begin{itemize}
+\item   \T{"Rlv"}, if the effect is statistically proven to be
+  larger than the threshold, that is, if the confidence interval
+  for the parameter lies above the threshold, implying 
+  $\wh\eff>\zeta$ or $\Rl s>1$
+\item
+  \T{"Amb"} if the confidence interval contains the threshold
+  and thus $\Rl s<1\le\Rl p$, 
+\item
+  \T{"Ngl"} if the interval only covers values
+  lower than the threshold, but contains \T{0}, 
+  $0\le\Rl p<1$,  
+  and
+  \item
+  \T{"Ctr"} if the interval only contains negative values,
+  $\Rl p<0$.
+\end{itemize}
+
+%% =======================================================================
+\section{Replication}
+\label{sec:replication}
+Replication is a basic concept of science.
+Any empirical result should be tested by repeating the study in an
+independent situation and examining if the results lead to the same
+conclusion again. 
+The independent repetition is called \T{replication} and provides new
+data that can be similary to the data of the \T{original study} or quite
+different. 
+
+The section describes how to applied the relevance measure to the problem
+of comparing the replication with the original.
+It can be skipped if this problem is not in the focus.
+
+The conclusion that the replication has been successful, contradicting the
+original, or the result is ambugious is based on two aspects:
+\begin{itemize}
+\item[A.]
+  The conclusions from the replication results may be the same as those
+  obtained in the original study.
+\item[B.]
+  The data from the replication may be ``compatible'' with those of the
+  original study.  
+\end{itemize}
+The first criterion relies on a statistical inference from the replication
+data, whereas the second is based on an inference about the difference
+between the two studies.
+The concept of relevance is essential for both of these aspects.
+%\cite{StaW22} 
+Stahel (2022) describes the approach in detail.
+
+In essence, the conclusion of the comparison, based on both aspects,
+can again be expressed by a classification.
+Let $\IEff$ be the confidence interval in the replication and
+$\IEDS$, the confidence interval for the difference.
+Then, the result, assuming a positive original effect, is a 
+\begin{itemize}
+\item[(Cnf)] 
+  \Term{Confirmation,} if $\IEff$ only contains relevant
+  values (case Rlv), and
+  the negative standardized effect difference EDS is small 
+  (cases Ngl or Amb);
+  if $\IEff$ is only significant (Amb.Sig) and
+  the estimate $\wh\eff_1$ is larger than the relevance threshold,
+  we call it a \Term{weak confirmation} (CnfW),
+\item[(Att)]
+  \Term{Attenuation,} if $\IEff$ lies on the same side of 0
+  as in the original study (Rlv or Amb.Sig) and $\IEDS$ is relevant (Rlv),
+%%-   If the estimated EDS is clearly negative (Rlv), one could call %%  
+%%-   it a \Term{clear attenuation}---even if $\IEff$ turns out relevant (Rlv).
+\item[(Enh)]
+  \Term{Enhancement,} if the replication suggests a clearly
+  stronger effect, that is, case (Rlv) for $\IEff$
+  and significantly positive EDS (Ctr);
+  this will be rare,  
+\item[(Amb)]
+  \Term{Ambiguous,} if $\IEff$ covers the relevance threshold and
+  it also covers zero (Amb) or the estimate $\wh\eff_1$ is below the
+  reference threshold,
+%%-   and EDS is high, or
+%%-   if $\IEff$ covers 0, regardless of the EDS,
+\item[(Anh)]
+  \Term{Annihilation,} if $\IEff$ covers only irrelevant values (Ngl), 
+\item[(Ctr)]
+  \Term{Contradiction,} if all values of $\IEff$ have the
+  opposite sign (Ctr),
+\item[(Drp)]
+  \Term{Dropout,} if the replication failed to mimik
+  the experimental or observational setup.
+\end{itemize}
+These cases are collected in Table \ref{tab:replclass}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{r|ccc}
+    \multicolumn{1}{r||}{Effect estimate}
+    &\multicolumn{3}{c}{Effect Difference (standardized), $\IEDS$}\\
+    \multicolumn{1}{r||}{ $\IEff$ in replication}
+    & relevant, Rlv & Amb or Ngl & contradicting, Ctr \\\hline
+    relevant, Rlv  & attenuation, Att & confirmation, Cnf & enhancement, Enh \\
+    significant, Sig& attenuation, Att & weak conf., CnfW$^*$ & ---  \\
+    ambiguous, Amb & ambiguous, Amb & ambiguous, Amb & --- \\
+    negligible, Ngl& annihilation, Anh& annihilation, Anh$^{**}$ &  --- \\
+    contradicting, Ctr& contradiction, Ctr&  --- & --- 
+  \end{tabular}
+  \caption{\label{tab:classification}Classification
+    of results of a replication of a relevant effect, based on the
+    classificaion of the confidence interval $\IEff$ for the effect
+    in the replication and the confidence interval $\IEDS$ of the EDS.
+    It is assumed that the original effect was relevant or at least significant.
+    Then, the cases marked --- cannot occur.
+    $^*$ This conclusion also requires $\Rl e\ge1$; otherwise, it counts as
+    ambiguous. \
+    $^{**}$ This cannot occur if the original effect was relevant.
+  }
+\end{table}
+
 %% =======================================================================
 \section{Functions}
 \label{sec:functions}
@@ -342,11 +459,37 @@ the global aspects of the model as shown here.
 \T{\!\!inference} also applies to other situations where an estimate, 
 its standard error and the number of observations is available.
 
+\subsection{Function \T{replication}}
+This function generates inference for a replication study based on its
+inference results for the original and replication studies and 
+the inference on the difference between the two, 
+as described in Section \ref{sec:replication}.
+
+The function produces an object of class \T{inference} and 
+\T{replication}.
+There are \T{print} and \T{plot} methods for this class.
+
+Here is a series of examples taken from the classical set of replications
+reported by the ``Open Science Collaboration'' in 2015:
+Open Science Collaboration (2015). 
+``Estimating the reproducibility of psychological science.''
+Science 349, 943-952.
+The 10 studies implying one sample or paired samples test were selected.
+<<replication>>=
+data(d.osc15Onesample)
+tx <- structure(d.osc15Onesample[,c("effecto","teststatistico","no")],
+      names=c("effect","teststatistic","n"))
+ty <- structure(d.osc15Onesample[,c("effectr","teststatisticr","nr")],
+      names=c("effect","teststatistic","n"))
+( rr <- replication(tx, ty, rlv.threshold=0.1) )
+plot(rr)
+@ 
+
 \subsection{Generally useful functions}
 The package includes several functions that are not directly related to 
 relevance or significance, see their help pages for details and examples.
 
-\T{!\!showd} allows for inspecting a data.frame or vector in a 
+\T{\!showd} allows for inspecting a data.frame or vector in a 
 brief informative way.
 <<show>>=
   showd(d.blast)
@@ -492,11 +635,15 @@ plot(rt)
 @
 
 %% ============================================================================
-\subsection*{Reference}
+\subsection*{References}
 
 Stahel, Werner A. (2021). 
-\textit{New relevance and significance measures to replace p-values} 
+\textit{New relevance and significance measures to replace p-values}. 
 PLOS ONE, June 16, 2021, doi.org/10.1371/journal.pone.0252991
+
+Stahel, Werner A. (2022). 
+\textit{Replicability: Terminology, Measuring Success, and Strategy}.
+Available in the documentation.
 
 \end{document}
 

@@ -9,9 +9,10 @@
 \description{Plot confidence or relevance interval(s)
 }
 \usage{
-plconfint(x, pos = NULL, xlim = NULL, add = FALSE, bty = "L", col = 1, 
-  plpars=list(lwd=c(2,3,1,2,2), markheight=c(1,0.7,0.85), extend=NA,
-    reflinecol="gray70"),
+plconfint(x, y = NULL, overlap = NULL, pos = NULL, xlim = NULL,
+  refline = 0, add = FALSE, bty = "L", col = NULL, 
+  plpars=list(lwd=c(2,3,1,4,2), posdiff=0.35,
+    markheight=c(1, 0.6, 0.6), extend=NA, reflinecol="gray70"),
   xlab="", ...)
 
 pltwosamples(x, ...)
@@ -21,14 +22,16 @@ pltwosamples(x, ...)
 
 \arguments{
   \item{x}{For \code{plconfint}:
-    A vector of length >=3 or a matrix
+    A vector of length >=2 or a matrix
     with this number of columns, containing
     \itemize{
       \item{[,1]}{the estimate}
-      \item{[,2:3]}{the interval end points}
-      \item{[,4:5]}{(or another number of additional columns)
-	if desired, values for additional ticks on the
-	intervals, typically indicating the end points of a
+      \item{[,2]}{if of length 2: width of (symmetric) confidence
+            interval} 
+      \item{[,2:3]}{if of length >2: the interval end points}
+      \item{[,4:5]}{if of length >=5: 
+	values for additional ticks on the intervals,
+	typically indicating the end points of a
 	shortened interal, see Details}
     }
 
@@ -37,13 +40,19 @@ pltwosamples(x, ...)
     or a list or matrix or data.frame with two components/columns
     corresponding to the two samples
   }
-  \item{y}{data for the second sample
+  \item{y}{data for a second confidence interval (for \code{plconfint}
+    or the second sample (for \code{pltwosamples}
   }
+  \item{overlap}{logical: should shortened intervals be shown to show
+    significance of differences?
+    see Details}
   \item{pos}{positions of the bars in vertical direction
   }
   \item{xlim}{limits for the horizontal axis. \code{NA}s will be
     replaced by the respective element of the range of the x values.
   }
+  \item{refline}{\code{x} values for which vertical reference lines are
+    drawn} 
   \item{add}{logical: should the plotted elements be added to an
     existing plot?}
   \item{bty}{type of 'box' around the plot, see \code{par}
@@ -55,9 +64,6 @@ pltwosamples(x, ...)
   }
   \item{xlab}{label for horizontal axis
   }
-  \item{overlap}{logical: should shortened intervals be shown to show
-    significance of differences?
-    see Details}
   \item{formula, data}{formula and data for the \code{formula} method
   }
   \item{\dots}{further arguments to the call of \code{plconfint}
@@ -66,7 +72,7 @@ pltwosamples(x, ...)
 \details{Columns 4 and 5 of \code{x} are typically used to indicate
   an "overlap interval", which allows for a graphical assessment
   of the significance of the test for zero difference(s),
-  akin the "notches" in the box plots:
+  akin the "notches" in box plots:
   The difference between a pair of groups is siginificant if their
   overlap intervals do not overlap.
   For equal standard errors of the groups, the standard error of the

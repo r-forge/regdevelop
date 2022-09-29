@@ -453,9 +453,9 @@ genvarattributes <- #f
   }
   ## ---------------------------------------------
   if (length(plscale)) data <- setvarattributes(data, plscale=plscale)
-  innerrange <- i.def(innerrange, i.getploption("innerrange", ploptions))
+##  innerrange <- i.def(innerrange, lirgx)
   ## i.getplopt(innerrange) would be ok, but checks the option in a wrong way
-  data <- setvarattributes(data, innerrange=innerrange)
+  ## data <- setvarattributes(data) ## , innerrange=innerrange
   ## innerrange, coordinates, ticks
   for (lv in lnmdata) {
     lvv <- data[,lv]
@@ -529,9 +529,10 @@ i.genvattrcont <- #f
   if(inherits(x,"Surv")) x <- transferAttributes(x[,1], x)
   lnouter <- c(0,0)
   ## innerrange
-  innerrange <- i.def(innerrange, attr(x, "innerrange"))
+  lirgx <- attr(x, "innerrange")
+  innerrange <- i.def(innerrange, lirgx)
   lirg <- i.def(i.getplopt(innerrange), TRUE) 
-  lIirg <- u.notfalse(lirg)
+  lIirg <- u.notfalse(lirg) | length(lirg)==2 
   lirf <- i.getplopt(innerrange.factor)
   ##
   ltint <- i.getplopt(tickintervals) ## logical
@@ -544,26 +545,29 @@ i.genvattrcont <- #f
     else {
       x <- plscale(x, lplscale, valuesonly=FALSE)
       lvlimsc <- attr(x, "vlimscaled", exact=TRUE)
+      lIirg <- TRUE
     }
   }
   lx <-
     if (length(lnv <- attr(x, "numvalues", exact=TRUE))) lnv else c(x)
   names(lx) <- names(x)
   ## innerrange
-  if (u.true(lirg)) lirg <- c(plinnerrange(TRUE, lx, factor=lirf))
+##    browser()  ## wieso ist lIirg F?
+  if (lIirg & u.true(lirg)) lirg <- c(plinnerrange(TRUE, lx, factor=lirf))
   if (!u.notfalse(lirg)) {
     attr(x, "innerrange") <- lirg <- NULL
     lplrg <- i.extendrange(range(lx, finite=TRUE), i.getploption("plext"))
   } else { ## lirg is range
+    if (replace||length(lirgx)!=2)
     ## vlim overrides innerrange
-    lirg <- replaceNA(lvlimsc, lirg)
+      lirg <- replaceNA(lvlimsc, lirg)
     lpc <- plcoord(lx, lirg, ploptions=ploptions)
     ## attributes: avoid a level...
     lpca <- attributes(lpc)
     ## if (!lIplrg) lpca$plrange <- lplrg 
     attributes(x)[names(lpca)] <- lpca
     attributes(lpc) <- NULL
-    attr(x, "plcoord") <- lpc
+    if (replace) attr(x, "plcoord") <- lpc
     lnouter <- lpca$nouter
     if (u.isnull(lnouter)) lnouter <- c(0,0)
     lplrg <- lpca$plrange
@@ -2315,12 +2319,12 @@ function(x=NULL, y=NULL, by=NULL, group=NULL, data=NULL, type="p", panel=NULL,
   lnx <- ncol(lx)
   ly <- pldata[,lynm, drop=FALSE]
   ## why so complicated? I need this when  by  is active
-  for (lj in lynm) {
+ for (lj in lynm) {
     lyj <- ly[[lj]]
-    if (length(lplc <- attr(lyj, "plcoord", exact=TRUE))) {
+    if (length(lnval <- attr(lyj, "numvalues", exact=TRUE))) { ##!!! was plcoord
       ly[,lj] <- transferAttributes(
         if(inherits(lyj, "Surv"))
-          survival::Surv(lplc, lyj[,2], type=attr(lyj, "type", exact=TRUE)) else lplc ,
+          survival::Surv(lnval, lyj[,2], type=attr(lyj, "type", exact=TRUE)) else lnval ,
         lyj )
     }
   }
@@ -2374,7 +2378,11 @@ function(x=NULL, y=NULL, by=NULL, group=NULL, data=NULL, type="p", panel=NULL,
     if (rescale==0) {
       lyy <- as.data.frame(lapply(ly, function(y) i.def(attr(y, "numvalues"), y)))
       lplsc <- lapply(ly, function(y) i.def(attr(y, "plscale"), NULL))
-      lir <- any(sapply(ly, function(y) length(attr(y, "innerrange"))))
+      lvlim <- sapply(ly, function(y) i.def(attr(y, "vlim"), c(NA,NA)))
+      lyy$vlim <- c(min(lvlim[1,]),max(lvlim[2])) 
+      ## innerrange?
+      lir <- u.true(i.getploption("innerrange")) &&
+        any(sapply(ly, function(y) length(attr(y, "innerrange"))>0))
       lps0 <- all(sapply(lplsc, length)==0)
       lplsc <- unique(unlist(lplsc))
       ltickscale <- NULL
@@ -2386,15 +2394,15 @@ function(x=NULL, y=NULL, by=NULL, group=NULL, data=NULL, type="p", panel=NULL,
       lyc <- i.genvattrcont(c(unlist(lyy)), ploptions=ploptions, tickscale=ltickscale)
       lattr <- attributes(lyc)[c("plrange", "ticksat", "ticklabelsat", "ticklabels")]
       lirg <- attr(lyc, "innerrange")
-      if (lir|length(lirg)) {
-        lirg <- i.def(lirg, lattr$plrange)
-        for (lj in 1:lny)
-          attr(ly[,lj], "plcoord") <- c(plcoord(lyy[,lj], range=lirg))
-        lattr <- c(lattr, innerrange=list(lir))
+      lirg <- i.def(lirg, lattr$plrange)
+      for (lj in 1:lny) {
+        attr(ly[,lj], "plcoord") <- c(plcoord(lyy[,lj], range=lirg))
+        latt <- c(lattr, innerrange=list(lirg))
+        attributes(ly[,lj])[names(latt)] <- latt
       }
-      ly <- setvarattributes(ly, setNames(rep(list(list(lattr)), lny), lynm))
-      lrgy <- matrix(lf.rg(lyc),2,lny)
-    } else {
+      ## ly <- setvarattributes(ly, setNames(rep(list(list(lattr)), lny), lynm))
+      lrgy <- matrix(lf.rg(lyc),4,lny)
+    } else { ## rescale !=0
       if (rescale<0) { ## do not adjust tick marks etc
         lrgyy <- c(min(lrgy[1,]),max(lrgy[2,]),min(lrgy[3,]),max(lrgy[4,])) 
         for (lj in 1:lny) 
@@ -2502,7 +2510,8 @@ function(x=NULL, y=NULL, by=NULL, group=NULL, data=NULL, type="p", panel=NULL,
         plargs$pldata <- pldata
       }
       lpchg <- lpch
-    ## 'by' grouping
+      ## 'by' grouping
+      
     for (ipgc in 1:lnpgc) { ## columns on page
       lc <- (ipgc-1)*lnc
       for (lig in (lc+1):lnc) { ## 'by' groups
@@ -2579,8 +2588,8 @@ function(x=NULL, y=NULL, by=NULL, group=NULL, data=NULL, type="p", panel=NULL,
                       plargs=plargs, getpar=FALSE, getxy=FALSE)
             ##!!!linecolor
             lrgold <- lrgj
-            if (lj==2) {
-              lmfg <- par("mfg")
+            if (rescale & lj==2) {
+              ## lmfg <- par("mfg")
               plaxis(4, lyjg, ## lab=lmar[4]>=lmgp[2]+1 | lmfg[2]==lmfg[4],
                      range=lrgj, col=lpcol,
                      tickintervals=i.getploption("tickintervals"),
@@ -4591,7 +4600,7 @@ plpanelCond <- #f
 plmbox <- #f
   function(x, at=0, probs=NULL, outliers=TRUE, na.pos=NULL,
            horizontal = FALSE,
-  width=1, wfac=NULL, minheight= NULL, adj=0.5, extquant=TRUE, 
+  width=1, wfac=NULL, minheight= NULL, adj=0.5, extquant=FALSE, 
   widthfac=c(max=2, med=1.3, medmin=0.3, outl=NA),
   colors=c(box="lightblue2",med="blue",na="gray90"), lwd=c(med=3, range=2),
   warn=options("warn") )
@@ -4650,7 +4659,7 @@ plmbox <- #f
   lwoutl <- widthfac["outl"]
   if (diff(lrg) > 0) { ## non-degenerate
     if (u.isnull(minheight))
-      minheight <- if (lxsd==0) lirgd*0.02  else lxsd*0.01
+      minheight <- if (lxsd==0) lirgd*0.01  else lxsd*0.02
     lqpl <- lq <- quinterpol(lx, probs=lprobs, extend=extquant)
     lirgext <- attr(x, "innerrange.ext", exact=TRUE)
     if (ljrg) {  ## transformed coord
@@ -4661,15 +4670,22 @@ plmbox <- #f
     loutl <- lx[lx<min(lq)|lx>max(lq)]
   ## ---
     lwid <- lfac*diff(lprobs)/pmax(diff(lq), minheight)
-##    lxsd <- IQR(x, na.rm=TRUE)
-    lwmax <- widthfac["max"]*lfac*0.5/ifelse(lxsd>0, lxsd, 1)
-    lwmed <- max(widthfac["med"]*min(lwmax,max(nainf.exclude(lwid))),
+    lwmax <- widthfac["max"]*0.5 ##*lfac/ifelse(lxsd>0, lxsd, 1) !!! ???
+    ## length of median bar
+    lnwid <- length(lwid)
+    lnw1 <- max(ceiling(lnwid/4),2)
+    lnw2 <- lnwid/2
+    li <- (floor(lnw2)-lnw1+1):(ceiling(lnw2)+lnw1)
+    lwmed <- max(widthfac["med"]*min(lwmax,max(nainf.exclude(lwid[li]))),
                  widthfac["medmin"],na.rm=TRUE)
     lpos <- c(-adj,-adj,1-adj,1-adj)
     if (is.na(lwoutl)) lwoutl <- 0.1*lwmax
-  ## ---
-    for (li in 1:(length(lprobs)-1)) 
-      f.box(lwid[li], lqpl[li+c(0,1,1,0)], box.col[li], lwmax)
+    ## ---------------------------------------
+    for (li in 1:(length(lprobs)-1)) {
+      llq <- lqpl[li+0:1]
+      if (diff(llq)<minheight) llq <- mean(llq) + c(-0.5,0.5)*minheight
+      f.box(lwid[li], llq[c(1,2,2,1)], box.col[li], lwmax)
+      }
   }  ## 
   ## median
   if (horizontal) {
@@ -4766,11 +4782,12 @@ plmboxes.default <- #f
   if(is.null(y))
     y <- pldata[,i.def(attr(pldata,"yvar", exact=TRUE)[1],2),drop=FALSE]
   else if(!is.data.frame(y))
-    y <- genvarattributes(y, varlabel="Y")
+    y <- genvarattributes(y, varlabel="Y") ## !!! should only be done if called directly, otherwise changes attributes like plcoord
   if (!is.numeric(y[,1]))
     stop("!plmboxes.default! 'y' must be numeric")
   ly <- y[,1]
-  lly <- i.def(i.def(attr(ly, "numvalues"), attr(ly, "plcoord")), ly) ## ??
+##-   lly <- i.def(i.def(attr(ly, "numvalues"), attr(ly, "plcoord")), ly) ## ??
+  lly <- i.def(attr(ly, "numvalues"), ly) ## ??
   lhoriz <- as.logical(i.def(horizontal, FALSE, valuetrue=TRUE))
   ## widths
   lwfac <- modarg(widthfac, c(max=2, med=1.3, medmin=0.3, outl=NA, sep=0.003))
@@ -4799,7 +4816,7 @@ plmboxes.default <- #f
   lfac <- width*lsd/(max(lnn)*(1+llr))
   if (u.isnull(minheight)) {
     lscales <- sapply(llist, IQR, na.rm=TRUE)
-    minheight <- median(lscales)*0.02
+    minheight <- median(lscales)*i.getploption("mbox.minheight")
   }
   ## labels
   xlab <- i.def(xlab, attr(x[,1],"varlabel", exact=TRUE), valuefalse="")
@@ -4936,7 +4953,7 @@ plmboxes.default <- #f
       attributes(lli) <- lattr
       plmbox(lli,lpos[li]-lsep, probs=probs, outliers=outliers,
              horizontal=lhoriz,
-             wfac=lfac[li], adj=1-0.5*(1-llr), na.pos=na.pos, extquant=TRUE,
+             wfac=lfac[li], adj=1-0.5*(1-llr), na.pos=na.pos, 
              widthfac=lwfac, colors=lcol, lwd=llwd, warn=-1)
     }
     if (llr) { ## second half of asymmetrix  mbox
@@ -4945,7 +4962,7 @@ plmboxes.default <- #f
         attributes(llir) <- lattr
         plmbox(llir,lpos[li]+lsep,probs=probs, outliers=outliers,
                horizontal=lhoriz,
-               wfac=lfac[li], adj=0, na.pos=na.pos, extquant=TRUE,
+               wfac=lfac[li], adj=0, na.pos=na.pos, 
                widthfac=lwfac, colors=lcol, warn=-1)
       }
     }
@@ -5300,7 +5317,6 @@ i.getploption <- #f
   function(opt, opts=NULL) {
   ## opt is character, opts list or NULL
     lpldef <- get("pl.optionsDefault", pos=pl.envir)
-    browser()
   if (is.null(opts))
     opts <- get("ploptions", envir=parent.frame()) ## list in calling fn
   if (is.function(opts)) opts <- NULL
@@ -5684,7 +5700,7 @@ c.dateticks <- data.frame(
     bar.midpointwidth = 1, bar.lty = 1, bar.lwd = c(2,1), bar.col = "burlywood4",
     ## factors
     factor.show = "mbox", backback = TRUE,
-    mbox.minnobs = 6,
+    mbox.minnobs = 6, mbox.minheight = 0.02, 
     mbox.colors = c(box="lightblue",med="blue",na="gray90",refline="magenta"),
     jitter = NA, jitter.minnobs = 6, jitter.factor = 2,
     ## time axes
@@ -5775,8 +5791,8 @@ ploptionsCheck <-
     bar.col = list(cnr(c(0,t.ncol)), ccl()),
     bar.midpointwidth = cnr(c(0.1,5)),
     ## factors
-    factor.show = cch(c("mbox","jitter","asis","")),
-    mbox.minnobs = cnr(c(1,Inf)), mbox.colors = ccl(), backback = clg(),
+    factor.show = cch(c("mbox","jitter","asis","")), backback = clg(),
+    mbox.minnobs = cnr(c(1,Inf)), mbox.minheight = cnr(c(0,0.1)), mbox.colors = ccl(),
     jitter = clg(), jitter.minnobs = cnr(c(1,Inf)), jitter.factor = cnr(c(0.1,5)),
     ## time axes
     ## timerangelim = c(year=365*4, month=30*12, day=4),
