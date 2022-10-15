@@ -25,7 +25,8 @@ importFrom("grDevices", palette)
 
 export(confintF, correlation, drop1Wald,
        getcoeftable, getcoeffactor, getscalepar, 
-       inference, onesample, plconfint, pltwosamples,
+       inference, onesample,
+       plconfint, pltwosamples, plrplest, 
        p.symbols, rlv.symbols,
        relevance.options, relevance.modelclasses, 
        termeffects, termtable, twosamples, plot.inference,

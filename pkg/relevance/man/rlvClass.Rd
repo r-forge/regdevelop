@@ -9,15 +9,17 @@ Relevance Class
   and the relevance threshold
 }
 \usage{
-rlvClass(estimate, ciwidth, relevance=NA)
+rlvClass(effect, ci=NULL, relevance=NA)
 }
 
 \arguments{
-  \item{estimate}{either a list of class \code{"inference"}
+  \item{effect}{either a list of class \code{"inference"}
     (in which case the remaining arguments will be ignored)
-    or the estimated parameter or effect
+    or the estimated effect
   }
-  \item{ciwidth}{width of confidence interval for \code{estimate}
+  \item{ci}{confidence interval for \code{estimate} or
+    width of confidence interval (if of equal length as
+    \code{estimate})
   }
   \item{relevance}{relevance threshold
   }

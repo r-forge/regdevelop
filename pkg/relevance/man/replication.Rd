@@ -7,13 +7,12 @@
   for its comparison with the original
 }
 \usage{
-replication(x, y=NULL,
-           testlevel=getOption("testlevel"),
+replication(original, replication, testlevel=getOption("testlevel"),
            rlv.threshold=getOption("rlv.threshold") )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{list of class \code{inference}, providing
+  \item{original}{list of class \code{inference}, providing
     the effect estimate (\code{["effect"]}),
     its standard error (\code{["se"]}),
     the number of observations (\code{["n"]}),
@@ -22,9 +21,9 @@ replication(x, y=NULL,
     a matrix or data.frame containing this information
     as the first row.
   }
-  \item{y}{the same, for the replication study;
+  \item{replication}{the same, for the replication study;
     if empty or \code{NULL},
-    the second row of argument \code{x} is assumed
+    the second row of argument \code{original} is assumed
     to contain the information about the replication.
   }
   \item{testlevel}{level of statistical tests

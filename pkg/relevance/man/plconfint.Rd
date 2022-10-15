@@ -3,21 +3,26 @@
 \alias{pltwosamples}
 \alias{pltwosamples.default}
 \alias{pltwosamples.formula}
+\alias{plrplest}
 
 \title{Plot Confidence Intervals
 }
 \description{Plot confidence or relevance interval(s)
+  for several samples and for the comparison between two samples
+  or between replications and original studies
 }
 \usage{
-plconfint(x, y = NULL, overlap = NULL, pos = NULL, xlim = NULL,
-  refline = 0, add = FALSE, bty = "L", col = NULL, 
+plconfint(x, y = NULL, select=NULL, overlap = NULL, pos = NULL,
+  xlim = NULL, refline = 0, add = FALSE, bty = "L", col = NULL, 
   plpars=list(lwd=c(2,3,1,4,2), posdiff=0.35,
     markheight=c(1, 0.6, 0.6), extend=NA, reflinecol="gray70"),
   xlab="", ...)
 
 pltwosamples(x, ...)
-\method{pltwosamples}{default}(x, y, overlap = TRUE, ...)
+\method{pltwosamples}{default}(x, y = NULL, overlap = TRUE, ...)
 \method{pltwosamples}{formula}(formula, data=NULL, ...)
+
+plrplest(x, ...)
 }
 
 \arguments{
@@ -25,11 +30,11 @@ pltwosamples(x, ...)
     A vector of length >=2 or a matrix
     with this number of columns, containing
     \itemize{
-      \item{[,1]}{the estimate}
-      \item{[,2]}{if of length 2: width of (symmetric) confidence
-            interval} 
-      \item{[,2:3]}{if of length >2: the interval end points}
-      \item{[,4:5]}{if of length >=5: 
+      \item{[,1]}{ the estimate}
+      \item{[,2]}{ if \code{x} is of length 2:
+	width of (symmetric) confidence interval} 
+      \item{[,2:3]}{ if of length >2: the interval end points}
+      \item{[,4:5]}{ if of length >=5: 
 	values for additional ticks on the intervals,
 	typically indicating the end points of a
 	shortened interal, see Details}
@@ -41,8 +46,9 @@ pltwosamples(x, ...)
     corresponding to the two samples
   }
   \item{y}{data for a second confidence interval (for \code{plconfint}
-    or the second sample (for \code{pltwosamples}
+    or the second sample (for \code{pltwosamples})
   }
+  \item{select}{selects samples, effects, or studies}
   \item{overlap}{logical: should shortened intervals be shown to show
     significance of differences?
     see Details}

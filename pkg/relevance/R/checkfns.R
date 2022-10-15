@@ -5,7 +5,16 @@ check.args <- #f
 { ## check arguments of a function and return them in evaluated form
   call <- sys.call(-1)
   defaults <- as.list(args(sys.function(-1)))
+  lfnargnm <- names(defaults)
+  defaults <- defaults[!sapply(defaults, is.symbol)]
   args <- as.list(call[-1])
+  largnm <- names(args)
+  li <- largnm==""
+  lni <- sum(li)
+  if (lni) {
+    lnm <- setdiff(lfnargnm, largnm)[seq_along(lni)]
+    largnm[li] <- lnm
+  }
   lfname <- as.character(call[1])
   ##-   lfn <-
 ##-     if(length(lfname)>1)
@@ -98,7 +107,7 @@ check.numrange <- #f
       return(paste("have length at least ",length))
   if (!all(is.na(dim))) {
     ldim <- dim(x)
-    if (length(ldim)<2 || any(ldim<dim))
+    if (length(ldim)<2 || any(ldim<dim, na.rm=TRUE))
       return(paste("have dimension at least  c(",
                    paste(dim, collapse=", "), ")", sep=""))
   }

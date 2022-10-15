@@ -477,11 +477,11 @@ Science 349, 943-952.
 The 10 studies implying one sample or paired samples test were selected.
 <<replication>>=
 data(d.osc15Onesample)
-tx <- structure(d.osc15Onesample[,c("effecto","teststatistico","no")],
+to <- structure(d.osc15Onesample[,c("effecto","teststatistico","no")],
       names=c("effect","teststatistic","n"))
-ty <- structure(d.osc15Onesample[,c("effectr","teststatisticr","nr")],
+tr <- structure(d.osc15Onesample[,c("effectr","teststatisticr","nr")],
       names=c("effect","teststatistic","n"))
-( rr <- replication(tx, ty, rlv.threshold=0.1) )
+( rr <- replication(to, tr, rlv.threshold=0.1) )
 plot(rr)
 @ 
 

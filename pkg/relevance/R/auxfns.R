@@ -103,6 +103,7 @@ shortenstring <- function (x, n=50, endstring="..", endchars=NULL)
 i.getIfrData <-
   function(object, ...)
 {
+  if(is.atomic(object)) object <- rbind(object)
   lobj <- as.data.frame(object)
   lnmdf <- names(lobj)
   largs <- list(...)
@@ -110,10 +111,15 @@ i.getIfrData <-
     largs$estimate <-
       i.def(if(is.list(object)) object$estimate, cbind(object)[,1])
   lnm <- names(largs)
+  latr <- attributes(object)
+  lnmatr <- names(latr)
   for (inm in lnm) {
     ld <- largs[[inm]]
     if (length(ld)==0 || all(is.na(ld))) {
-      ld <- if (inm%in%lnmdf) lobj[[inm]] else NA }
+      ld <- if (inm%in%lnmdf) lobj[[inm]] 
+            else {
+              if (inm%in%lnmatr) latr[[inm]] else NA }
+    }
     largs[inm] <- list(ld)
   }
   rr <- data.frame(largs)
