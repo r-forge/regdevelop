@@ -39,8 +39,12 @@ plot(effectr~effecto, data=d.osc15Onesample, xlim=c(0,3.5),ylim=c(0,2.5),
 abline(0,1)
 
 ## Compare confidence intervals between original paper and replication
-rr <- cbind(d.osc15Onesample, rplConfint(d.osc15Onesample))
-plconfint(rr[,c("effecto","ciwo")], rr[,c("effectr","ciwr")],
-  refline=c(0,0.1))
+to <- structure(d.osc15Onesample[,c("effecto","teststatistico","no")],
+      names=c("effect","teststatistic","n"))
+tr <- structure(d.osc15Onesample[,c("effectr","teststatisticr","nr")],
+      names=c("effect","teststatistic","n"))
+( rr <- replication(to, tr, rlv.threshold=0.1) )
+plconfint(rr, refline=c(0,0.1))
+plconfint(attr(rr, "estimate"), refline=c(0,0.1))
 }
 \keyword{datasets}

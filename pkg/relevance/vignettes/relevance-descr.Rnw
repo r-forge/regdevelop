@@ -4,7 +4,7 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 %% \usepackage{germanU}
-\usepackage[noae]{Sweave}
+%% \usepackage[noae]{Sweave}
 \usepackage[a4paper]{geometry}  %% , text={14.5cm,22cm}
 \usepackage{color} %uncomment BF
 \usepackage{booktabs} % nice tables with \toprule \middlerule \bottomrule
@@ -484,6 +484,13 @@ tr <- structure(d.osc15Onesample[,c("effectr","teststatisticr","nr")],
 ( rr <- replication(to, tr, rlv.threshold=0.1) )
 plot(rr)
 @ 
+
+This plot shows the inference about the difference between studies.
+The following shows the results for the original and the replication study next to each other.
+<<replication.plgroups>>=
+plot(attr(rr, "estimate"), refline=c(0,1),
+     label2=attr(rr, "rplclass"), xlab="relevance")
+@
 
 \subsection{Generally useful functions}
 The package includes several functions that are not directly related to 

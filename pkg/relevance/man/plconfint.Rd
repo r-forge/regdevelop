@@ -3,26 +3,23 @@
 \alias{pltwosamples}
 \alias{pltwosamples.default}
 \alias{pltwosamples.formula}
-\alias{plrplest}
 
 \title{Plot Confidence Intervals
 }
 \description{Plot confidence or relevance interval(s)
-  for several samples and for the comparison between two samples
-  or between replications and original studies
+  for several samples and for the comparison of two samples,
+  also useful for replications and original studies
 }
 \usage{
 plconfint(x, y = NULL, select=NULL, overlap = NULL, pos = NULL,
   xlim = NULL, refline = 0, add = FALSE, bty = "L", col = NULL, 
   plpars=list(lwd=c(2,3,1,4,2), posdiff=0.35,
     markheight=c(1, 0.6, 0.6), extend=NA, reflinecol="gray70"),
-  xlab="", ...)
+  label = TRUE, label2 = NULL, xlab="", ...)
 
 pltwosamples(x, ...)
 \method{pltwosamples}{default}(x, y = NULL, overlap = TRUE, ...)
-\method{pltwosamples}{formula}(formula, data=NULL, ...)
-
-plrplest(x, ...)
+\method{pltwosamples}{formula}(formula, data = NULL, ...)
 }
 
 \arguments{
@@ -67,6 +64,10 @@ plrplest(x, ...)
     usually a vector of colors if used.
   }
   \item{plpars}{graphical options, see Details
+  }
+  \item{label, label2}{labels for intervals (or intervall pairs)
+    to be dislayed on the left and right hand margin, respectivly.
+    If \code{label} is \code{TRUE}, row.names of \code{x} are used.
   }
   \item{xlab}{label for horizontal axis
   }
@@ -123,6 +124,16 @@ data(d.blast)
 rlm <- lm(log10(tremor)~location+log10(distance)+log10(charge), data=d.blast)
 rte <- termeffects(rlm)
 plot(rte, single=TRUE)
+
+## --- replication
+data(d.osc15Onesample)
+td <- d.osc15Onesample
+tdo <- structure(td[,c(1,2,6)], names=c("effect", "n", "teststatistic")) 
+tdr <- structure(td[,c(3,4,7)], names=c("effect", "n", "teststatistic")) 
+rr <- replication(tdo,tdr)
+
+plconfint(attr(rr, "estimate"), refline=c(0,1))
 }
 \keyword{hplot}
 \concept{relevance}
+\concept{replication}

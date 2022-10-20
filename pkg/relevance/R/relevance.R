@@ -337,7 +337,7 @@ inference <- #f
   if (inherits(object, "inference"))
     warning(":inference: The first argument is already an 'inference' object")
   if (inherits(object, relevance.modelclasses)) {
-    lest <- getcoeftable(object)
+    lcftb <- getcoeftable(object)
     lsum <- summary(object)
     lcl <- object$call
     ldn <- lcl$data
@@ -379,18 +379,21 @@ inference <- #f
       }
       lfac <- getcoeffactor(object)
       ##   lcls <- attr(lfac, "fitclass")
-      stcoef <- lest[,1]*lfac[row.names(lest)]
+      stcoef <- lcftb[,1]*lfac[row.names(lcftb)]
     }
-    browser()
-    if (length(stcoef)!=NROW(lest)) {
+    if (length(stcoef)!=NROW(lcftb)) {
       warning(":inference: argument 'stcoef' not suitable. No relevances")
       return (rr)
     }
+    lest <- lcftb[,1]
+    ltq <- qt(1-testlevel/2, attr(lcftb,"df"))
+    lci <- lest+outer(ltq*lcftb[,2], c(ciLow=-1,ciUp=1))
     lfac <- stcoef/lest
-    lstci <- cbind(eff=stcoef, effLow=lfac*lci[,1], effUp=lfac*lci[,2])
-    rr <- cbind(rr, lstci)
+    lstci <- cbind(effect=stcoef, effLow=lfac*lci[,1], effUp=lfac*lci[,2])
+    lsum$coefficients <- cbind(lcftb, lstci)
+    rr$summary <- lsum
     ## ---
-    return(rr)
+    return(structure(rr, summary=lsum))
   } ## end model
   ## --------------------------------------------------
   if (length(object) && length(dim(object))==0) {
@@ -458,7 +461,8 @@ inference <- #f
   li <- which(leffci[,1]<0)
   if (length(li)) lrlv[li,] <- - lrlv[li,c(1,3,2)]
   colnames(lrlv) <- c("Rle","Rls","Rlp")
-  lrlvclass <- rlvClass(lrlv[,"Rle"], lrlv[,c("Rls","Rlp")])
+  lrlvclass <-
+    rlvClass(lrlv[,"Rle"], lrlv[,c("Rls","Rlp")], relevance=1)
   structure(cbind(rr, lrlv, rlvclass=lrlvclass),
             row.names=row.names(ldt),
             class=c("inference", "data.frame"), type = "simple")
@@ -696,8 +700,6 @@ termeffects <- #f
     list(object=cls(), se=cnr(), df=cnr(),
          rlv=clg(), rlv.threshold=cnr(range=c(0,Inf))
          )
-##-   lcall <- match.call(expand.dots = FALSE)
-##-   lcall$... <- NULL
   largs <- check.args(lcheck, envir=parent.frame())
   for (lnm in names(largs)) assign(lnm, largs[[lnm]])
   ## --------------------------------
@@ -837,7 +839,7 @@ termeffects <- #f
           ljfail <- c(ljfail, tl[j])
         } else {
           lscatter <- getscalepar(object)
-          rrj <- inference(rrj, se=sej, df=df,
+          rrj <- inference(estimate=rrj, se=sej, df=df,
                            stcoef=rrj*0.5/lscatter, rlv=rlv, ...)
           li <- match(c("Rle","Rlp","Rls"), names(rrj))
           names(rrj)[li] <- c("coefRle","coefRlp","coefRls")
@@ -950,6 +952,7 @@ print.inference <- #f
     unname(x) ## apply(x, 1, paste, collapse="  "))
   }
   ## -------------------------------------
+  if (is.list(x)&&!is.data.frame(x)) return(print(unclass(x)))
   ## show what?
   lsh <- c(show.signif.stars = getOption("show.signif.stars"),
            show.symbollegend = getOption("show.symbollegend"),
@@ -976,23 +979,6 @@ print.inference <- #f
             c(" ;  distribution: ", ldist), "\n",
           if (length(lout)) paste(paste(lout, collapse=" ;  ")))
   ## lhead <- if (any(nchar(lhead)>2)) c(lhead,"\n")
-  lshe <- getOption("show.estimate")
-  lshet <- if(is.logical(lshe)) lshe else length(lshe)>0 
-  if (lshet && length(lest <- attr(x, "estimate"))) {
-    if (is.data.frame(lest)) lest <- list(lest)
-    lhead <- c(lhead, "estimate:\n")
-    lnm <- names(lest)
-    for (ll in seq_along(lest)) {
-      lle <- lest[[ll]]
-      if (length(lcn <- colnames(lle))) 
-      if (!is.logical(lshe)) lle <- lle[, lcn%in%lshe]
-      if (length(lle))
-        lhead <-
-          c(lhead, lf.format(lle,
-                             header= if (length(lnm))
-                                    paste(lnm[ll],"\n",sep=":")))
-    }
-  }
   ## ---
   lleg <- NULL
   lx <- x
@@ -1078,6 +1064,24 @@ print.inference <- #f
   ltail <- c(lleg,
              if (type=="model")
                c("\n", print.modelextras(x$summary, digits=digits, print=FALSE) ))
+  ## -----------
+  lshe <- getOption("show.estimate")
+  lshet <- if(is.logical(lshe)) lshe else length(lshe)>0 
+  if (lshet && length(lest <- attr(x, "estimate"))) {
+    if (is.data.frame(lest)) lest <- list(lest)
+    ltail <- c(ltail, "\nestimate:\n")
+    lnm <- names(lest)
+    for (ll in seq_along(lest)) {
+      lle <- lest[[ll]]
+      if (length(lcn <- colnames(lle))) 
+      if (!is.logical(lshe)) lle <- lle[, lcn%in%lshe]
+      if (length(lle))
+        ltail <-
+          c(ltail, lf.format(lle,
+                             header= if (length(lnm))
+                                    paste(lnm[ll],"\n",sep=":")))
+    }
+  }
   ## ---
   rr <- structure(lout, class=c("printInference", class(lout)),
                   head=lhead, tail=ltail)
@@ -1348,7 +1352,10 @@ print.modelextras <- #f
 }
 ## =========================================================================
 i.prep.plinference <- #f
-  function(x, overlap) {
+  function(x, overlap)
+{
+  if (is.list(x)&&!is.data.frame(x))
+    return(lapply(x, i.prep.plinference, overlap=overlap))
   if (is.null(dim(x))) x <- rbind(x)
   lnm <- colnames(x)
   lj <- match(c("Rle","Rls","Rlp"), lnm)
@@ -1389,10 +1396,11 @@ plconfint <- #f
            plpars=list(lwd=c(2,3,1,4,2), posdiff=0.35,
                        markheight=c(1,0.6,0.6), 
                        extend=NA, reflinecol = "gray70"),
+           label = TRUE, label2 = NULL,
            xlab="", ...)
 {
   lcheck <-
-    list(x=cnr(na.ok=FALSE, dim=c(1,3)), y=cnr(),
+    list(x=list(cnr(na.ok=FALSE, dim=c(1,3)), cls()), y=cnr(),
          select=cnr(range=c(0,Inf)), overlap=clg(), pos=cnr(),
          xlim=cnr(), add=clg(),
          bty=cch(), col=ccl(), plpars=cls(), xlab=cch()
@@ -1403,15 +1411,28 @@ plconfint <- #f
   i.extendrange <-
     function(range, ext=0.04)  range + c(-1,1)*ext*diff(range)
   ## ---
-  if (inherits(x, "inference")) x <- x[,c("Rle","Rls","Rlp")] ## x[,c("effect", "se")]
+  if (is.list(x) && !is.data.frame(x)) {
+    if (length(y))
+      warning(":plconfint: argument 'y' ignored because 'x' is a list")
+    y <- x[[2]]
+    x <- x[[1]]
+  }
+  if (inherits(x, "inference"))
+    x <- x[,c("Rle","Rls","Rlp")] ## x[,c("effect", "se")]
   lx <- as.matrix(rbind(x))
   if (ncol(lx)==2) lx <- lx[,1] + outer(lx[,2], c(0,-1,1))
   if (length(select)) lx <- lx[select,]
   lnx <- nrow(lx)
   ## ---
-  lnmeff <- i.def(row.names(lx), "")
   lposlb <- lpos <- if(length(pos)) pos else lnx:1
   lcol <- rep(i.def(col,1), length=lnx)
+  ## ---
+  llb <- label
+  if (u.true(llb)) llb <- row.names(lx)
+  ljlb <- length(llb)>0 
+  llb2 <- label2
+  ljlb2 <- length(llb2)>0
+  ## ---
   if (length(y)) {
     if (inherits(y, "inference")) y <- y[,c("Rle","Rls","Rlp")]
     ly <- as.matrix(rbind(y))
@@ -1466,17 +1487,17 @@ plconfint <- #f
     lxt <- i.def(plpars[["extend"]], 1/lnx)
     lposlim <- matrix(c(1+lxt, -lxt, -lxt, 1+lxt),2)%*%range(lpos)
     lmar <- par("mar")
-    lnch <- max(nchar(lnmeff))
-    lmar[2] <- 0.7*lnch+1
+    if (ljlb) lmar[2] <- 0.7*max(nchar(llb))+1
+    if (ljlb2) lmar[4] <- 0.7*max(nchar(llb2))+1
     loldp <- par(mar=lmar)
     on.exit(par(loldp))
     plot(lrg, lposlim, yaxs="i", type="n", axes=FALSE,
          xlab=xlab, ylab="", xaxs="i", yaxs="i", ...) # c(min(0,lrg[1]), max(1,lrg[2]))
-    lrlcol <- plpars[["reflinecol"]]
-    box(bty=bty, col=lrlcol)
-    axis(1, col=lrlcol)
-    if (length(refline)) abline(v=refline, col=plpars$reflinecol)
+    box(bty=bty)
+    axis(1)
   }
+  lrlcol <- i.def(attr(refline, "col"), plpars[["reflinecol"]])
+  if (length(refline)) abline(v=refline, col=lrlcol)
   segments(lx[,2],lpos, lx[,3],lpos, lwd=lwd[1], col=lcol) ## interval line
   segments(lx[,1],lpos-lmh[1],lx[,1],lpos+lmh[1], lwd=lwd[2], col=lcol) ## midpoint = estimate
   segments(lx[,2], lpos-lmh[2], lx[,2], lpos+lmh[2],
@@ -1491,7 +1512,10 @@ plconfint <- #f
              lwd=lwd[5], col=lcol) ## endmarks
   }
   ## ---
-  mtext(lnmeff, side=2, at=lposlb, line=1, adj=1, las=1)
+  if (ljlb) mtext(llb, side=2, at=lposlb, line=1, adj=1, las=1)
+  if (ljlb2) mtext(llb2, side=4, at=lposlb, line=1, adj=0, las=1)
+  invisible(
+    structure(lpos, labelpos=if(length(lpos)!=length(lposlb)) lposlb))
 }
 ## ---------------------------------------------------------------
 pltwosamples <- function(x, ...) UseMethod("pltwosamples")
@@ -1672,7 +1696,7 @@ rlvClass <- #f
   if (inherits(effect, "inference")) {
     if (length(ci))
       warning(":rlvClass: argument 'ci' ignored")
-    rr <- attr(effect, "Rlv.class")
+    rr <- attr(effect, "rlvclass")
     if (length(rr))  return(rr) 
     rle <- effect["Rle"]
     rls <- effect["Rls"]
@@ -1680,7 +1704,7 @@ rlvClass <- #f
   } else {
     if (length(ci)==length(effect))
       ci <- effect + outer(c(ci), c(-1,1))
-    if (length(ci)!=2*length(effect))
+    if (length(unlist(ci))!=2*length(effect))
       stop("!rlvClass! lengths of 'estimate' and 'ci' not compatible")
     rle <- effect/lrlvth
     lcis <- rbind(ci/lrlvth)
@@ -1718,10 +1742,13 @@ relevance.options <- list(
     c(stand=0.1, rel=0.1, prop=0.1, corr=0.1, coef=0.1, drop=0.1, pred=0.05),
   termtable = TRUE, 
   show.confint = TRUE,
-  show.estimate = c("estimate","scatter", "n", "effect","Rle","Rls","Rlp"),
+  show.estimate =
+    c("estimate","scatter", "n", "effect","Rle","Rls","Rlp",
+      "rlvclass","rplclass"),
   show.doc = TRUE, 
   show.inference = "relevance",
-  show.simple.relevance = c("Rle", "Rlp", "Rls", "Rls.symbol", "Rlv.class"),
+  show.simple.relevance = c("Rle", "Rlp", "Rls", "Rls.symbol",
+                            "rlvclass", "rplclass"),
   show.simple.test = c("Sig0", "p.value", "p.symbol"),
   show.simple.classical = c("teststatistic", "p.value", "p.symbol"),  ## !!! symbols?
   show.terms.relevance = c("df", "R2x", "coefRlp", "coefRls", ## "dropRle",

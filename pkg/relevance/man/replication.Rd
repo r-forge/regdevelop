@@ -44,7 +44,7 @@ replication(original, replication, testlevel=getOption("testlevel"),
 \author{Werner A. Stahel
 }
 
-\seealso{\code{\link{relevance}}, \code{\link{rplConfint}}
+\seealso{\code{\link{relevance}}}
 }
 \examples{
 data(d.osc15Onesample)
