@@ -34,6 +34,7 @@ importFrom("plgraphics", asinp, dropNA, fitted.regrpolr,
            tit, "tit<-", doc, "doc<-",
            i.def, is.formula,
            u.true, u.notfalse, u.debug, DB)
+importFrom("relevance", termtable, termeffects)
 
 importFrom("relevance", termtable, termeffects,
            inference, confintF, drop1Wald,
