@@ -987,7 +987,9 @@ plaxis <- #f
     else ""
   col <- i.def(col, 1)
   ## --- do it!
-  if((showlabels && (lmart>=lmgp[1]+1 | lIouter)) | showlabels>1)
+  ##             MM: BUG fixed here
+  ##                 length(lmart) == 4; in ex, I see  4.76 4.76 3.40 2.60 ==> replaced  s/lmart/lmart[1]/
+  if((showlabels && (lmart[1] >= lmgp[1]+1 || lIouter)) || showlabels > 1)
     mtext(varlabel, side=side, line=lmgp[1], xpd=TRUE, col=col, cex=llabsize*lparcex)
   ## ticks and tick labels
   if (length(lat)<=1) {
