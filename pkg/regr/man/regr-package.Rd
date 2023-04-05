@@ -93,7 +93,7 @@ Werner A. Stahel, ETH Zurich, \email{stahel@stat.math.ethz.ch}
 }
 \keyword{ package }
 \seealso{
-  The \pkg{car} package.
+  The \CRANpkg{car} package.
 }
 \examples{
   r.savings <- regr(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)

@@ -137,4 +137,3 @@ regr(t.formula, data=d.birthrates)
 
 }
 \keyword{regression}
-

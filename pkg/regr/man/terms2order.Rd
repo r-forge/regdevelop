@@ -11,7 +11,7 @@ terms2order(object, squared = TRUE, interactions = TRUE)
     formula. Usually a regression fit}
   \item{squared}{logical: Should square terms be added to the
     interactions?}
-  \item{interactions}{logical: Should interaction terms be added?}  
+  \item{interactions}{logical: Should interaction terms be added?}
 }
 \details{The 'squares' are the squares of the terms of \code{dataClass}
   'numeric' appearing in the formula (cf.
@@ -21,18 +21,15 @@ terms2order(object, squared = TRUE, interactions = TRUE)
   contain \code{:}.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{\code{\link{add1.regr}}}
-
-\value{'term.labels' of the generated terms}
-
+\seealso{
+  \code{\link{add1.regr}}
+}
+\value{'term.labels' of the generated terms
+}
 \author{Werner A. Stahel, ETH Zurich}
 \examples{
   data(d.blast, package="plgraphics")
   t.r <- regr(log10(tremor)~location+log10(distance)+log10(charge), data=d.blast)
   terms2order(t.r)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{misc}

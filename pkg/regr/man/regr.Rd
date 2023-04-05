@@ -1,11 +1,10 @@
 \name{regr}
+\title{ Fitting Regression Models }
 \alias{regr}
 \alias{summary.regr}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Fitting Regression Models }
 \description{
-  'regr' fits regression models of various types: ordinary, robust,
-  quantile, Tobit, logistic, 
+  \code{regr()} fits regression models of various types: ordinary, robust,
+  quantile, Tobit, logistic,
   generalized linear, multinomial, ordered response, multivariate, ...
 
   It is a wrapper function which calls the respective S fitting
@@ -13,12 +12,11 @@
   respective print and plot methods.
 }
 \usage{
-regr(formula, data=NULL, family=NULL, robust = FALSE, method=NULL, 
+regr(formula, data=NULL, family=NULL, robust = FALSE, method=NULL,
      nonlinear = FALSE, start=NULL, subset=NULL, weights=NULL, offset=NULL, ...)
 
 \method{summary}{regr}(object, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{formula}{ a symbolic description of the model to be fit. }
   \item{data}{ data frame containing the variables in the model. }
@@ -84,7 +82,7 @@ regr(formula, data=NULL, family=NULL, robust = FALSE, method=NULL,
     The columns are
     The \code{print} method for the whole \code{regr} object will
     by default not show all of them.
-}
+  }
   \item{termeffects}{All coefficients. This is a list with a component for
     each term. Each component characterizes the coefficients similar to
     the \code{termtable} just explained, but without the columns
@@ -106,7 +104,7 @@ regr(formula, data=NULL, family=NULL, robust = FALSE, method=NULL,
   (like \code{y~ordered(f1)}), the contrast functions
   \code{\link{contr.wsum}} and \code{\link{contr.wpoly}} will be
   equivalent to their unweighted versions.
-  
+
   Robust fitting is available for ordinary linear models, by setting
   \code{robust = TRUE}.
   By default, the function \code{\link[robustbase]{lmrob}} from

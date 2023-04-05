@@ -2,7 +2,6 @@
 %% \alias{step}
 \alias{step.regr}
 %% \alias{step.default}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Choose a model in a Stepwise Algorithm
 }
@@ -129,4 +128,3 @@ r.st2
 }
 
 \keyword{regression}
-

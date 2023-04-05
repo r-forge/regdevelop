@@ -1,12 +1,9 @@
 \name{regr.control}
 \alias{regr.control}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-Further Arguments to \code{regr}
-}
+\title{Further Arguments to \code{regr()}}
 \description{
   Specify some arguments of minor importance for the function
-  \code{\link{regr} and set some regroptions}
+  \code{\link{regr}()} and set some regroptions.
 }
 \usage{
 regr.control(contrasts = getOption("regr.contrasts"),
@@ -16,19 +13,12 @@ regr.control(contrasts = getOption("regr.contrasts"),
   testlevel = getOption("testlevel"), leveragelimit=NULL, tit=NULL,
   control = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{contrasts}{
-%%     ~~Describe \code{contrasts} here~~
-}
-  \item{factorNA}{
-%%     ~~Describe \code{factorNA} here~~
-}
+  \item{contrasts}{ . }
+  \item{factorNA}{ . }
   \item{na.action}{
-%%     ~~Describe \code{na.action} here~~
 }
   \item{calcdisp}{
-%%     ~~Describe \code{calcdisp} here~~
 }
   \item{suffmean}{
 %%     ~~Describe \code{suffmean} here~~
@@ -60,7 +50,7 @@ regr.control(contrasts = getOption("regr.contrasts"),
   \item{control}{parameters to be passed to specific fitting functions.
   }
 }
-\value{A list, containing the additional arguments needed by \code{regr}
+\value{A list, containing the additional arguments needed by \code{\link{regr}()}.
 }
 \author{
 WSt
@@ -71,7 +61,6 @@ WSt
 }
 \examples{
 ## This function is not usually called by a user.
-
 }
 \keyword{utilities}% use one of  RShowDoc("KEYWORDS")
 
