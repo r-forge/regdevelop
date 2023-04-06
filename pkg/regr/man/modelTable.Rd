@@ -20,7 +20,7 @@
   which models.
 }
 \usage{
-modelTable(models, seq = NULL) % data = NULL, 
+modelTable(models, seq = NULL) % data = NULL,%
 
 \method{format}{modelTable}(x, digits=getOption("digits.reduced"), sep="", ...)
 \method{print}{modelTable}(x, tex = FALSE, transpose = FALSE, ...)
@@ -32,16 +32,15 @@ compareTerms(... , list=NULL, seq = NULL)
   \item{models}{a character vector containing the names of the models to
     be collected, or a list of model fits. }
 %%  \item{data}{data on which all models are evaluated.}
-  \item{seq}{The sequence in which the terms should appear in the table.
+  \item{seq}{the sequence in which the terms should appear in the table.
     If incomplete, the terms mentioned in \code{seq} will be the first
     rows in the result. }
   \item{x}{object of class \code{modelTable}}
   \item{digits}{to be used in formatting}
-  \item{sep}{separator. "\&" is used to prepare LaTeX format.}
+  \item{sep}{separator. \code{"\\&"} is used to prepare LaTeX format.}
   \item{tex}{if TRUE, the output can be used in (La-)TeX.}
   \item{transpose}{logical. If TRUE, the table is printed in transposed form}
-  \item{\dots}{other arguments, passed to \code{print} or
-    \code{format}.\cr
+  \item{\dots}{other arguments, passed to \code{print} or \code{format}.\cr
     In \code{compareTerms}, the models for which the terms should be
     compared can be listed as in \code{c} or \code{list} etc.}
   \item{list}{A list of models.}

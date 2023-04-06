@@ -34,12 +34,11 @@ importFrom("plgraphics", asinp, dropNA, fitted.regrpolr,
            tit, "tit<-", doc, "doc<-",
            i.def, is.formula,
            u.true, u.notfalse, u.debug, DB)
-importFrom("relevance", termtable, termeffects)
 
 importFrom("relevance", termtable, termeffects,
            inference, confintF, drop1Wald,
            getcoeftable, getcoeffactor, getscalepar
-##           print.termtable, print.termeffects
+##           print.termtable, print.termeffects # but they are not exported!
            )
 
 importFrom("MASS", rlm, polr)
