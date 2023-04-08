@@ -2,7 +2,7 @@ Package: relevance
 Type: Package
 Title: Calculate Relevance
 Version: 2.0
-Date: 2021-07-29
+Date: 2023-04-08
 Author: Werner A. Stahel
 Maintainer: Werner A. Stahel <stahel@stat.math.ethz.ch>
 Depends: R (>= 3.5.0)

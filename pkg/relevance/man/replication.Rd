@@ -41,10 +41,10 @@ replication(original, replication, testlevel=getOption("testlevel"),
   Measuring Significance and Relevance instead of p-values.
   Submitted; available in the documentation.
 }
-\author{Werner A. Stahel
-}
+\author{Werner A. Stahel}
 
-\seealso{\code{\link{relevance}}}
+\seealso{
+  \code{\link{relevance}}
 }
 \examples{
 data(d.osc15Onesample)

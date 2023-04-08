@@ -1218,11 +1218,12 @@ i.getshow <- #f
   }
   lcoll <- intersect(show, c("test", "relevance", "classical"))
   if(length(lcoll)) {
-    ltype <- pmatch(type, c("simple", "terms", "termeffects"), nomatch=0)
+    Nms <- c("simple", "terms", "termeffects")
+    ltype <- pmatch(type, Nms, nomatch=0)
     ## if (length(ltype)==0)
-    lc <- paste("show", c("simple","terms","termeffects")[ltype], lcoll, sep=".")
+    lc <- paste("show", Nms[ltype], lcoll, sep=".")
     for (l in lc)
-      show <- c(show, getOption(l))
+      show <- c(show, getOption(l)) # or (as below!) ??  c(getOption(l), show)
   }
   if (all(c("nocoef","coef")%nin%show)) show <- c("coef", show)
   ## if (any(c("teststatistic","p.value","Sig0")%in%show)) show <- c(show,"test")
