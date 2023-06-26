@@ -18,7 +18,7 @@ plregr.control(x, data = NULL, xvar = TRUE, transformed = FALSE,
   smooth = 2, %% smoothPar = NA, smoothIter = NULL,
   smooth.sim = NULL,
   xlabs = NULL, reslabs = NULL, markextremes = NULL,
-  mf = TRUE, mfcol = FALSE, multnrow = 0, multncol = 0, %% multmar = NULL,
+  mf = TRUE, mfcol = FALSE, multnrow = 0, multncol = 0, marmult = NULL,
   oma = NULL, assign = TRUE, ...)
 } %%    jitter = TRUE, jitterbinary = TRUE, mbox = TRUE,
 \arguments{
@@ -90,8 +90,8 @@ plregr.control(x, data = NULL, xvar = TRUE, transformed = FALSE,
   \item{mfcol}{if TRUE, the panel will be filled columnwise}
   \item{multnrow, multncol}{number of rows and columns of panels on
     one page, for residuals of multivariate regression only}
-%%-   \item{multmar}{plot margins for scatterplot matrices in the case of
-%%-     multivariate regression}
+  \item{marmult}{plot margins for scatterplot matrices in the case of
+    multivariate regression}
   \item{oma}{vector of length 4 giving the number of lines in the outer
     margin. If it is of length 2, they refer to top an right margins.}
     \item{assign}{logical: should the result of \code{pl.control} be

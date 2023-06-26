@@ -287,7 +287,7 @@ correlation <- #f
   lmethod <- i.def(method, "pearson")
   ## ---
   lt <- cor.test(x[,1], x[,2], method=lmethod[1], conf.level=1-testlevel, ...)
-  lest <- unname(lt$estimate) 
+  lest <- lt$estimate
   lci <- lt$conf.int
   lci <- if (length(lci)) atanh(lci)
          else atanh(lest) + c(-1,1)*qnorm(1-testlevel/2)/sqrt(ln-3)
@@ -304,11 +304,13 @@ correlation <- #f
                          pearson="Pearson product moment c.",
                          spearman="Spearman's rank c.",
                          kendall="Kendall's nonparametric c.") )
+  lneg <- lest<0
+#  lrl <- unname(lrlvci)
   structure(
-    c(effect = c(correlation=atanh(lest)),
-      teststatistic=lt$teststatistic, p.value=lt$p.value, Sig0=lsig,
-      ciLow=leffci[2], ciUp=leffci[3],
-      Rle=lrlvci[1], Rls=lrlvci[2], Rlp=lrlvci[3], Sigth=lsigth),
+    c(leffci[1], lt$statistic, lt$p.value, lsig, leffci[2:3], 
+      (1-2*lneg)*lrlvci[c(1,2+lneg,3-lneg)], lsigth),
+    names = c("effect", "teststatistic", "p.value",
+              "Sig0", "ciLow", "ciUp", "Rle", "Rls", "Rlp", "Sigth"),
     class = c("inference"), type="simple",
     method = lmeth, effectname = leffnm, hypothesis = hypothesis,
     n = length(x)-sumNA(x),
@@ -362,7 +364,7 @@ inference <- #f
              intercepts = lic
              ## , deviancetable = NULL  !!!
              ), 
-        class=c("inference", "list"), type = "model",
+        class=c("inference", "model", "list"), ## type = "model",
         method=as.character(lcl[1]), formula=lcl$formula, data.name=ldn,
         rlv.threshold=attr(ltt, "rlv.threshold"))
     ## --- standardized coefficients
@@ -937,7 +939,8 @@ print.inference <- #f
     x <-
       if (length(dim(x))==0) 
         c(header,
-          apply(format(rbind(names(x),x)), 1, paste, collapse="  ") )
+          paste(apply(format(rbind(names(x),x)), 1, paste, collapse="  "),
+                collaps="\n"))
       else {
         lcnm <- colnames(x)
         ltb <- rbind(lcnm,x)
@@ -952,16 +955,18 @@ print.inference <- #f
     unname(x) ## apply(x, 1, paste, collapse="  "))
   }
   ## -------------------------------------
-  if (is.list(x)&&!is.data.frame(x)) return(print(unclass(x)))
+  lismodel <- inherits(x, "model")
+  if (is.list(x)&&!(is.data.frame(x)||lismodel)) return(print(unclass(x)))
   ## show what?
   lsh <- c(show.signif.stars = getOption("show.signif.stars"),
            show.symbollegend = getOption("show.symbollegend"),
            show.rlv.threshold = getOption("show.rlv.threshold"),
            show.rlv.class = getOption("show.Rlv.class"))
-  legend <- i.def(legend, lsh, structure(rep(TRUE, length(lsh)), names=names(lsh)))
+  legend <- i.def(legend, lsh,
+                  structure(rep(TRUE, length(lsh)), names=names(lsh)))
   lItable <- length(dim(x))
   type <- i.def(attr(x,"type"), "simple")
-  lshow <- if (type=="model") {
+  lshow <- if (lismodel) {
              lsh <- if (is.list(show)) show[1:2] else list(show, show)
              list(i.getshow(lsh[[1]], "terms", x=x$termtable),
                   i.getshow(lsh[[2]], "termeffects", x=x$termeffects))
@@ -983,9 +988,10 @@ print.inference <- #f
   lleg <- NULL
   lx <- x
   ## ---------------------------------------------------------------
-  if (type=="model") {
-    lout <- print.coeftable(x$termtable, show=lshow[[1]], digits=digits,
-                            transpose.ok=FALSE, na.print=na.print, print=FALSE)
+  if (lismodel) {
+    lout <-
+      print.coeftable(x$termtable, show=lshow[[1]], digits=digits,
+                      transpose.ok=FALSE, na.print=na.print, print=FALSE)
     lte <- x$termeffects
     if (!u.true(single)) lte <- lte[sapply(lte, function(x) NROW(x)>1)]
     if (length(lte)) {
@@ -997,7 +1003,7 @@ print.inference <- #f
   } else { ## --------------------------------
   if (!lItable) {
     lout <- c(
-      if (!is.na(leff <- x["effect"]))
+      if (!is.na(leff <- x[grep("effect", names(x))]))
         paste(if(length(leffn <- attr(x, "effectname")))
           paste(leffn, ": ",sep="") else "effect:   ", format(leff)),
       if (getOption("show.confint")) {
@@ -1062,19 +1068,20 @@ print.inference <- #f
 ##-               attr(lx,"rlv.type"))
   }
   ltail <- c(lleg,
-             if (type=="model")
+             if (lismodel)
                c("\n", print.modelextras(x$summary, digits=digits, print=FALSE) ))
   ## -----------
   lshe <- getOption("show.estimate")
   lshet <- if(is.logical(lshe)) lshe else length(lshe)>0 
   if (lshet && length(lest <- attr(x, "estimate"))) {
-    if (is.data.frame(lest)) lest <- list(lest)
+    if (is.data.frame(lest)||!is.list(lest)) lest <- list(lest)
     ltail <- c(ltail, "\nestimate:\n")
     lnm <- names(lest)
     for (ll in seq_along(lest)) {
       lle <- lest[[ll]]
-      if (length(lcn <- colnames(lle))) 
-      if (!is.logical(lshe)) lle <- lle[, lcn%in%lshe]
+      if (length(lcn <- colnames(rbind(lle))))
+        if ((!is.logical(lshe))&&is.data.frame(lle))
+          lle <- lle[, lcn%in%lshe]
       if (length(lle))
         ltail <-
           c(ltail, lf.format(lle,
@@ -1092,7 +1099,7 @@ print.inference <- #f
 print.coeftable <- #f
   function(x, show, print=TRUE,
             digits = getOption("digits.reduced"), 
-            transpose.ok = TRUE, na.print = getOption("na.print") )
+            transpose.ok = TRUE, na.print = getOption("na.print"), ...)
 {
   lf.mergesy <- function(lx, x, var, place, concatenate=FALSE)
   {
@@ -1170,7 +1177,7 @@ print.coeftable <- #f
       setNames(lx[[1]], paste(row.names(lx), if (lIsymb) "    ")) 
     else setNames(formatNA(lx, na.print=na.print, digits=digits), names(lx))
      ## apply(format(lx), 2, function(x) sub("NA", na.print, x))
-  if (print) print.printInference(rr, quote=FALSE)
+  if (print) print.printInference(rr, quote=FALSE, ...)
   invisible(rr) ## structure(rr, show=lshow)
 }
 ## --------------------------------------      
@@ -1286,7 +1293,7 @@ print.termeffects <- #f
     lsh <- if(lshowall) c(colnames(lxx), relevance.symbnames) else show
     lr <-
       if (length(lxx)>1) {
-        print.inference(lxx, show=lsh, transpose.ok=transpose.ok, print=FALSE)
+        print.inference(lxx, show=lsh, transpose.ok=transpose.ok, print=FALSE, ...)
       } else format(lxx) ## e.g., "(Intercept)"
     ltail <- attr(lr,"tail")
     attr(lr, "head") <- attr(lr,"tail") <- NULL
@@ -1295,12 +1302,12 @@ print.termeffects <- #f
   }
   rr <- structure(lx, class="printInference",
                   head=paste(attr(x, "head"),"\n"), tail=ltail)
-  if (print) print.printInference(rr)
+  if (print) print.printInference(rr, ...)
   invisible(rr)
 }
 ## -------------------------------------------------------------
 print.modelextras <- #f
-  function(x, digits=getOption("digits"), print=TRUE)
+  function(x, digits=getOption("digits"), print=TRUE, ...)
 {
   lf.form <- function(x, header="", digits=digits)
     paste(header,":  ", formatC(x, digits = digits), sep="")
@@ -1348,7 +1355,7 @@ print.modelextras <- #f
                                lower.tail=FALSE), "p.value", digits = digits),
                     "\n") )
   ##   cat("\nDistribution: ", x$distrname)
-  if (print) print(rr, quote=FALSE)
+  if (print) print(rr, quote=FALSE, ...)
   invisible(rr)
 }
 ## =========================================================================
@@ -1587,7 +1594,8 @@ plot.termeffects <- #f
   mardefault <- par("mar")
   li <- sapply(x, is.atomic)
   x <- x[!li]  ## (Intercept)
-  lx <- lapply(x, function(x) x <- x[is.finite(x[,"effect"]),,drop=FALSE])
+  lx <-
+    lapply(x, function(x) x <- x[any(is.finite(x[,"effect"])),,drop=FALSE])
   llen <- sapply(lx, nrow)
   lx <- lx[llen>0]
   llen <- llen[llen>0]
@@ -1596,7 +1604,7 @@ plot.termeffects <- #f
     llen <- llen[llen>1]
   }
   if (length(llen)==0)
-    stop("!plot.termeffects! No termeffects", if(!single) "with length >1")
+    stop("!plot.termeffects! No termeffects", if(!single) " with length >1")
   lnx <- length(lx)
   lnmx <- names(lx)
   lxx <- matrix(,0,3)
@@ -1616,7 +1624,10 @@ plot.termeffects <- #f
     pos <- max(pos)+1-pos
   }
   if (length(xlim)==0) xlim <- range(unlist(lxx), na.rm=TRUE)
-  if (length(ylim)==0) ylim <- range(pos) + c(0, llen[1]>1 & lnx>1)
+  if (length(ylim)==0) {
+    lrg <- range(pos) + c(0, llen[1]>1 & lnx>1)
+    ylim <- i.extendrange(lrg, 0.3*getOption("plottermeffects.extend")/diff(lrg) )
+  }
   if (length(mar)==1) mar <- c(NA, mar, NA,NA)
   if (length(mar)&&is.na(mar[2])) {
     lmr2 <- max(nchar(llb))
@@ -1669,7 +1680,7 @@ getscalepar <- #f
   function(object)
 { ## get scale parameter of a fit
   lsry <- summary(object)
-  rr <- c(lsry$rr, lsry$scatter)[1]
+  rr <- c(lsry$sigma, lsry$scatter)[1]
   if (length(rr)==0) rr <- sqrt(c(lsry$dispersion,1)[1])
   rr
 }
@@ -1762,6 +1773,7 @@ relevance.options <- list(
   show.termeffects.classical = c("coef","p.symbol"),
   show.symbollegend = TRUE, show.rlv.threshold = TRUE,
   show.Rlv.class = TRUE,
+  plottermeffects.extend = 1, 
   labellength = 8, 
   na.print = ". ",
   p.symbols = p.symbols,

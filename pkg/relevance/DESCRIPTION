@@ -1,6 +1,6 @@
 Package: relevance
 Type: Package
-Title: Calculate Relevance
+Title: Calculate Relevance and Significance Measures
 Version: 2.0
 Date: 2023-04-08
 Author: Werner A. Stahel
@@ -18,6 +18,6 @@ Description: Calculates relevance and significance values for
   These notions are also applied to replication studies,
   as described in the manuscript
   'Stahel, Werner A.' (2022)
-  "Replicability: Terminology, Measuring Success, and Strategy"
+  "'Replicability': Terminology, Measuring Success, and Strategy"
   available in the documentation.
 License: GPL-2

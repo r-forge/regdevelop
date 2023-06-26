@@ -17,6 +17,7 @@
     "amsmath"
     "pldescr")
    (LaTeX-add-labels
+    "multiplex"
     "intro.plscale"
     "options.smooth"
     "plproperties"

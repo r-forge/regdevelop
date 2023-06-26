@@ -1,3 +1,4 @@
+
 ##   Functions in  general.R
 ##   
 ##   showd
@@ -598,8 +599,7 @@ getvariables <-
 ##    lenv <- environment(formula)
   }
   ## data
-  if (length(data)==0) 
-    data <- environment(formula)
+  if (length(data)==0)  data <- environment(formula)
   else {
     if (!is.data.frame(data) && !is.environment(data) && 
            !is.null(attr(data, "class"))) 
@@ -874,13 +874,22 @@ DB <- function (on=TRUE) options(error=if(on) recover else NULL, warn=on)
 ## ---------------------------------------------------------------------
 transferAttributes <- function (x, xbefore, except=NULL)
 {
-  lattr <- attributes(xbefore)
-  latnm <- c("class", "names", "dim", "dimnames", "row.names", except)
-  attributes(x) <-
-    c(attributes(x)[latnm],lattr[setdiff(names(lattr), latnm)])
-  if (is.list(x) & is.list(xbefore) && all(names(x)==names(xbefore)))
+  ## recursive use, if both are data.frames (or lists)
+  if (is.list(x) & is.list(xbefore) && all(names(x)==names(xbefore))) {
     for (lnm in names(x))
       x[[lnm]] <- transferAttributes(x[[lnm]], xbefore[[lnm]])
+    return(x)
+  }
+  lattr <- attributes(xbefore)
+  latx <- attributes(x)
+  lcls <- class(x)
+  latbef2x <-
+    setdiff(names(lattr),
+            c("class", "names", "dim", "dimnames", "row.names",
+              "levels", if (inherits(x, "Surv")) "type", except))
+  latx[latbef2x] <- lattr[latbef2x]
+  attributes(x) <- latx
+  class(x) <- lcls
   x
 }
 ## ==========================================================================
@@ -1008,9 +1017,12 @@ u.varsin2terms <- function(formula) {
 }
 
 i.extendrange <- function(range, ext=0.05)  range + c(-1,1)*ext*diff(range)
-i.factor <- function(x)  {
-  if (is.logical(x)) factor(x, labels=c("F","T"))
-  else if(is.factor(x)) factor(x) else factor(x) ## ???
+i.factor <- function(x, subset=NULL)  {
+  lx <- if (is.null(subset)) x else plsubset(data.frame(x), subset=subset)[[1]]
+  rr <-
+    if (is.logical(x)) factor(lx, labels=c("F","T")) else factor(lx)
+  ## gets rid of empty levels
+  transferAttributes(rr, x, except="levels")
 }
 ## ==========================================================================
 c.weekdays <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",

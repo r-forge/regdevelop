@@ -333,7 +333,8 @@ fitcomp <-
     lterms <- attr(lmf,"terms")
     attr(object$terms,"predvars") <- attr(lterms,"predvars")
   }
-  ## 
+  ##
+  object$contrastsname <- NULL ## prevent warning
   if (ltransf) {
     lobj <- structure(object, class="list")
     lfo <- as.character(structure(terms(object), class="formula")[3])
@@ -876,7 +877,7 @@ simresiduals.default <-
                 "-> No simulated residuals")
         return(NULL)
       }
-    } else lres <- sweep(as.matrix(lres), 2, lsig, "*")
+    } ## else lres <- sweep(as.matrix(lres), 2, lsig, "*")
     if (length(lcq <- attr(lres[,1], "condquant"))>0) { ##!!! mult!
       li <- lcq[,"index"]
       lres[li,1] <- lcq[,"random"] ##structure(lres[,"random"], names=row.names(lres))
@@ -932,7 +933,7 @@ simresiduals.default <-
     lrsr <- residuals(lrs)
     if (inherits(lrsr, "condquant"))
       lrsr <- attr(lrsr, "condquant")[,"random"]
-    lsimres[,lr] <- lrsr
+    lsimres[,lr] <- lrsr * lsig ## !!! * lsig added 23.06
   }
   ##naresid(lnaaction, lsimres)
   structure(naresid(lnaaction, lsimres),
@@ -1084,14 +1085,14 @@ plot.xdistResscale <- function (x, lwd=2, cex=2, xlab="distance in x space",
   ## Author: Werner Stahel, Date: 14 Oct 2011, 08:46
   lxdist <- x[,"xdist"]
   llim <- attr(x,"limits")
-  attr(lxdist,"zeroline") <- sqrt(llim[2:(length(llim)-1)])
+  if (length(llim)) attr(lxdist,"zeroline") <- sqrt(llim[2:(length(llim)-1)])
   lrd <- as.data.frame(x[,-1,drop=FALSE])
   attr(lrd[[1]], "zeroline") <- attr(x,"resdMean")
   lymax <- if (lIse <- length(lse <- attr(x,"se"))) max(lrd+2*lse) else max(lrd)
   ##
   plyx(lxdist, lrd, xlab=xlab, ylab=ylab, type="b", plscale=c("sqrt",""),
-       smooth=FALSE, innerrange=FALSE,
-       xlim=c(0,sqrt(max(llim))), xaxs="i", yaxs="i", ylim=c(0,1.05*lymax),
+       smooth=FALSE, innerrange=FALSE, 
+       xlim=c(0,max(llim)), xaxs="i", yaxs="i", ylim=c(0,1.05*lymax),
         ...)
   if (lIse) {
     plbars(lxdist, lrd+outer(lse, c(0,-2,2)))
