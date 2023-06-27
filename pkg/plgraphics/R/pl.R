@@ -487,10 +487,11 @@ genvarattributes <- #f
           if (is.na(lij))
             lij <- i.getploption("factor.show")=="jitter"&&
               max(table(lvv),rm.na=TRUE)>i.getploption("jitter.minnobs")
-          if (u.notfalse(lij))
-            attr(lvv, "numvalues") <-
+          attr(lvv, "numvalues") <-
+            if (u.notfalse(lij))
               jitter(as.numeric(lvv), factor=jitter.factor,
                      amount=if(is.numeric(lij)) lij else NULL)
+          else  as.numeric(lvv)
           ## attr(lvv, "plrange") <- c(0.5, length(levels(lvv))+0.5)
         }
       }
