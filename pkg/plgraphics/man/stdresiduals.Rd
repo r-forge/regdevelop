@@ -1,15 +1,13 @@
 \name{stdresiduals}
 \alias{stdresiduals}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Get Standardized Residuals}
 \description{
-  Calculates standardized residuals and leverage values
+  Calculates standardized residuals and leverage values.
 }
 \usage{
 stdresiduals(x, residuals=NULL, sigma=x$sigma, weights=NULL,
-    leveragelimit = NULL)
+             leveragelimit = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a fitted model object}
   \item{residuals}{unstandardized residuals. If missing, they are
@@ -31,17 +29,17 @@ stdresiduals(x, residuals=NULL, sigma=x$sigma, weights=NULL,
   \code{attr(.,"stddev")}: error standard deviation or scale parameter.
 }
 \details{
-  The difference to \code{stdres} of package \code{MASS} 
+  The difference to \code{\link[MASS]{stdres}()} from package \CRANpkg{MASS}
   is that \code{stdresiduals} also applies to multivariate regression
   and can be used with regression model fits not inheriting from \code{lm}.
 
-  The function uses the \code{qr} decomposition of \code{object}.
+  The function uses the \code{\link{qr}} decomposition of \code{object}.
   If necessary, it generates it.
 }
 
 \author{Werner A. Stahel, ETH Zurich}
 
-\seealso{\code{\link{stdres}; \link{hat}; \link{hatvalues}; \link{influence}}}
+\seealso{\code{\link[MASS]{stdres}; \link{hat}; \link{hatvalues}; \link{influence}}}
 
 \examples{
 data(d.blast)
@@ -51,7 +49,5 @@ t.stdr <- stdresiduals(r.blast)
 showd(t.stdr)
 showd(attr(t.stdr, "leverage"))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{regression}
 % \keyword{diagnostics}

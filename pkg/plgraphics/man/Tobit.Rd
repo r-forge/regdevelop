@@ -1,17 +1,13 @@
 \name{Tobit}
 \alias{Tobit}
-
-\title{
-Prepare a Response for a Tobit Model
-}
+\title{Prepare a Response for a Tobit Model}
 \description{
 Returns a \code{Surv} object that allows for setting up a Tobit
-regression model by calling \code{survreg} 
+regression model by calling \code{survreg}
 }
 \usage{
 Tobit(data, limit = 0, limhigh = NULL, transform = NULL, log = FALSE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
     the variable to be used as the response in the Tobit regression
@@ -31,7 +27,7 @@ Tobit(data, limit = 0, limhigh = NULL, transform = NULL, log = FALSE, ...)
   \item{log}{
     logical. If \code{TRUE}, \code{data} will be log transformed
     by calling \code{\link{logst}}. Argument \code{transform} will be
-    ignored. 
+    ignored.
   }
   \item{...}{
     any additional arguments to the \code{transform} function
@@ -48,19 +44,17 @@ A \code{Surv} object.
 \author{
 Werner A. Stahel
 }
-
 \seealso{
-  \code{Surv}
+  \code{\link{Surv}()} from package \CRANpkg{survival}.
 }
 \examples{
 data("tobin", package="survival")
 
-Tobit(tobin$durable) 
-(t.r <- survival::survreg(Tobit(durable) ~ age + quant, data=tobin,
-  dist="gaussian"))
-%% plregr(t.r)
+Tobit(tobin$durable)
+(t.r <- survival::survreg(Tobit(durable) ~ age + quant,
+                          data = tobin, dist="gaussian"))
+if(interactive())
+    plregr(t.r)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{regression}
 

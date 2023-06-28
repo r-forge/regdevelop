@@ -2,6 +2,8 @@
 require(plgraphics) ##, lib="/u/stahel/R/regdevelop/pkg/plgraphics.Rcheck")
 ## require(plgraphics, lib="/u/stahel/R/regdevelop/pkg/plgraphics.Rcheck")
 
+if(!dev.interactive(orNone=TRUE)) pdf("pl-test.pdf")
+
 plyx(Sepal.Width~Sepal.Length, data=iris)
 plyx(iris[,c("Sepal.Width","Sepal.Length")]) ##!!! farben
 plyx(iris$Sepal.Width~iris$Sepal.Length)
@@ -251,14 +253,17 @@ plregr(rr, xvar= ~Age+Apgar1)
 plregr(rr, condquant=FALSE)
 
 ## polr
+## if(requireNamespace("MASS")) {
 data(housing, package="MASS")
 rr <- MASS::polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
 t.res <- residuals.regrpolr(rr)
 showd(attr(t.res, "condquant"))
 plregr(rr)
 plregr(rr, factor.show="jitter")
+## }
 
 ## survreg
+## if(requireNamespace("survival")) {
 data(cancer, package="survival")
 cancer$gender <- factor(c("m","f")[cancer$sex])
 r.sr <- survival::survreg(
@@ -267,4 +272,4 @@ plregr(r.sr, group=gender, pcol=gender, xvar=~age)
 r.cox <- survival::coxph(
   survival::Surv(time, status) ~ age + gender + ph.karno, data=cancer) 
 plregr(r.cox, group=gender, pcol=gender, xvar=~age)
-
+## }

@@ -28,20 +28,20 @@ plresx(x, data = NULL, xvar = TRUE, transformed = NULL,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{regr %(or lm or glm)
-    object (result of a call to \code{regr}). Thiw iw the only argument
-    that is needed. All others have useful defaults.}
+  \item{x}{\code{"regr"} (or also \code{\link{lm}} or \code{\link{glm}})
+    object, result of a call to \code{regr()} from package \pkg{regr}.
+    This is the only argument needed.  All others have useful defaults.}
   \item{data}{data set where explanatory variables and the following
     possible arguments are found: \code{weights, plweights, pch, plabs}}
   \item{plotselect}{which plots should be shown? See Details}
-  \item{xvar}{if TRUE, residuals will be plotted versus all 
+  \item{xvar}{if TRUE, residuals will be plotted versus all
     explanatory variables (or terms, according to argument 'transformed')
     in the model (\code{plregr} will call \code{plresx}).\cr
     If it is a character vector, it contains the variables to be used.\cr
     If it is a formula, its right hand side contains these variables.
     The model formula is updated by such a formula.
     Whence, the use of \code{\~{}.+} adds variables to those in the
-    model.\cr    
+    model.\cr
     If any variables are not be contained in the model, the argument
     \code{data} is needed.
   }
@@ -88,14 +88,14 @@ plresx(x, data = NULL, xvar = TRUE, transformed = NULL,
     \item{1}{show without smooth}
     \item{2}{show with smooth (not for \code{qq} nor \code{leverage})}
     \item{3}{show with smooth and smooth band (only for \code{resfit}
-      in \code{plregr} and in \code{plresx})}      
+      in \code{plregr} and in \code{plresx})}
   }
   The default is
   \code{c( yfit=0, resfit=smdef, absresfit = NA, absresweights = NA, qq = NA,
     leverage = 2, resmatrix = 1, qqmult = 3)}, where
   \code{smdef} is 3 (actually argument \code{smooth} of
   \code{plregr.control} plus 1) for normal random deviations and
-  one less (no band) for others. 
+  one less (no band) for others.
 
   Modify this vector to change the selection and the sequence in
   which the plots appear.
@@ -141,7 +141,7 @@ plresx(x, data = NULL, xvar = TRUE, transformed = NULL,
   which calls \code{\link{loess}}. This can be changed by setting
   \code{ploptions(smooth.function=<func>)}, which must have the same
   arguments as \code{smoothRegr}.
-  
+
   The arguments \code{lty, lwd, colors} characterize how the graphical
   elements in the plot are shown.
   They should be three vectors of length 9 each, defining the
@@ -193,24 +193,26 @@ plresx(x, data = NULL, xvar = TRUE, transformed = NULL,
 r.savings <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 plregr(r.savings)
 
-## ---
+## --- *transformed* linear model
 data(d.blast)
 r.blast <-
-     lm(log10(tremor)~location+log10(distance)+log10(charge),
+     lm(log10(tremor) ~ location+log10(distance)+log10(charge),
           data=d.blast)
-plregr(r.blast, sequence=TRUE, transformed=TRUE) 
+plregr(r.blast, sequence=TRUE, transformed=TRUE)
 plregr(r.blast, xvar=FALSE, innerrange.fit=c(0.3,1.2))
+
+if(interactive()) {# {<<-- save time e.g. on CRAN}
 
 ## --- multivariate regression
 data(d.fossileSamples)
 r.foss <-
-  lm(cbind(sAngle,lLength,rWidth)~SST+Salinity+lChlorophyll+Region+N,
+  lm(cbind(sAngle,lLength,rWidth) ~ SST+Salinity+lChlorophyll+Region+N,
   data=d.fossileSamples)
 plregr(r.foss, plotselect=c(resfit=3, resmatrix=1, qqmult=1))
 
 ## --- logistic regression
 data(d.babysurvival)
-rr <- glm(Survival~Weight+Age+Apgar1, data=d.babysurvival, family=binomial)
+rr <- glm(Survival ~ Weight+Age+Apgar1, data=d.babysurvival, family=binomial)
 plregr(rr, xvar= ~Weight, cex.plab=0.7, ylim=c(-5,5))
 plregr(rr, condquant=FALSE)
 
@@ -219,6 +221,7 @@ data(housing, package="MASS")
 rr <- MASS::polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
 plregr(rr, factor.show="jitter")
 
+}# interactive
 }
 \keyword{hplot}
 \keyword{regression}
