@@ -92,9 +92,28 @@ functions. It is based on a paradigm between the basic R graphics elements
 and the more computer science oriented ggplot concepts.
 The intention is to furnish user-oriented functions that allow efficient
 production of useful graphics.
+
+Unique features include: 
+\begin{itemize}
+\item
+a simple consistent way to specify plotting symbols, colors, sizes, and many more elements to taylor plots,
+including properties of variables such as labels, axis ticks, line types and more, and to store all these elements for later use.
+\item
+a way to show data including outliers in an informative type of scatterplot;
+\item
+a novel, more informative alternative to box plots;
+\item
+enhanced graphical regression diagnostics for all kinds of models;
+\item
+a versatile function to label time axes nicely that automatically adjusts to all ranges of time, from seconds to years;
+\item
+flexible versions of plot matrices ("\T{pairs}") and conditional plot matrices ("\T{coplot}").
+\end{itemize}
 \end{abstract}
 
 
+
+\pagebreak
 
 \tableofcontents
 
@@ -237,7 +256,7 @@ The call to \T{plmframes} splits the screen essentially like
 \Tit{Groups.}
 If the argument \T{by} is specified, separate plots will be generated
 for the different groups specified by the levels of \T{by} variable, 
-thereby maintaining the plot ranges.
+thereby maintaining the plot ranges. (An alternative way of specifying the 'by' group is a conditional formula, containing a \code{|} symbol.)
 (The argument \T{mf} asks for multiple figures, saving space between panels. 
 If left unspecified, \T{plyx} chooses a matrix of panels. 
 Setting \T{mf=FALSE} avoids this.)
@@ -249,6 +268,10 @@ Setting \T{mf=FALSE} avoids this.)
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/plyx_group-1} 
+\begin{kframe}\begin{alltt}
+\hlcom{## or plyx(Sepal.Width~Sepal.Length | Species, data=iris, mf=c(1,3))}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 
 \Tit{Inner range of plots.}
@@ -539,7 +562,7 @@ shown by (uppward) triangles.
 
 \section{Scatterplot matrices}
 \subsection{plmatrix}
-The common type of catterplot matrices are produced by the \T{pairs} function 
+The common type of scatterplot matrices are produced by the \T{pairs} function 
 in basic R. The function \T{plmatrix} does a similar job.
 
 \begin{knitrout}
@@ -586,6 +609,10 @@ The plgrahics version of \T{coplot} is called \T{plcond}.
 \end{alltt}
 \end{kframe}
 \includegraphics[width=\maxwidth]{figure/plcond-1} 
+\begin{kframe}\begin{alltt}
+\hlcom{## or  plcond(Sepal.Width~Sepal.Length | Species+Petal.Length, data=iris)}
+\end{alltt}
+\end{kframe}
 \end{knitrout}
 The conditioning variables may be factors or numerical variables.
 In the latter case, the (robust) range of the variable is partitioned

@@ -1,13 +1,15 @@
 \name{getvariables}
 \alias{getvariables}
 \alias{getvarnames}
-\title{Extract Variables or Variable Names for Model Fitting
+\title{Extract Variables or Variable Names
 }
 \description{
-  Extracts the variables names (\code{getvarnames}
+  \code{getvarnames} extracts the variables' names 
   occurring in a formula, in raw form
   (as \code{get\_all\_vars}) or in transformed form
   (as \code{model.frame} does it).
+
+  \code{getvariables} collects variables from a data.frame
 }
 \usage{
 getvariables(formula, data = NULL, transformed = TRUE,
@@ -16,7 +18,7 @@ getvarnames(formula, data = NULL, transformed = FALSE)
 }
 \arguments{
   \item{formula}{a model 'formula' or 'terms' object or an R object,
-  or a character vector of variable names}
+    or a character vector of variable names}
   \item{data}{a data.frame, list or environment (or object coercible by
     'as.data.frame' to a data.frame), containing the variables in
     'formula'.  Neither a matrix nor an array will be accepted.}
@@ -27,21 +29,25 @@ getvarnames(formula, data = NULL, transformed = FALSE)
     }
   \item{\dots}{further arguments such as
     \code{data, weight, subset, offset}
-    used to create further columns in the resulting data.frame, with
+    used to create extra columns in the resulting data.frame, with
     names between dots such as '".offset."'}
 }
 %%- \details{
 %%- %%  ~~ If necessary, more details than the description above ~~
 %%- }
 \value{
-  For \code{getvarnames}: list of character vectors containing
-  \item{varnames}{names of all variables (\code{transformed=FALSE})
-    or simple terms (\code{transformed=TRUE})}
+  For \code{getvarnames}:
+    names of all variables (\code{transformed=FALSE})
+    or simple terms (\code{transformed=TRUE}),
+    including the attributes 
   \item{xvar}{those from the right hand side of the formula}
-  \item{yvar}{left hand side}
+  \item{yvar}{left hand side, if present}
+  \item{yvar}{conditioning part, denoted after a \code{|} symbol
+    in formula, if applicable} 
 
   For \code{getvariables}: 
-  data.frame containing the extracted variables or simple terms.
+  data.frame containing the extracted variables or simple terms,
+  with the attributes of \code{getvarnames}
 }
 \author{
 Werner A. Stahel
@@ -52,7 +58,11 @@ Werner A. Stahel
 }
 \examples{
 data(d.blast)
-getvariables(log10(tremor)~log10(distance)*log10(charge), data=d.blast)
+getvarnames(log10(tremor)~log10(distance)*log10(charge), data=d.blast)
+
+dd <- getvariables(log10(tremor)~log10(distance)*log10(charge),
+                   data=d.blast, by=location)
+str(dd)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
