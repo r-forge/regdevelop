@@ -612,7 +612,7 @@ leverage <- function (object)
           if (inherits(object, "lm"))
             lx <- model.matrix(object)
           else if(length(ld <- object$model))
-            lx <- model.matrix(formula(object), data=object$model)
+            lx <- model.matrix(formula(object), data=ld)
         }
       }
       if (length(lx))
@@ -751,7 +751,7 @@ simresiduals.glm <- function (object, nrep=19, simfunction=NULL,
   lfit <- object$fitted.values
   ## prepare call
   lform <- update(formula(object), .Y. ~.)
-  lynm <- all.vars(lform[[2]])
+  ## lynm <- all.vars(lform[[2]])
   environment(lform) <- environment()
   lcl <- call("glm", formula=lform, data=as.name("ldata"),
               family=object$family, start=object$coef, model=FALSE,
@@ -798,7 +798,7 @@ simresiduals.glm <- function (object, nrep=19, simfunction=NULL,
   for (lr in 1:nrep) {
     ldata$.Y. <- simfunction(ln, lfit)
     lrs <- eval(lcl, environment())
-    lsimres[,lr] <-
+    lsimres[,lr] <- 
       if (substr(glm.restype,1,4)=="cond")
           residuals.regrpolr(lrs)[,"random"] else
           residuals(lrs, type=glm.restype)

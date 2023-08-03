@@ -1,84 +1,15 @@
-\name{ploptions}
-\alias{ploptions}
-\alias{pl.envir}
-\alias{default.ploptions}
-\title{Set and Get User "Session" Options that Influence "plgraphics"s Behavior}
+\name{ploptions.list}
+\title{The List of pl Options}
 \description{
   The user can set (and get) 'pl' options -- mostly graphical "parameters" --
-  which influence the behavior \pkg{plgraphics} functions. %%, notably \code{\link{stamp}()}.
+  which influence the behavior of \pkg{plgraphics} functions.
 }
 \usage{
-ploptions(x = NULL, list = NULL, default = NULL, ploptions = NULL,
-          assign = TRUE, setpar = FALSE, ...)
-
-default.ploptions
-pl.envir  ## environment containing the 'pl' options and more session information
+## not used, this gives the complete list of 'pl' options
 }
-\arguments{
-  \item{x}{character (vector) of name(s) of ploptions to query.
-%%-     option to query (if character) or set (if a named object).
-%%-     It may be a character vector of options if it is a query.\cr
-%%-    For those ploptions that are lists, \code{x} must be a list, too.
-%%-     It contains the components that should be modified, see the second
-%%-     example below.
-    If \code{x} is set, all further arguments will be ignored.
-  }
-  \item{list}{a named list of options to be set, see Details}
-  \item{default}{character vector of option names.
-    These ploptions will be set according to \code{default.ploptions}.
-    \code{default="all"} or \code{=TRUE} will reset all options.
-    If \code{default} is set, all further arguments will be ignored.
-  }
-  \item{ploptions}{the list of options that should be inspected or
-    modified. Defaults to \code{.ploptions} from the \code{pl.envir}
-    environment}
-  \item{assign}{logical: should the list be assigned to
-    \code{pl.envir$.ploptions}? If \code{>1}, the resulting options are
-    stored as \code{last.ploptions} in \code{pl.envir}}
-  \item{setpar}{logical: should the 'margin parameters'
-    \code{("mar","oma","mgp","cex")} be set permanently by calling
-    \code{\link{par}}? If \code{FALSE}, these options will only be
-    active while using pl functions.
-  }
-  \item{...}{any ploptions can be defined or modified,
-    using \code{name = value}, as in \code{\link{options}} of basic R.}
-}
-\value{For \code{ploptions(x)}, where \code{x} is the name of a pl option,
-  the current value of the option.
-  or \code{NULL} if it is not such a name.
-  If \code{x} contains several (valid) names, the respective list.
-  
-  For \code{ploptions()}, the list of all plptions sorted by name.  
-  
-  For uses setting one or more options, the important effect is a changed
-  list \code{.ploptions} in the \code{pl.envir} environment
-  that is used by the package's functions
-  (if \code{assign} is \code{TRUE}).
-  The (invisibly) returned value is the same list, complemented by an
-  attribute \code{"old"} containing the previous values of those options
-  that have been changed.
-  This list is useful for undoing the changes, usually at the end of
-  graphical functions, to restore the previous status.
-
-  \code{.ploptions} in the \code{pl.envir} environment and
-  \code{default.ploptions} are lists of options.
-  The first one is generated whenever ploptions are set
-  (and \code{assign} is \code{TRUE}), and is then
-  stored in the \code{pl.envir} environment.
-  The second is stored in the package \code{plgraphics}.
-}
-\details{
-  If the argument \code{list} is set, it must be a named list,
-  and each component, with name \code{name} and value \code{value}
-  is used as described for arguments in \code{...}, see above
-  (in addition to such arguments).
-
-  Here is an incomplete list of the components of \code{default.ploptions},
-  describing the suitable alternative values to be set by calling
-  \code{ploptions}. For the full set, see
-  \code{?ploptions.list}.
   %% ===========================================================
-  \itemize{
+  \value{
+    \itemize{
     \item{keeppar:}{ logical. If TRUE, the graphical parameter settings 
       "mar", "oma", "cex", "mgp", and "mfg" will be maintained when
       leaving high level pl functions, 
@@ -114,15 +45,13 @@ pl.envir  ## environment containing the 'pl' options and more session informatio
       observations at the time it is used.}
     \item{csize.plab:}{ size of point labels, relative to \code{csize.pch}}
     \item{psize.max:}{ maximum value of size of plotting symbols}
-    \item{lty, lwd:}{ line type(s) and width(s) }
-    \item{col, pcol, lcol:}{ colors to be used generally and
-      specifically for points (symbols or text) and lines, respectively,
-      given as index of code{ploptions("colors")}.
-      This are often (and by default) vectors to be used for showing
-      groups. The first element is usually black.
-    }
-    \item{colors:}{ the palette to be used}
+    \item{lty, lwd, col, pcol, lcol:}{ to be descibed!!!}
+    \item{group.lcol:}{ ...}
+    \item{variables.pch, variables.col, variables.lty, variables.lcol: }
+    { ...}
     \item{censored.pch, censored.size, censored.pale:}{ ...}
+    \item{axes:}{ ...}
+    \item{axes.sure:}{ ...}
     \item{gridlines:}{  can be \cr 
       -- a logical indicating if gridlines should be drawn. If
       \code{TRUE}, gridlines will be drawn at the values given in
@@ -202,44 +131,10 @@ pl.envir  ## environment containing the 'pl' options and more session informatio
 \author{Werner A. Stahel}
 
 \seealso{
-  \code{\link{stamp}}; \code{ploptions.list};
-  \R's own predefined \code{\link{options}()}.
+  \code{\link{ploptions}}
 }
 \examples{
-## get options
-ploptions(c("jitterFactor", "gridlines"))
-ploptions("stamp")  ## see example(stamp)
-ploptions()  ## all pl options, see '?ploptions.list'
-
-## set options
-ploptions(stamp=FALSE, pch=0, col=c.colors[-1], anything="do what you want")
-ploptions(c("stamp", "anything"))
-ploptions(default=TRUE)  ## reset all pl options, see '?ploptions.list'
-
-t.plopt <- ploptions(smooth.col="green", assign=FALSE)
-t.plopt$smooth.col
-ploptions("smooth.col") ## unchanged
-
-## setting 'margin parameters' mar, oma, mgp, cex : 
-ploptions(mar=c(2,2,1,1))  ## only active in pl funcions
-  ## (unless  ploptions("keeppar")  is  TRUE )
-ploptions(mar=c(2,2,1,1), setpar=TRUE)  ## changes the margins permanently
-ploptions(setpar=TRUE) ## does the same. All the margin pars are
-  ## set permanently in \code{ploptions} in the \code{pl.envir} environment.
-
-## switching 'margin parameters' between those used
-## outside and inside high level pl functions
-par(mar=c(2,2,5,2))
-plyx(Sepal.Width~Sepal.Length, data=iris)
-par("mar")
-mtext("wrong place for text",3,1, col="red")
-t.plo <- plmarginpar()
-par("mar")
-mtext("here is the right place",3,1)
-
-par(attr(t.plo, "oldpar"))  ## resets the 'margin parameters'
-par("mar")
-plyx(Sepal.Width~Sepal.Length, data=iris, keeppar=TRUE)
-par("mar")
+names(default.ploptions)
 }
 \keyword{utilities}
+

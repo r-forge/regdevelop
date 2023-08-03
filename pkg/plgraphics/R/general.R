@@ -7,7 +7,6 @@
 ##   asinp
 ##   nainf.exclude
 ##   dropdata
-##   last
 ##   dropNA
 ##   clipat
 ##   shortenstring
@@ -104,7 +103,7 @@ showd <-
   if (l.nr<=nrow.+first)
     l.dc <- format(ldata[,l.ic, drop=FALSE], digits=digits)  else {
     l.ir <- c(1:first,round(seq(first,l.nr,length=nrow.+1))[-1])
-    l.ir <- unique(c(last(l.ir,-1),l.nr))
+    l.ir <- unique(c(head(l.ir,-1),l.nr))
     l.dc <- data.frame(u.merge(format(ldata[l.ir,l.ic]),"",after=first),
                        stringsAsFactors=FALSE)
     names(l.dc) <- colnames(ldata)[l.ic]
@@ -297,23 +296,6 @@ dropdata <- function (data, rowid=NULL, incol="row.names", colid=NULL)
   data
 }
 ## ===================================================
-last <- function (data,n = NULL, ncol=NULL, drop=is.matrix(data))
-{
-  ldim <- dim(data)
-  if (is.null(ldim)) {
-    if (is.null(n)) n <- 1
-    ldt <- length(data)
-    return(data[sign(n)*((ldt-abs(n)+1):ldt)])
-  }
-  if (length(ldim)!=2)
-    stop ("!last! not programmed for arrays of dimension >2")
-  if (is.null(n)&is.null(ncol)) n <- 1
-  if (is.null(n)) n <- ldim[1]
-  if (is.null(ncol)) ncol <- ldim[2]
-  data[sign(n)*((ldim[1]-abs(n)+1):ldim[1]),
-       sign(ncol)*((ldim[2]-abs(ncol)+1):ldim[2]), drop=drop]
-}
-## -----------------------------------------------------------------
 replaceNA <- function (x, na, inf=TRUE) {
   ff <- if (inf) function(x) !is.finite(x)  else is.na
   if (length(x)) ifelse(ff(x), na, x) else na
@@ -384,7 +366,7 @@ weekday <- #f
       }
       if (is.list(date)) {
         if (length(date)==3) {
-          if (length(lnm <- names(date)))
+          if (length(names(date)))
             chron::day.of.week(date$month, date$day, date$year)
           else chron::day.of.week(date[[2]], date[[1]], date[[3]])
         } else stop("!weekday! unsuitable first argument")

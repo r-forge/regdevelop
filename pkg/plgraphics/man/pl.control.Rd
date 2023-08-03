@@ -6,15 +6,16 @@
 }
 \usage{
 pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
-  transformed = TRUE, distinguishy = TRUE, gensequence = NULL, csize = NULL, 
-  psize = NULL, plab = FALSE, pch = NULL, pcol = NULL, csize.pch = NULL, 
+  transformed = TRUE, distinguishy = TRUE, gensequence = NULL,
+  csize = NULL, csize.pch = NULL, 
+  psize = NULL, plab = FALSE, pch = NULL, pcol = NULL,  
   smooth.weights = NULL, smooth.weight = NULL,
   markextremes = NULL, smooth = NULL,
   xlab = NULL, ylab = NULL, varlabel = NULL,
   vcol = NULL, vlty = NULL, vpch = NULL, plscale = NULL, log = NULL,
   main = NULL, sub = ":", .subdefault = NULL, mar = NULL, 
   gencoord = TRUE,
-  ploptions = NULL, .environment. = parent.frame(),
+  plargs = pl.envir, ploptions = NULL, .environment. = parent.frame(),
   assign = TRUE, ... )
 }
 %- maybe also 'usage' for other objects documented here.
@@ -38,16 +39,16 @@ pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
   \item{csize}{character expansion, applied to both labels and plotting
     characters.
   }
+  \item{csize.pch}{expansion of plotting symbol relative to
+    \code{par("pch")}.
+    By default, it adjusts to the number of observations.
+  }
   \item{psize, plab, pch, pcol}{Plotting characteristics of points,
     specified as a (unquoted) variable name found in \code{data}
     or as a vector.
     They set the size of the plotting symbols, labels (character
     strings), plotting character, and color, respectively.\cr
     \code{plabs = TRUE} asks for using the row names of \code{data}.
-  }
-  \item{csize.pch}{expansion of plotting symbol relative to
-    \code{par("pch")}.
-    By default, it adjusts to the number of observations.
   }
   \item{smooth.weights, smooth.weight}{weights to be used in calculating
     smooth lines. Both are equivalent.
@@ -83,7 +84,12 @@ pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
   \item{mar}{plot margins}
   \item{gencoord}{logical: should plotting coordinates be generated?
     This is avoided for low level pl graphics.
-    }
+  }
+  \item{plargs}{pl arguments, a list with components
+    \code{ploptions}, see the following argument;
+    \code{pldata}, the data used for plotting;
+    \code{pmarpar}, graphical parameters defining margins.
+  }
   \item{ploptions}{Plotting attributes, e.g., plotting character,
     line types, colors and the like, for different aspects of plots.
     Result of \code{\link{ploptions}}. Defaults to
@@ -114,23 +120,24 @@ pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
   }
 }
 \details{
-  !!!
-
+  The function selects the data according to the arguments
+  \code{x, y, data} and \code{subset} (the latter by calling
+  \code{\link{plsubset}}).
   The argument \code{subset} should be used instead of
   \code{data[subset,]} if the dataset \code{data} contains variable
   attributes like \code{varlabel, ticksat, ...}.
   The argument is evaluated in the dataset defined by \code{data},
   i.e., variable names may be used to define the subset.
-  
 }
+
 \value{A list containing all the arguments, possibly in modified form.
   Specifically, the evaluations of the variables contained in
   \code{x} and \code{y} along with 
   \code{psize, plab, pch, pcol, smoothGroup, smoothWeights}
-  are collected in the component \code{pdata}.
-  The component, \code{plappearances}, contains the result of calling
-  the respective function or the corresponding component of the
-  user options.
+  are collected in the component \code{pldata}.
+  The component, \code{ploptions}, collects the ploptions, and 
+  \code{plfeatures} contains a list of additional features, both
+  to be used in the calling high level pl function
 }
 \author{Werner A. Stahel
 }

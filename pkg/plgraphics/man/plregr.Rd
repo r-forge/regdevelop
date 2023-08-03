@@ -190,6 +190,7 @@ plresx(x, data = NULL, xvar = TRUE, transformed = NULL,
 \seealso{\code{\link{plregr.control}, \link{plot.lm}}
 }
 \examples{
+data(LifeCycleSavings, package="datasets")
 r.savings <- lm(sr ~ pop15 + pop75 + dpi + ddpi, data = LifeCycleSavings)
 plregr(r.savings)
 
@@ -217,10 +218,11 @@ plregr(rr, xvar= ~Weight, cex.plab=0.7, ylim=c(-5,5))
 plregr(rr, condquant=FALSE)
 
 ## --- ordinal regression
+if(requireNamespace("MASS")) {
 data(housing, package="MASS")
 rr <- MASS::polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
 plregr(rr, factor.show="jitter")
-
+}
 }# interactive
 }
 \keyword{hplot}

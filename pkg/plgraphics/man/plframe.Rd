@@ -13,7 +13,7 @@
 plframe(x = NULL, y = NULL, xlab = NULL, ylab = NULL,
   xlim = NULL, ylim = NULL, mar = NULL, showlabels = TRUE, 
   plextext = NULL, axcol = rep(1, 4), 
-  plargs = NULL, ploptions = NULL, getpar = TRUE, getxy = TRUE, ...)
+  plargs = NULL, ploptions = NULL, marpar = NULL, xy = NULL, ...)
 
 pltitle(main=NULL, sub=NULL, csize=NULL, csizemin=NULL, 
   side=3, line=NULL, adj=NULL, outer.margin=NULL, col="black",
@@ -21,7 +21,7 @@ pltitle(main=NULL, sub=NULL, csize=NULL, csizemin=NULL,
 
 plaxis(side, x=NULL, showlabels=TRUE, range=NULL, varlabel=NULL, col=1,
   tickintervals=NULL,
-  plargs = NULL, ploptions = NULL, getpar = TRUE, ...) 
+  plargs = NULL, ploptions = NULL, marpar = NULL, ...) 
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -74,10 +74,10 @@ plaxis(side, x=NULL, showlabels=TRUE, range=NULL, varlabel=NULL, col=1,
   }
   \item{plargs, ploptions}{result of \code{\link{pl.control}}, see Details
   }
-  \item{getpar}{logical: should graphical parameters
-    \code{cex, mar, mgp} be set according to \code{plargs}?
+  \item{marpar}{margin parameters, if already available.
+  By default, they will be retieved from \code{ploptions}.
   }    
-  \item{getxy}{logical: should the coordinates be obtained as in
+  \item{xy}{logical: should the coordinates be obtained as in
     high level graphics? This is set to \code{FALSE} to save time and
     avoid complications, in case the user is sure that \code{x} and
     \code{y} are vectors rather than formulas or variable names.

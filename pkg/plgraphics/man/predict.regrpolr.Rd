@@ -33,10 +33,13 @@ Methods of \code{predict} and \code{fitted}
   \code{\link{predict}, \link{fitted}, \link{residuals.regrpolr}} 
 }
 \examples{
-require(MASS)
+if(requireNamespace("MASS")) {
 data(housing, package="MASS")
-rr <- polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
-fitted(rr)
+rr <- MASS::polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
+aa <- fitted(rr)
+bb <- predict(rr)
+cc <- predict.regrpolr(rr)
+}
 }
 \keyword{regression}% use one of  RShowDoc("KEYWORDS")
 

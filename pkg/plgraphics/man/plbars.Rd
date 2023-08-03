@@ -8,7 +8,7 @@
 }
 \usage{
 plbars(x = NULL, y = NULL, midpointwidth = NULL, 
-  plargs = NULL, ploptions = NULL, getpar = TRUE, ...)
+  plargs = NULL, ploptions = NULL, marpar = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,9 +25,8 @@ plbars(x = NULL, y = NULL, midpointwidth = NULL,
   }
   \item{plargs, ploptions}{result of \code{\link{pl.control}}, see Details
   }
-  \item{getpar}{logical: should graphical parameters
-    \code{cex, mar, mgp} be set according to \code{ploptions}?
-    See Details.
+  \item{marpar}{margin parameters, if already available.
+    By default, they will be retieved from \code{ploptions}.
   }
   \item{\dots}{absorbs extra arguments}
 }
@@ -41,13 +40,6 @@ plbars(x = NULL, y = NULL, midpointwidth = NULL,
 
   \code{plargs} and \code{ploptions} may be specified explicitly.
   Otherwise, they are taken from \code{pl.envir}.
-
-  The argument \code{getpar} is used for setting the graphical
-  parameters \code{cex, mar, mgp} according to \code{ploptions}.
-  This is needed if the high level pl function has changed \code{mar},
-  since this change has been reversed when the function was left.
-  By default, these graphical parameters will be retieved from
-  \code{pl.envir$ploptions}.
 }
   
 \author{Werner A. Stahel

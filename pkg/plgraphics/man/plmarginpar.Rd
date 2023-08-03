@@ -10,13 +10,15 @@
   high level pl function
 }
 \usage{
-plmarginpar(plargs = NULL)
+plmarginpar(plargs = pl.envir, csize = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{plargs}{list from which the margin parameters are obtained.
     If \code{NULL}, the default, \code{pl.envir} is used. 
   }
+  \item{csize}{size of plot symbols and text, changes \code{par("cex")}
+    to \code{csize*par("cex")}}
 }
 \value{The old settings of \code{par(c("mar","mgp"))} are returned
   invisibly.

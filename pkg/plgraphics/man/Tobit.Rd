@@ -48,6 +48,8 @@ Werner A. Stahel
   \code{\link{Surv}()} from package \CRANpkg{survival}.
 }
 \examples{
+
+if(requireNamespace("survival")) {
 data("tobin", package="survival")
 
 Tobit(tobin$durable)
@@ -55,6 +57,7 @@ Tobit(tobin$durable)
                           data = tobin, dist="gaussian"))
 if(interactive())
     plregr(t.r)
+}
 }
 \keyword{regression}
 

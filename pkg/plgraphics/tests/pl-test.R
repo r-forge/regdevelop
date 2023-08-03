@@ -17,7 +17,7 @@ t.plo <- ploptions(linewidth=1.5)
 ploptions("linewidth")
 t.plo$linewidth
 pl.envir$ploptions$linewidth
-pl.optionsDefault$linewidth
+default.ploptions$linewidth
 t.plo <- ploptions(default="linewidth")
 ploptions("linewidth")
 
@@ -31,7 +31,7 @@ ploptions(mar=rep(4,4), setpar=TRUE)
 par("mar")
 attr(pl.envir$ploptions, "oldpar")
 t.plo <- ploptions(default="mar", setpar=TRUE)
-## stopifnot(all(par("mar")==ploptionsDefault$mar))
+## stopifnot(all(par("mar")==default.ploptions$mar))
 
 par(attr(pl.envir$ploptions, "oldmarginpar"))
 par("mar")
@@ -253,17 +253,17 @@ plregr(rr, xvar= ~Age+Apgar1)
 plregr(rr, condquant=FALSE)
 
 ## polr
-## if(requireNamespace("MASS")) {
+if(requireNamespace("MASS")) {
 data(housing, package="MASS")
 rr <- MASS::polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
 t.res <- residuals.regrpolr(rr)
 showd(attr(t.res, "condquant"))
 plregr(rr)
 plregr(rr, factor.show="jitter")
-## }
+}
 
 ## survreg
-## if(requireNamespace("survival")) {
+if(requireNamespace("survival")) {
 data(cancer, package="survival")
 cancer$gender <- factor(c("m","f")[cancer$sex])
 r.sr <- survival::survreg(
@@ -272,4 +272,4 @@ plregr(r.sr, group=gender, pcol=gender, xvar=~age)
 r.cox <- survival::coxph(
   survival::Surv(time, status) ~ age + gender + ph.karno, data=cancer) 
 plregr(r.cox, group=gender, pcol=gender, xvar=~age)
-## }
+}

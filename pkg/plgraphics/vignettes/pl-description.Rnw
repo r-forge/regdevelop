@@ -1059,7 +1059,7 @@ elements determining how variables will be plotted are stored along
 with the data as ``properties'' of variables.
 
 <<ploptions, fig.height=5>>=
-t.plopt <- ploptions(col="magenta", pch=3, smooth.lty=3)
+t.plopt <- ploptions(col="magenta", pch=3, smooth.lty=4)
 plyx(Sepal.Width~Sepal.Length, data=iris)
 ## restore the old optios
 ploptions(list=attr(t.plopt, "old"))
@@ -1071,7 +1071,7 @@ There are some differences between the behavior of \T{ploptions} and \T{par}:
   The pl options are stored in a list \T{.ploptions} in the environment
   \T{pl.envir}.
 \item
-  There is a list \T{pl.optionsDefault} in the package. It collects the
+  There is a list \T{default.ploptions} in the package. It collects the
   package's default settings and is used as a backup if some components should
   not be contained in \T{.ploptions}.
 \item
@@ -1104,7 +1104,7 @@ in
 \item
   the \T{.ploptions} list in environment \T{pl.envir},
 \item
-  the list \T{pl.optionsDefault} in the package \T{plgraphics}
+  the list \T{default.ploptions} in the package \T{plgraphics}
   or in an environment hiding it.
 \end{enumerate}
 
@@ -1420,7 +1420,7 @@ automatically in this way.
 
 \subsection{Graphical parameters inside and outside high level pl functions}
 The high level pl functions set graphical parameters (by calling \T{par}) 
-according to their needs and, and they often set pl options. 
+according to their needs and they often set pl options. 
 When they end, they reset the \T{par} parameters to the previous values
 unless the argument \T{keeppar} is \T{TRUE}.
 Since quite often, the parameters determining the width of the plot margins are
@@ -1461,7 +1461,7 @@ mtext("this goes to the right place, too",3,1)
 The low level pl functions to be presented next avoid this problem.
 However, if you want to use these for adding to a figure started with
 a standard plotting function (and you have different margin parameters
-from those in \T{.ploptions}), then you need to set \T{setpar=FALSE}
+from those in \T{usr.ploptions}), then you need to set \T{marpar=FALSE}
 in their call.
 <<parproblem, fig.width=7, fig.height=4>>=
 par(mar=c(2,2,5,2))
@@ -1687,7 +1687,7 @@ Even though the palette that is active in the global environment is not
 affected, the pl functions use an implicit palette given by 
 \T{ploptions("colors")}. By default, the list is
 <<c.colors>>=
-pl.optionsDefault$colors
+default.ploptions$colors
 @ 
 The selection of these colors has been driven by the following ideas:
 \begin{itemize}

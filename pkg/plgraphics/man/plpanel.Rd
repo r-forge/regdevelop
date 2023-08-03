@@ -10,8 +10,9 @@
   May also be used to augment an existing plot.
 }
 \usage{
-plpanel(x, y, indx = NULL, indy = NULL, type = "p", frame = FALSE,
-  title = FALSE, plargs = NULL, ploptions = NULL, ...)
+plpanel(x = NULL, y = NULL, indx = NULL, indy = NULL, type = "p",
+  frame = FALSE, title = FALSE,
+  plargs = NULL, ploptions = NULL, marpar = NULL, ...)
 
 panelSmooth(x, y, indx, indy, plargs = NULL, ...)
 
@@ -56,6 +57,9 @@ plpanelCond(x, y, ckeyx, ckeyy, pch = 1, pcol = 1, psize = 1,
     If \code{plargs} is \code{NULL}, \code{pl.control} will be called to
     generate it.
     The components are often needed to generate the panel.
+  }
+  \item{marpar}{margin parameters, if already available.
+    By default, they will be retieved from \code{ploptions}.
   }
   \item{...}{further arguments passed to
     \code{plpoints, plmboxes, plsmooth}

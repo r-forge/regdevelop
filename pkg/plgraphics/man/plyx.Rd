@@ -88,12 +88,13 @@ plyx(x = NULL, y = NULL, by=NULL, group = NULL, data = NULL, type = "p",
 \author{Werner A. Stahel, ETH Zurich}
 
 \seealso{
-\code{\link{plmatrix}}
+  \code{\link{plmatrix}}, \code{\link{plcond}};
+  \code{\link{pl.control}}, \code{\link{ploptions}}
 }
 \examples{
 plyx(Petal.Width ~ Sepal.Length, data=iris)
 plyx(Petal.Width ~ Sepal.Length+Sepal.Width, data=iris, smooth=TRUE,
-     smooth.group=Species)
+     group=Species)
 plyx(Petal.Length + Petal.Width ~ Sepal.Length+Sepal.Width,
      by  = Species, data=iris, smooth=TRUE)
 

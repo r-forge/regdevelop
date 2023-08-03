@@ -24,7 +24,7 @@ plmboxes(x, ...)
     add=FALSE, xlim=NULL, ylim=NULL, axes=TRUE, xlab=NULL, ylab=NULL,
     labelsperp=FALSE, xmar=NULL, mar=NULL,
     widthfac=NULL, minheight=NULL, colors=NULL, lwd=NULL, 
-    .subdefault=NULL, plargs = NULL, ploptions = NULL, ...)
+    .subdefault=NULL, plargs = NULL, ploptions = NULL, marpar = NULL, ...)
 
 plmbox(x, at=0, probs=NULL, outliers=TRUE, na.pos=NULL, horizontal=FALSE,
     width=1, wfac=NULL, minheight=NULL, adj=0.5, extquant=FALSE, 
@@ -160,6 +160,9 @@ plmbox(x, at=0, probs=NULL, outliers=TRUE, na.pos=NULL, horizontal=FALSE,
   }
   \item{ploptions}{list of pl options.
   }
+  \item{marpar}{margin parameters, if already available.
+    By default, they will be retieved from \code{ploptions}.
+  }
   \item{\dots}{additional arguments passed to 'plot'
   }
   \item{.subdefault}{text for the subtitle in case that it is not
@@ -194,7 +197,8 @@ Specific arguments for 'plmbox':
 \value{
   \code{plmboxes} invisibly returns the 'at' values that are finally
   used.\\
-  \code{plmbox} returns a factor [to be defined...!!!]
+  \code{plmbox} returns a scalar by which the width of the boxes are
+    multiplied for plotting, 
   and, as attributes, the quantiles and widths used to draw the boxes
 }
 %% \references{

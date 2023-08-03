@@ -15,12 +15,14 @@ plmark(x, y = NULL, markextremes = NULL, plabel = NULL, plargs = NULL, ploptions
     it is retrieved from \code{plargs$pldata[,1]}.
   }
   \item{markextremes}{proportion of extreme points to be 'marked'.
-    This may be a vector or list of proportions with names
+    This may be a list of proportions with names
     indicating the variables for which the proportion is to be applied.
-    In the default case (\code{NULL}), it is obtained from
+    If a vector (of length 2), the elements define the proportions
+    for the lower and upper end, respectively.
+    In the default case (\code{NULL}), the proportion is obtained from
     \code{ploptions}, which in turn leads to calling the function
     \code{\link{markextremes}} with the argument equal to the number of
-    (finite) observations.    
+    (finite) observations.
   }
   \item{plabel}{character vector of labels to be used for extreme
     points. If \code{NULL}, they are obtained from \code{plargs$plabel}.

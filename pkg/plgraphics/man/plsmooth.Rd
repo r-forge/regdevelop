@@ -9,11 +9,13 @@
   These functions add smooths or reference lines to an existing pl plot.
 }
 \usage{
-plsmooth(x = NULL, y = NULL, ysec = NULL, band=NULL, power = NULL, group = NULL, 
-  smooth = TRUE, plargs = NULL, ploptions = NULL, getxy = TRUE, ...)
+plsmooth(x = NULL, y = NULL, ysec = NULL, band=NULL, power = NULL,
+  group = NULL, smooth = TRUE,
+  plargs = NULL, ploptions = NULL, xy = TRUE, ...)
+
 plsmoothline(smoothline = NULL, x = NULL, y = NULL, ysec = NULL,
   smooth.col = NULL, smooth.lty = NULL, smooth.lwd = NULL, 
-  plargs = NULL, ploptions = NULL, getpar = TRUE, ...)
+  plargs = NULL, ploptions = NULL, marpar = NULL, ...)
 
 plrefline(refline, x=NULL, innerrange=NULL, y=NULL,
   cutrange = c(x = TRUE, y = FALSE), plargs=NULL, ploptions=NULL, ...)
@@ -63,11 +65,10 @@ plrefline(refline, x=NULL, innerrange=NULL, y=NULL,
   }
   \item{plargs, ploptions}{result of \code{\link{pl.control}}, see Details
   }
-  \item{getpar}{logical: should graphical parameters
-    \code{csize, mar, mgp} be set according to \code{ploptions}?
-    See Details.
+  \item{marpar}{margin parameters, if already available.
+    By default, they will be retieved from \code{ploptions}.
   }
-  \item{getxy}{logical: should the coordinates be obtained as in
+  \item{xy}{logical: should the coordinates be obtained as in
     high level graphics? This is set to \code{FALSE} to save time and
     avoid complications, in case the user is sure that \code{x} and
     \code{y} are vectors rather than formulas or variable names.
