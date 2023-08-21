@@ -126,8 +126,7 @@ residuals.regrpolr <- function (object, type="condquant", ...) ## na.action=obje
   ## Purpose:   residuals for cumulative logit regression
   ## ----------------------------------------------------------------------
   ## Author: Werner Stahel, Date:  2 Oct 2007, 11:31
-  lbin <- inherits(object, "glm") && object$family$family=="binomial" &&
-    length(unique(object$y))==2
+  lbin <- inherits(object, "glm") && object$family$family=="binomial"
   if (!((lpolr <- inherits(object, "polr")) | lbin))
     stop ("!residuals.regrpolr! unsuitable first argument")
   type <- i.def(type, "condquant")[1]
@@ -722,6 +721,7 @@ simresiduals.gam <- function (object, ...)
   if (lfam=="gaussian") simresiduals.default(object, ...)
   else simresiduals.glm(object, ...)
 }
+## -----
 simresiduals.glm <- function (object, nrep=19, simfunction=NULL,
                              glm.restype="working", ...)
 {
@@ -799,9 +799,11 @@ simresiduals.glm <- function (object, nrep=19, simfunction=NULL,
     ldata$.Y. <- simfunction(ln, lfit)
     lrs <- eval(lcl, environment())
     lsimres[,lr] <- 
-      if (substr(glm.restype,1,4)=="cond")
-          residuals.regrpolr(lrs)[,"random"] else
-          residuals(lrs, type=glm.restype)
+      if (substr(glm.restype,1,4)=="cond") {
+        if(length(glm.restype)>1 && i.def(glm.restype, "")=="random")
+          attr(residuals.regrpolr(lrs), "condquant")[,"random"] else
+            residuals.regrpolr(lrs) 
+        } else  residuals(lrs, type=glm.restype)
   }
   naresid(lnaaction, lsimres)
 }

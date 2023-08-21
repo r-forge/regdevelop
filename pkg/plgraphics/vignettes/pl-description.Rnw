@@ -931,6 +931,10 @@ and the respective displays can be generated.
 The following figure shows the residuals against linear predictor values,
 first with conditional quantiles, then with ``working'' residuals,
 one of the usual choices.
+Note that the smooth lines usually are increasing. 
+As the simulated lines show, this does not means that there in any deficiency. 
+The upward bump of the solid line, however, may be seen as a deviation from model assumptions.
+
 
 <<resfitbin, fig.width=8, fig.height=10>>=
   data(d.babysurvival)

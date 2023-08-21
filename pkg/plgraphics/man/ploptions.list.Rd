@@ -1,4 +1,5 @@
 \name{ploptions.list}
+\alias{ploptions.list}
 \title{The List of pl Options}
 \description{
   The user can set (and get) 'pl' options -- mostly graphical "parameters" --
@@ -52,6 +53,34 @@
     \item{censored.pch, censored.size, censored.pale:}{ ...}
     \item{axes:}{ ...}
     \item{axes.sure:}{ ...}
+    
+    \item{***}{margin parameters.
+      \itemize{
+	\item{mar,oma}{ ...}
+	\item{margin.csize}{ character size for variable labels and
+	  tick labels}
+	\item{margin.line}{ lines in margin where variable labels and
+	  tick labels are shown}
+	\item{margin.exp}{ expansion of margins beyond needed lines,
+	  for inner and outer margins}
+	\item{oma.width}{ ...}
+	\item{panelsep}{ space between panels}
+      }
+    }
+    \item{title}{title parameters.
+      \itemize{
+	\item{title.line}{ line in margin[3] on which the title
+	  appears}
+	\item{title.adj}{ adjustment of the title}
+	\item{title.csize}{ character size of the title, relative to
+	  \code{ploptions("csize")*ploptions("margin.csize")[1]}}
+	\item{title.csizemin}{ minimum csize}
+	\item{title.maxchars}{ maximum number of characters in title}
+	\item{sub}{ logical: should subtitle be shown?}
+      }
+    }
+    \item{panel}{ panel function to be used in high level pl functions}
+    
     \item{gridlines:}{  can be \cr 
       -- a logical indicating if gridlines should be drawn. If
       \code{TRUE}, gridlines will be drawn at the values given in

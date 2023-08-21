@@ -12,14 +12,14 @@
 \usage{
 plframe(x = NULL, y = NULL, xlab = NULL, ylab = NULL,
   xlim = NULL, ylim = NULL, mar = NULL, showlabels = TRUE, 
-  plextext = NULL, axcol = rep(1, 4), 
+  plext = NULL, plextext = NULL, axcol = rep(1, 4), 
   plargs = NULL, ploptions = NULL, marpar = NULL, xy = NULL, ...)
 
 pltitle(main=NULL, sub=NULL, csize=NULL, csizemin=NULL, 
   side=3, line=NULL, adj=NULL, outer.margin=NULL, col="black",
-  doc=NULL, show=NA, plargs=NULL, ploptions = NULL, ...)
+  doc=NULL, show=NA, plargs=NULL, ploptions = NULL, marpar = NULL, ...)
 
-plaxis(side, x=NULL, showlabels=TRUE, range=NULL, varlabel=NULL, col=1,
+plaxis(side, x=NULL, showlabels=2, range=NULL, varlabel=NULL, col=1,
   tickintervals=NULL,
   plargs = NULL, ploptions = NULL, marpar = NULL, ...) 
 
@@ -38,6 +38,9 @@ plaxis(side, x=NULL, showlabels=TRUE, range=NULL, varlabel=NULL, col=1,
     If \code{==1}, they are shown if there is enough space in the margin
     (including outer margin), if \code{==2}, it is shown anyway
     (by setting \code{xpd=TRUE}).}
+  \item{plext}{extension of the plotting area beyond the range of the
+    data. 
+  }
   \item{plextext}{extension of the plotting area beyond the possibly
     already extended range. This helps to accomodate sybmbols.
   }

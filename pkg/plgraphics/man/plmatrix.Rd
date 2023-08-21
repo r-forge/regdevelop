@@ -12,7 +12,7 @@
 plmatrix(x, y = NULL, data = NULL, panel = NULL, 
   nrow = NULL, ncol = nrow, reduce = TRUE, 
   xaxmar=NULL, yaxmar=NULL, xlabmar=NULL, ylabmar=NULL,
-  xlab=NULL, ylab=NULL, oma=NULL, diaglabel.csize = NULL,
+  xlab=NULL, ylab=NULL, mar=NULL, oma=NULL, diaglabel.csize = NULL,
   plargs = NULL, ploptions = NULL, assign = TRUE, ...) 
 }
 
@@ -40,7 +40,7 @@ plmatrix(x, y = NULL, data = NULL, panel = NULL,
     labelled?}
   \item{xlab, ylab}{not used (introduced to avoid confusion with
     \code{xlabmar, ylabmar})}
-  \item{oma}{width of outer margins, see \code{\link{par}}}
+  \item{mar, oma}{width of margins, see \code{\link{par}}}
   \item{diaglabel.csize}{Character expansion for labels appearing in the
     "diagonal" of the scatterplot matrix (if present)}
   \item{plargs}{result of calling \code{pl.control}.

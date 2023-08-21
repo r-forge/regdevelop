@@ -1,7 +1,7 @@
 \name{plmarginpar}
 \alias{plmarginpar}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Set Graphical Parameters according to those used in the Pl
+\title{Set Graphical Parameters According to Those used in the Pl
   Function Called Last
 }
 \description{
