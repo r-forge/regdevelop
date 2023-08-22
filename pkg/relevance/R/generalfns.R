@@ -182,12 +182,13 @@ logst <- #f
   ## Purpose:   logs of data, zeros and small values treated well
   ## -------------------------------------------------------------------------
   ## Author: Werner Stahel, Date:  3 Nov 2001, 08:22
+  isVec <- is.null(dim(data))
   data <- cbind(data)
   calib <- cbind(calib)
   lncol <- ncol(calib)
   ljthr <- length(threshold)>0
   if (ljthr) {
-    if (is.logical(threshold)&&threshold) 
+    if(isTRUE(threshold))
       threshold <- attr(data, "threshold")
     if (!length(threshold)%in%c(1, lncol))
       stop("!logst! argument 'threshold' is inadequate")
@@ -198,9 +199,9 @@ logst <- #f
     lthr <- rep(NA, lncol)
     for (lj in 1:lncol) {
       lcal <- calib[,lj]
-      ldp <- lcal[lcal>0&!is.na(lcal)]
+      ldp <- lcal[lcal>0 & !is.na(lcal)]
       if(length(ldp)==0) ljdt[lj] <- FALSE else {
-        lq <- quantile(ldp,probs=c(0.25,0.75),na.rm=TRUE)
+        lq <- quantile(ldp, probs=c(0.25,0.75), na.rm=TRUE, names=FALSE)
         if(lq[1]==lq[2]) lq[1] <- lq[2]/2
         lthr[lj] <- lc <- lq[1]^(1+mult)/lq[2]^mult
       }
@@ -213,12 +214,10 @@ logst <- #f
       lc <- lthr[lj]
       data[,lj] <- ifelse(ldt<lc, log10(lc)+(ldt-lc)/(lc*log(10)), log10(pmax(lc,ldt)))
   } }
-  if (length(colnames(data)))
-    lnmpd <- names(ljdt) <- names(lthr) <- colnames(data)  else
-    lnmpd <- as.character(1:lncol)
-  if (ncol(data)==1) data <- data[,1]
+  if (isVec && ncol(data) == 1L) data <- data[,1L]
   attr(data,"threshold") <- unname(lthr)
   if (any(!ljdt)) {
+    lnmpd <- if(length(cn <- colnames(data))) cn else as.character(1:lncol)
     warning(":logst: no positive data",
             if(lncol>1) paste(" for variables ",lnmpd[!ljdt],
             ". These are not transformed") else ". No transformation")
