@@ -107,11 +107,11 @@ pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
   \item{\dots}{further arguments. These may include:
     \describe{
       \item{\code{psize, plab, pch, pcol, group, smooth.group,
-	smooth.weights}}{these specify graphical elements for each
+	smooth.weights}: }{these specify graphical elements for each
 	observation (row of \code{data}).
 	the respective columns are added to the \code{pldata}
 	data.frame.}
-      \item{}{any further ... arguments will be passed on to
+      \item{\code{...}: }{further \code{...} arguments will be passed on to
 	\code{ploptions}. The respective settings will be used
 	in the calling pl function, but not permanently stored
 	in \code{ploptions} in the \code{pl.envir} environment.

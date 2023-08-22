@@ -116,7 +116,7 @@ default.ploptions
     \item{lty, lwd:}{ line type(s) and width(s) }
     \item{col, pcol, lcol:}{ colors to be used generally and
       specifically for points (symbols or text) and lines, respectively,
-      given as index of code{ploptions("colors")}.
+      given as index of \code{ploptions("colors")}.
       This are often (and by default) vectors to be used for showing
       groups. The first element is usually black.
     }

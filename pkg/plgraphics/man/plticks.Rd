@@ -19,7 +19,7 @@ plticks(range, plscale = NULL, transformed = FALSE, nouter = 0,
   \item{transformed}{logical: Is \code{range} scaled according to
     \code{plscale} rather than in original scale?
   }
-  \item{nouter}{
+  \item{nouter}{number of outer .. % FIXME
   }
   \item{tickintervals}{approximate number of tick intervals desired.
     Default is taken from \code{ploptions('tickintervals')}.
