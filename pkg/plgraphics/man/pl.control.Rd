@@ -105,7 +105,7 @@ pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
     unexpected behavior.
   }
   \item{\dots}{further arguments. These may include:
-    \itemize{
+    \describe{
       \item{\code{psize, plab, pch, pcol, group, smooth.group,
 	smooth.weights}}{these specify graphical elements for each
 	observation (row of \code{data}).

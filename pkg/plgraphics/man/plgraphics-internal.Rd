@@ -11,7 +11,7 @@
 \alias{u.debug}
 \alias{DB}
 %% ---
-\title{Internal regr0 objects}
+\title{Internal 'plgraphics' Objects}
 \description{
   Internal functions of package \pkg{plgraphics} that are exported, but
   should normally not be called by the user directly.
@@ -23,6 +23,6 @@ DB(on=TRUE)
 }
 \arguments{
   \item{x,y, object}{\R objects}
-  \item{...}{...}
+  \item{on}{logical.}
 }
 \keyword{internal}

@@ -77,7 +77,7 @@ default.ploptions
   \code{ploptions}. For the full set, see
   \code{?\link{ploptions.list}}.
   %% ===========================================================
-  \itemize{
+  \describe{
     \item{keeppar:}{ logical. If TRUE, the graphical parameter settings 
       "mar", "oma", "cex", "mgp", and "mfg" will be maintained when
       leaving high level pl functions, 
@@ -157,7 +157,7 @@ default.ploptions
       whether "low" and "high" smooth lines should be drawn.
       See above for their definition.}
     \item{condquant...:}{ Conditional quantiles for censored residuals.
-      \itemize{
+      \describe{
 	\item{condquant:}{ logical: should bars be drawn for censored residuals?
 	  If \code{FALSE}, censored observations will be set to the median of
 	  the conditional distribution and shown by a different plotting
@@ -175,7 +175,7 @@ default.ploptions
       }
     }
     \item{plcond...:}{ features of \code{\link{plcond}}.
-      \itemize{
+      \describe{
 	\item{plcond/panel:}{ panel function to be used}
 	\item{plcond.nintervals:}{ number of intervals into which
 	  numerical variables will be cut}

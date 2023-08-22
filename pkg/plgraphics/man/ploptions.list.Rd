@@ -10,7 +10,7 @@
 }
   %% ===========================================================
   \value{
-    \itemize{
+    \describe{
     \item{keeppar:}{ logical. If TRUE, the graphical parameter settings 
       "mar", "oma", "cex", "mgp", and "mfg" will be maintained when
       leaving high level pl functions, 
@@ -48,14 +48,13 @@
     \item{psize.max:}{ maximum value of size of plotting symbols}
     \item{lty, lwd, col, pcol, lcol:}{ to be descibed!!!}
     \item{group.lcol:}{ ...}
-    \item{variables.pch, variables.col, variables.lty, variables.lcol: }
-    { ...}
+    \item{variables.pch, variables.col, variables.lty, variables.lcol:}{ ...}
     \item{censored.pch, censored.size, censored.pale:}{ ...}
     \item{axes:}{ ...}
     \item{axes.sure:}{ ...}
     
     \item{***}{margin parameters.
-      \itemize{
+      \describe{
 	\item{mar,oma}{ ...}
 	\item{margin.csize}{ character size for variable labels and
 	  tick labels}
@@ -68,7 +67,7 @@
       }
     }
     \item{title}{title parameters.
-      \itemize{
+      \describe{
 	\item{title.line}{ line in margin[3] on which the title
 	  appears}
 	\item{title.adj}{ adjustment of the title}
@@ -116,7 +115,7 @@
       whether "low" and "high" smooth lines should be drawn.
       See above for their definition.}
     \item{condquant...:}{ Conditional quantiles for censored residuals.
-      \itemize{
+      \describe{
 	\item{condquant:}{ logical: should bars be drawn for censored residuals?
 	  If \code{FALSE}, censored observations will be set to the median of
 	  the conditional distribution and shown by a different plotting
@@ -134,7 +133,7 @@
       }
     }
     \item{plcond...:}{ features of \code{\link{plcond}}.
-      \itemize{
+      \describe{
 	\item{plcond/panel:}{ panel function to be used}
 	\item{plcond.nintervals:}{ number of intervals into which
 	  numerical variables will be cut}
