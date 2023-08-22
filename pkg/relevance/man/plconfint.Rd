@@ -12,7 +12,7 @@
 }
 \usage{
 plconfint(x, y = NULL, select=NULL, overlap = NULL, pos = NULL,
-  xlim = NULL, refline = 0, add = FALSE, bty = "L", col = NULL, 
+  xlim = NULL, refline = 0, add = FALSE, bty = "L", col = NULL,
   plpars=list(lwd=c(2,3,1,4,2), posdiff=0.35,
     markheight=c(1, 0.6, 0.6), extend=NA, reflinecol="gray70"),
   label = TRUE, label2 = NULL, xlab="", ...)
@@ -26,12 +26,12 @@ pltwosamples(x, ...)
   \item{x}{For \code{plconfint}:
     A vector of length >=2 or a matrix
     with this number of columns, containing
-    \itemize{
+    \describe{
       \item{[,1]}{ the estimate}
       \item{[,2]}{ if \code{x} is of length 2:
-	width of (symmetric) confidence interval} 
+	width of (symmetric) confidence interval}
       \item{[,2:3]}{ if of length >2: the interval end points}
-      \item{[,4:5]}{ if of length >=5: 
+      \item{[,4:5]}{ if of length >=5:
 	values for additional ticks on the intervals,
 	typically indicating the end points of a
 	shortened interal, see Details}
@@ -55,7 +55,7 @@ pltwosamples(x, ...)
     replaced by the respective element of the range of the x values.
   }
   \item{refline}{\code{x} values for which vertical reference lines are
-    drawn} 
+    drawn}
   \item{add}{logical: should the plotted elements be added to an
     existing plot?}
   \item{bty}{type of 'box' around the plot, see \code{par}
@@ -89,25 +89,25 @@ pltwosamples(x, ...)
   \code{overlapfactor}.
   If only two groups are to be shown, the factor is adjusted to unequal
   standard errors, and accurate quantiles of a t distribution are used.
-  
+
   The graphical options are:
-  \itemize{
-    \item{lwd}{line widths for: [1] the interval,
+  \describe{
+    \item{\code{lwd}: }{line widths for: [1] the interval,
       [2] middle mark, [3] end marks, [4] overlap interval marks,
       [5] vertical line marking the relevance threshold
     }
-    \item{markheight}{determines the length of the middle mark,
+    \item{\code{markheight}: }{determines the length of the middle mark,
       the end marks and the marks for the overlap interval
       as a multiplier of the default length}
-    \item{extend}{extension of the vertical axis beyond the range}
-    \item{reflinecol}{color to be used for the vertical lines at
+    \item{\code{extend}: }{extension of the vertical axis beyond the range}
+    \item{\code{reflinecol}: }{color to be used for the vertical lines at
       relevances 0 and 1}
   }
 }
 \value{none
 }
 \seealso{\code{\link{plot.inference}}
-}  
+}
 \author{Werner A. Stahel
 }
 
@@ -128,8 +128,8 @@ plot(rte, single=TRUE)
 ## --- replication
 data(d.osc15Onesample)
 td <- d.osc15Onesample
-tdo <- structure(td[,c(1,2,6)], names=c("effect", "n", "teststatistic")) 
-tdr <- structure(td[,c(3,4,7)], names=c("effect", "n", "teststatistic")) 
+tdo <- structure(td[,c(1,2,6)], names=c("effect", "n", "teststatistic"))
+tdr <- structure(td[,c(3,4,7)], names=c("effect", "n", "teststatistic"))
 rr <- replication(tdo,tdr)
 
 plconfint(attr(rr, "estimate"), refline=c(0,1))

@@ -60,16 +60,16 @@
   standard errors. 
   
   The graphical options are:
-  \itemize{
-    \item{lwd}{line widths for: [1] the interval,
+  \describe{
+    \item{\code{lwd}: }{line widths for: [1] the interval,
       [2] middle mark, [3] end marks, [4] overlap interval marks,
       [5] vertical line marking the relevance threshold
     }
-    \item{markheight}{determines the length of the middle mark,
+    \item{\code{markheight}: }{determines the length of the middle mark,
       the end marks and the marks for the overlap interval
       as a multiplier of the default length}
-    \item{extend}{extension of the vertical axis beyond the range}
-    \item{framecol}{color to be used for the framing lines:
+    \item{\code{extend}: }{extension of the vertical axis beyond the range}
+    \item{\code{framecol}: }{color to be used for the framing lines:
       axis and vertical lines at relevances 0 and 1}
   }
 }
