@@ -844,7 +844,7 @@ plframe <- #f
   lext <- rep(i.def(i.getplopt(plext),0.03), length=4)
   plextext <- rep(i.def(plextext, 0, i.getploption("plextext"), 0), length=4)
   ## --- margins
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, mar=mar, plargs=plargs)
   lmar <- marpar$mar
   if(length(loldp <- attr(marpar, "oldpar")))
@@ -973,7 +973,7 @@ plaxis <- #f
   if (length(plargs)==0) plargs <- pl.envir ## get(...) ## !!! list in calling fn ?
   if (length(ploptions)==0) ploptions <- plargs$ploptions
   lcsize <- i.getploption("csize")
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   if(length(loldp <- attr(marpar, "oldpar")))
     on.exit(par(loldp), add=TRUE, after=FALSE)
@@ -1081,7 +1081,7 @@ pltitle <- #f
   ## ----------------------------------------------
   if (length(plargs)==0) plargs <- pl.envir ## get(...)
   if (length(ploptions)==0) ploptions <- plargs$ploptions
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   scale <- 0.6 ## scale factor to get width of a character
   minadj <- 0.2
@@ -1186,7 +1186,7 @@ plpoints <- #f
 {
   if (length(plargs)==0) plargs <- pl.envir ## get(...)
   if (length(ploptions)==0) ploptions <- plargs$ploptions
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   if(length(loldp <- attr(marpar, "oldpar")))
     on.exit(par(loldp), add=TRUE, after=FALSE)
@@ -1436,7 +1436,7 @@ plbars <- #f
 {
   if (length(plargs)==0) plargs <- pl.envir ## get(...)
   if (length(ploptions)==0) ploptions <- plargs$ploptions
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   if(length(loldp <- attr(marpar, "oldpar")))
     on.exit(par(loldp), add=TRUE, after=FALSE)
@@ -1607,7 +1607,7 @@ plsmoothline <- #f
 {
   if (length(plargs)==0) plargs <- pl.envir ## get(...)
   if (length(ploptions)==0) ploptions <- plargs$ploptions
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   if(length(loldp <- attr(marpar, "oldpar")))
     on.exit(par(loldp), add=TRUE, after=FALSE)
@@ -4276,7 +4276,7 @@ plpanel <- #f
   lplft <- plargs$plfeatures
   pldata <- plargs$pldata
   ##
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   if(length(loldp <- attr(marpar, "oldpar")))
     on.exit(par(loldp), add=TRUE, after=FALSE)
@@ -4861,7 +4861,7 @@ plmboxes.default <- #f
     plargs <- eval(lcall, parent.frame())
   }
   if (length(ploptions)==0) ploptions <- plargs$ploptions ## was .ploptions
-  if (class(marpar)!="i.marpar")
+  if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, plargs=plargs)
   if(length(loldp <- attr(marpar, "oldpar")))
     on.exit(par(loldp), add=TRUE, after=FALSE)
