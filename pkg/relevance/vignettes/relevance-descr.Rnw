@@ -27,8 +27,8 @@
 %% ================================================================
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 %% \bibliography{regrbib}
+%% not for knitr:
 %% \SweaveOpts{concordance=TRUE,width=9,height=6, echo=false}
 \setkeys{Gin}{width=0.95\textwidth}
 \baselineskip 15pt
