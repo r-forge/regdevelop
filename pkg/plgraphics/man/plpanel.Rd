@@ -18,7 +18,7 @@ panelSmooth(x, y, indx, indy, plargs = NULL, ...)
 
 plpanelCond(x, y, ckeyx, ckeyy, pch = 1, pcol = 1, psize = 1,
   pale = c(0.2, 0.6), csize = 0.8,
-  smooth = NULL, smooth.minobs = NULL, plargs = NULL, ...)
+  smooth = NULL, smooth.minobs = NULL, plargs = NULL, ploptions = NULL, ...)
 }
 
 \arguments{

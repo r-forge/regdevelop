@@ -10,7 +10,7 @@
 }
 \usage{
 plsmooth(x = NULL, y = NULL, ysec = NULL, band=NULL, power = NULL,
-  group = NULL, smooth = TRUE,
+  group = NULL, weight = NULL, smooth = TRUE,
   plargs = NULL, ploptions = NULL, xy = TRUE, ...)
 
 plsmoothline(smoothline = NULL, x = NULL, y = NULL, ysec = NULL,
@@ -41,6 +41,7 @@ plrefline(refline, x=NULL, innerrange=NULL, y=NULL,
     \code{plargs$pldata} will be used if available.
     If \code{group} is of length 1, there will be no grouping
   }
+  \item{weight}{weights of observations used for generating the smooth}
   \item{smooth}{logical: should smooth be done? Will almost always be
     \code{TRUE}}
   \item{smoothline}{for \code{plsmoothline}: result of a smooth fitting}

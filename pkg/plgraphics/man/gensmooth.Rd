@@ -8,7 +8,7 @@
 }
 \usage{
 gensmooth(x, y, band = FALSE, power = 1, resid = "difference",
-  plargs=NULL, ploptions=NULL, ...)
+  weight = NULL, plargs=NULL, ploptions=NULL, ...)
 }
 \arguments{
   \item{x}{vector of x values.
@@ -28,6 +28,8 @@ gensmooth(x, y, band = FALSE, power = 1, resid = "difference",
     to get scaled y's (regression residuals) according to a smooth fit in the
     scale plot.
   }
+  \item{weight}{weights of observations, may also be passed by a
+    variable \code{.smoothWeights.} in the data set \code{plargs$pldata}}
   \item{plargs, ploptions}{result of calling \code{pl.control}.
     The component \code{plargs$pdata} may contain \code{smooth.weight}
     and \code{smooth.group}, and \code{ploptions} specifies

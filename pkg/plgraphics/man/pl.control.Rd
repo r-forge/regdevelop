@@ -13,7 +13,7 @@ pl.control(x=NULL, y=NULL, condvar = NULL, data = NULL, subset = NULL,
   markextremes = NULL, smooth = NULL,
   xlab = NULL, ylab = NULL, varlabel = NULL,
   vcol = NULL, vlty = NULL, vpch = NULL, plscale = NULL, log = NULL,
-  main = NULL, sub = ":", .subdefault = NULL, mar = NULL, 
+  main = NULL, sub = NULL, .subdefault = NULL, mar = NULL, 
   gencoord = TRUE,
   plargs = pl.envir, ploptions = NULL, .environment. = parent.frame(),
   assign = TRUE, ... )
