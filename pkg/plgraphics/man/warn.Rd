@@ -1,6 +1,6 @@
 \name{warn}
 \alias{warn}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{List Warnings}
 \description{
   Gives a List of Warnings
@@ -8,7 +8,7 @@
 \usage{
 warn()
 }
-%- maybe also 'usage' for other objects documented here.
+
 \details{
   This function simplyfies the output of \code{\link{warnings}} if there
   are several identical warnings, by counting their occurence
@@ -24,6 +24,5 @@ warn()
 ##    m <- matrix(1:7, 3,i)
 ##  warn()
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{utilities}

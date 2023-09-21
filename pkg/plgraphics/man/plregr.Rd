@@ -199,14 +199,14 @@ r.blast <-
 plregr(r.blast, sequence=TRUE, transformed=TRUE)
 plregr(r.blast, xvar=FALSE, innerrange.fit=c(0.3,1.2))
 
-if(interactive()) {# {<<-- save time e.g. on CRAN}
-
+\donttest{
 ## --- multivariate regression
 data(d.fossileSamples)
 r.foss <-
   lm(cbind(sAngle,lLength,rWidth) ~ SST+Salinity+lChlorophyll+Region+N,
   data=d.fossileSamples)
 plregr(r.foss, plotselect=c(resfit=3, resmatrix=1, qqmult=1))
+}
 
 ## --- logistic regression
 data(d.babysurvival)
@@ -220,7 +220,6 @@ data(housing, package="MASS")
 rr <- MASS::polr(Sat ~ Infl + Type + Cont, weights = Freq, data = housing)
 plregr(rr, factor.show="jitter")
 }
-}# interactive
 }
 \keyword{hplot}
 \keyword{regression}

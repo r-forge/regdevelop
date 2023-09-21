@@ -4,7 +4,7 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 %% \usepackage{germanU}
-%%- \usepackage[noae]{Sweave}
+\usepackage[noae]{Sweave}
 \usepackage[a4paper, text={14.5cm,22cm}]{geometry}
 \usepackage{color} %uncomment BF
 \usepackage{booktabs} % nice tables with \toprule \middlerule \bottomrule
@@ -24,6 +24,7 @@
 %% ================================================================
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 %% \SweaveOpts{concordance=TRUE}
 %% \SweaveOpts{concordance=TRUE,width=9,height=6, echo=false}
 \setkeys{Gin}{width=0.9\textwidth}
@@ -1161,10 +1162,10 @@ The components of these lists include
   a group \T{innerrange}, determining if and how an inner plotting range
   should be used and generated;
 \item
-  \T{plext}: percentage by which the range of the data should be
+  \T{plext}: factor by which the range of the data should be
   extended unless an inner range is active (in which case the extension 
   is determined by \T{innerrange.ext}), and\\
-  \T{plextext}: further extension to allow for large symbols near the 
+  \T{plsymbolext}: further extension to allow for large symbols near the 
   limits of the plotting range;
 \item
   \T{markextremes} sets the proportion of extreme points that are shown 

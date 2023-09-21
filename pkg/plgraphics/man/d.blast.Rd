@@ -31,9 +31,6 @@
 }
 \source{Basler and Hoffmann AG, Zurich
 }
-%%- \references{
-%%- %%  ~~ possibly secondary sources and usages ~~
-%%- }
 \examples{
 data(d.blast)
 showd(d.blast)

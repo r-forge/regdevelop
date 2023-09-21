@@ -1,6 +1,6 @@
 \name{plyx}
 \alias{plyx}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Scatterplot, enhanced
 }
 \description{A scatterplot or a bunch of them is produced according to
@@ -12,7 +12,7 @@ plyx(x = NULL, y = NULL, by=NULL, group = NULL, data = NULL, type = "p",
   markextremes = 0, rescale = TRUE, mar = NULL, mf = FALSE,
   plargs = NULL, ploptions = NULL, assign = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{either a formula or the data to be used for the horizontal
     axis. If a formula of the type 'y~x', the variable 'y' in
@@ -77,9 +77,7 @@ plyx(x = NULL, y = NULL, by=NULL, group = NULL, data = NULL, type = "p",
     \code{panelargs} for any additional objects to be passed on.
 }
 \value{None.}
-%% \references{
-%% %% ~put references to the literature/web site here ~
-%% }
+
 \note{There are many more arguments, obtained from \code{pl.control},
   see \code{?\link{pl.control}}. These can be passed to \code{plmatrix}
   by an argument \code{plargs} that is hidden in the ... argument list.

@@ -4,3 +4,11 @@
 ^vignettes/figure
 ^vignettes/auto
 ^vignettes/.*\.log
+^vignettes/.*\.tex
+^vignettes/.*\.toc
+^vignettes/.*\.pdf
+^vignettes/foss*
+^vignettes/R.Rproj
+
+
+

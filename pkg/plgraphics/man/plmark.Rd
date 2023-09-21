@@ -1,6 +1,6 @@
 \name{plmark}
 \alias{plmark}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Labels for Extreme Points
 }
 \description{
@@ -31,9 +31,7 @@ plmark(x, y = NULL, markextremes = NULL, plabel = NULL, plargs = NULL, ploptions
     \code{\link{plpoints}}
   }
 }
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
+
 \value{A character vector in which the 'marked' observations contain
   the respective label and the others equal \code{""}.
 }
@@ -47,4 +45,4 @@ plmark(x, y = NULL, markextremes = NULL, plabel = NULL, plargs = NULL, ploptions
   ( t.plab <-
     plmark(iris$Sepal.Length, iris$Sepal.Width, markextremes=0.03) )
 }
-\keyword{ manip }% use one of  RShowDoc("KEYWORDS")
+\keyword{ manip }

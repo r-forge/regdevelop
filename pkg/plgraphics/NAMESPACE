@@ -61,7 +61,7 @@ export(asinp,
        plframe, pltitle, plaxis, plticks, plpoints, pllines, plbars, 
        plsmooth, plsmoothline, plrefline, plscale, plsubset, 
        plregr, plregr.control, plot.xdistResscale,
-       plres2x, plresx, plfitpairs, 
+       plres2x, plresx, ## plfitpairs, 
        prettyscale, predict.regrpolr, ## predict.regr, predict.mlm, 
        drevgumbel, prevgumbel, qrevgumbel, rrevgumbel, ## qrevgumbelexp,
        quantilew, quinterpol,
@@ -78,7 +78,7 @@ export(asinp,
        warn, weekday, 
        xdistResdiff, xdistResscale, ymd, 
        i.def, is.formula,
-       u.true, u.notfalse, u.debug, DB
+       u.true, u.false, u.notfalse, u.debug, DB
        )
 
 ## S3method(plot, regr, plregr) ## only used in the regr package

@@ -20,17 +20,12 @@ pllimits(pllim, data, limfac = NULL, FUNC=NULL)
     \code{FUNC} is expanded}
   \item{FUNC}{function that determines the range of the data}
 }
-%%- \details{
-%%- %%  ~~ If necessary, more details than the description above ~~
-%%- }
+
 \value{A matrix with 2 rows containing the minimum and the maximum
   of the inner plotting range. The columns correspond to those in
   \code{data}.
 }
-\author{WSt}
-%%- \note{
-%%- %%  ~~further notes~~
-%%- }
+\author{Werner A. Stahel}
 \seealso{
 \code{\link{plcoord}}
 }

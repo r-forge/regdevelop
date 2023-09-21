@@ -50,4 +50,4 @@ showd(t.stdr)
 showd(attr(t.stdr, "leverage"))
 }
 \keyword{regression}
-% \keyword{diagnostics}
+

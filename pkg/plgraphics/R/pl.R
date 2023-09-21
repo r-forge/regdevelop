@@ -587,7 +587,8 @@ i.genvattrcont <- #f
   if (lIirg & u.true(lirg)) lirg <- c(plinnerrange(TRUE, llx, factor=lirf))
   if (!u.notfalse(lirg)) {
     lattr[["innerrange"]] <- attr(x, "innerrange") <- lirg <- NULL
-    lplrg <- i.extendrange(range(llx, finite=TRUE), i.getploption("plext"))
+    lplrg <-
+      i.extendrange(range(llx, finite=TRUE), i.getploption("innerrange.ext"))
   } else { ## lirg is range
     if (replace||length(lirgx)!=2)
     ## vlim overrides innerrange
@@ -808,7 +809,7 @@ function(x, transformed = FALSE, plscale = "log10", inverse = NULL,
 ## =====================================================================
 plframe <- #f
   function(x=NULL, y=NULL, xlab=NULL, ylab=NULL, xlim = NULL, ylim = NULL, 
-           mar = NULL, showlabels = TRUE, plext=NULL, plextext=NULL,
+           mar = NULL, showlabels = TRUE, plext=NULL, plsymbolext=NULL,
            axcol = rep(1,4), 
            plargs = NULL, ploptions = NULL, marpar = NULL, xy=NULL, ...)
 {
@@ -829,20 +830,23 @@ plframe <- #f
       }
       lrg <- replaceNA(lrg, lxx+(0.5+lext[1:2])*c(-1,1))
     } else {
-      lxx <- i.def(i.def(attr(lx,"numvalues", exact=TRUE),
-                         attr(lx,"plcoord", exact=TRUE)), as.numeric(lx))
-      lrg <- replaceNA(lrg, i.extendrange(range(lxx, finite=TRUE), lext))
       lirg <- if(length(lir <- attr(lx,"innerrange", exact=TRUE)))
         replaceNA(replaceNA(lvlim, lir), lplrg)
+##-       lxx <- i.def(i.def(attr(lx,"numvalues", exact=TRUE),
+##-                          attr(lx,"plcoord", exact=TRUE)), as.numeric(lx))
+      if (length(attr(lx,"plcoord", exact=TRUE))==0) {
+        lxx <- i.def(attr(lx,"numvalues", exact=TRUE), as.numeric(lx))
+        lrg <- replaceNA(lrg, i.extendrange(range(lxx, finite=TRUE), lext))
+      }
     }
-    list(x = lx, xx = lxx, range = lrg, innerrange = lirg) ## was x=x
+    list(x = lx, range = lrg, innerrange = lirg)
   } ## end of lf.getcoord
   ## ---------------------
   if (is.null(plargs)) plargs <- pl.envir ## get(...
   if (length(ploptions)==0) ploptions <- plargs$ploptions
   lcsize <- i.getploption("csize")
   lext <- rep(i.def(i.getplopt(plext),0.03), length=4)
-  plextext <- rep(i.def(plextext, 0, i.getploption("plextext"), 0), length=4)
+  plsymbolext <- rep(i.def(plsymbolext, 0, i.getploption("plsymbolext"), 0), length=4)
   ## --- margins
   if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, mar=mar, plargs=plargs)
@@ -1517,7 +1521,7 @@ plmark <- #f
   lmx <- i.getploption("markextremes")
   if(is.function(lmx)) lmx <- lmx(lnobs)
   if (is.list(markextremes))  
-    lmx <- lapply(markextremes, function(x) i.def(x, lmxopt))
+    lmx <- lapply(markextremes, function(x) i.def(x, lmxdef))
   if (lnmn <- length(lmxnm <- names(lmx))) {
     lmxx <- i.def(unlist(lmx[attr(x,"varname", exact=TRUE)]), lmxdef)
     lmxy <- i.def(unlist(lmx[attr(y,"varname", exact=TRUE)]), lmxdef)
@@ -2555,9 +2559,8 @@ plyx <- #f
     lngrp <- length(lgrp)
   } else lngrp <- 1
   ## --- figure parameters
-  loldp <- par(list("mar","mgp"))  ## ,"oma"
   lmfkeep <- !u.notfalse(mf)
-  loldmf <- par(list("mfrow"))
+  loldp <- par(list("mar","mgp"))  ## ,"oma"
   if (!i.getploption("keeppar"))
     on.exit(par(loldp), add=TRUE, after=FALSE)
   marpar <-
@@ -2611,8 +2614,10 @@ plyx <- #f
   lattrc <- c("innerrange","nouter")
   lnfgcol <- par("mfg")[4]
   ## --- restore mfg if only one plot is produced
-  if ((lnx>1 | lnby>1) & !lmfkeep)
+  if ((lnx>1 | lnby>1) & !lmfkeep)  {
+    loldmf <- par(list("mfrow"))
     on.exit(par(loldmf), add=TRUE, after=FALSE)
+  }
 ## ------------------------------------------------------------------
   ## --- plot
   for (ipgr in 1:lnpgr) {
@@ -5054,7 +5059,7 @@ plcoordtrsf <- #f
 ## ====================================================================
 plres2x <- #f
   function(formula=NULL, reg=NULL, data=NULL, restrict=NULL, size = 1,
-           xlab = NULL, ylab= NULL, plextext = NULL, pale = 0.2,
+           xlab = NULL, ylab= NULL, plsymbolext = NULL, pale = 0.2,
            plargs = NULL, ploptions = NULL, assign = TRUE, ...)
 {
 ## Purpose:  plot residuals vs. two x`s
@@ -5152,8 +5157,8 @@ plres2x <- #f
 ##-   attr(ly, "plrange") <- llrg + c(-1,1)*diff(llrg)* 2*lratio
   ##--
   ##---------------
-  lplxx <- i.getploption("plextext") * 2 * size
-  plframe(lx, ly, xlab=xlab[1], ylab=ylab[1], plextext=lplxx,
+  lplxx <- i.getploption("plsymbolext") * 2 * size
+  plframe(lx, ly, xlab=xlab[1], ylab=ylab[1], plsymbolext=lplxx,
           ploptions=ploptions, xy=FALSE) ## !!!? marpar
   ##--- draw symbols: ---
   lpanel(lx, ly, zz=lzj, lwd=llwd, col=lpcol)
@@ -5167,36 +5172,6 @@ plres2x <- #f
 ## "plres2x done"
 } ## end plres2x
 ## ==========================================================================
-plfitpairs <- #f
-  function(object, ssize=0.02, main=NULL, ...) 
-{
-  ## Purpose:   pairs plot of fitted values for multinomial regression
-  ## ----------------------------------------------------------------------
-  ## Arguments:
-  ## ----------------------------------------------------------------------
-  ## Author: Werner Stahel, Date:  5 Aug 2004, 10:54
-  if (u.isnull(main)) main <- paste("fitted prob.",object$formula)
-  lpr <- object$fitted.values
-  lny <- ncol(lpr)
-  ly <- object$y
-  if(length(ly)==0) stop("!plfitpairs! no response values found")
-  ly <- as.numeric(i.factor(object$y))
-##-   if (is.factor(ly)) ly <-  as.numeric(factor())
-  if (max(ly)!=lny)
-    stop("!plfitpairs! ncol of fitted values != number of levels in y")
-##  if (length(pch)<lny) pch <- 1:lny
-  lmx <- max(lpr)
-  l.panel <- function(x,y,indx,indy,ly,col, ssize) {
-    lix <- indx==ly
-    liy <- indy==ly
-    x[!(lix|liy)] <- NA
-    segments(x-ssize*lix,y-ssize*liy,x+ssize*lix,y+ssize*liy,col=col)
-    abline(1,-1,lty=3)
-  }
-  plmatrix(lpr, panel=l.panel, pch=ly, range.=c(0,lmx), main=main, ssize=ssize)
-##  "plfitpairs done"
-}
-## ============================================================================
 plmframes <- #f
   function(mfrow=NULL, mfcol=NULL, mft=NULL, byrow=TRUE, reduce = FALSE,
            oma=NULL, mar=NULL, mgp=NULL, plargs=NULL, ploptions=NULL, ...)
@@ -5421,19 +5396,6 @@ plmarginpar <- #f
              xpd=TRUE) , silent=TRUE)
   invisible(loldp)
 }
-##- plpar <-
-##-   function(x=NULL, list=NULL, default=NULL, ploptions = NULL,
-##-            assign = FALSE, marpar = TRUE, ...)
-##- {
-##-   if (is.null(ploptions)) ploptions <- pl.envir ## get(...)$ploptions
-##-   largs <- c(list, list(...))
-##-   lip <- c("mar","oma","mgp","cex")
-##-   if (length(largs)==0) largs <- ploptions[lip]
-##-   ## if ("csize"%in%names(largs)) largs$csize <- largs$csize*par("cex")
-##-   lplo <- ploptions(x=x, list=largs, default=default, ploptions=ploptions,
-##-                     assign=assign, marpar=marpar)
-##-   invisible(lplo)
-##- }
 ## ====================================================================
 i.getploption <- #f
   function(opt, opts=NULL)
@@ -5765,9 +5727,11 @@ usr.ploptions <- default.ploptions <-
     pch = 1:18, csize.pch=charSize, csize.plab=0.7, ## !?
     psize.max = 3,
     lty=c.ltyvalues, lwd=1, col=t.col, pcol=t.col, lcol=t.col,
-    ## group
-    group.pch=TRUE, group.col=TRUE, group.lty=TRUE,
-    group.lcol=TRUE,
+    ##
+    innerrange = TRUE, innerrange.factor=4, innerrange.ext=0.1,
+    innerrange.function = "robrange", 
+    plext=0.05, plsymbolext=0.03,
+    markextremes = markextremes, ## is a function...
     ## variables
     variables.pch=1:18, variables.col=c.colors, variables.lty=c.ltyvalues,
     variables.lcol=c.colors,
@@ -5775,41 +5739,44 @@ usr.ploptions <- default.ploptions <-
     censored.pch =  c(62, 60, 2, 23, 23, 6, 23, 23),
     ##                 >,  <, Delta, q,q, nabla, q,quadrat 
     censored.size=1.3, censored.pale = 0.3,
-    ## frame
-    axes = 1:2, axes.sure = NA,
-    mar = c(3,3,2,1)+0.2, mar.default = c(3,3,2,1)+0.2,
-    oma=rep(NA,4), oma.default=c(0,0,2,0)+0.2, 
-    margin.exp = c(1,0.8), margin.csize = c(1.2, 1), margin.line = c(2,0.8),
-    panelsep = 0.5, 
+    ## group
+    group.pch=TRUE, group.col=TRUE, group.lty=TRUE,
+    group.lcol=TRUE,
     ## title (mtext)
     title.line=c(2,0.8), title.adj = c(0.5,0.97,0.03),
     title.csize=c(1.3,1), title.csizemin=0.6, title.maxchars=80,
     sub = TRUE,
     ##
-    panel = "plpanel", 
-    date.ticks = c.dateticks, date.origin = 1970, date.format=c("y-m-d", "h:m:s"), 
     xlab = "", ylab = "",
-    stamp=1, doc=TRUE, 
     mframesmax = 30, 
-    innerrange = TRUE, innerrange.factor=4, innerrange.ext=0.1,
-    innerrange.function = "robrange", 
-    plext=0.05, plextext=0.03,
-    markextremes = markextremes, ## is a function...
+    panel = "plpanel", 
+    ## frame
+    axes = 1:2, axes.sure = NA,
+    mar = c(3,3,2,1)+0.2, mar.default = c(3,3,2,1)+0.2,
+    oma=rep(NA,4), oma.default=c(0,0,2,0)+0.2, 
+    margin.csize = c(1.2, 1), margin.line = c(2,0.8), 
+    margin.exp = c(1,0.8),
+    panelsep = 0.5, 
+    date.origin = 1970, date.format=c("y-m-d", "h:m:s"), 
+    ## time axes
+    timerangelim =
+      list(year=c(4,20), month=c(4,6), day=c(4,10), hour=4, min=4),
+    date.ticks = c.dateticks,
     ## grid
-    grid = TRUE, grid.lty = 1, grid.lwd = 1,
-    grid.col = "gray75",
+    grid = TRUE, grid.lty = 1, grid.lwd = 1, grid.col = "gray75",
     zeroline = TRUE, zeroline.lty = 1, zeroline.lwd = 1,
     zeroline.col = "gray50",
     ## refline
     refline = TRUE, 
     refline.lty = c(4,6), refline.lwd = c(1,0.7), refline.col = "darkgreen",
-    ## smoothline
-    smooth.lty = 1, smooth.lwd = c(2, 0.7),
-    smooth.col = "blue", smooth.pale = c(0.7,-0.3),
     ## smooth
     smooth = TRUE, 
     smooth.function = "smoothRegr", smooth.par = smoothpar, smooth.iter = 50,
     smooth.minobs = 8, smooth.band = TRUE,
+    ## smoothline
+    smooth.lty = 1, smooth.lwd = c(2, 0.7),
+    smooth.col = "blue", smooth.pale = c(0.7,-0.3),
+    smooth.xtrim = smoothxtrim,
     ## bars
     bar.midpointwidth = 1, bar.lty = 1, bar.lwd = c(2,1), bar.col = "burlywood4",
     ## factors
@@ -5817,10 +5784,6 @@ usr.ploptions <- default.ploptions <-
     mbox.minnobs = 6, mbox.minheight = 0.02, 
     mbox.colors = c(box="lightblue",med="blue",na="gray90",refline="magenta"),
     jitter = NA, jitter.minnobs = 6, jitter.factor = 2,
-    ## time axes
-    timerangelim = list(year=c(4,20), month=c(4,6), day=c(4,10), hour=4, min=4),
-    ## subset
-    subset.rgratio = 0.9,
     ## condquant
     condquant = TRUE, condprob.range = c(0,1), condquant.pale = c(0.5, 0.5),
     condquant.pch = c(3,4),
@@ -5829,18 +5792,19 @@ usr.ploptions <- default.ploptions <-
     ## plcond options
     plcond.panel = plpanelCond, 
     plcond.nintervals = 5, plcond.extend=0.5, ## condvarExtend,
-    plcond.col = c("darkgreen", "coral3", "blue", "magenta3"), plcond.pale = c(0.2,0.7),
-    plcond.csize = 0.8,
-    ## plcond.mix = c(0.3,1), 
+    plcond.col = c("darkgreen", "coral3", "blue", "magenta3"),
+    plcond.pale = c(0.2,0.7), plcond.csize = 0.8, 
+    ## subset
+    subset.rgratio = 0.9,
     ## plregr
     functionxvalues = 51,
-    smooth.xtrim = smoothxtrim,
     regr.plotselect = c( yfit=0, resfit=NA, absresfit = NA,
                         absresweights = NA, qq = NA,
                         leverage = 1, resmatrix = 1, qqmult = 1),
     regr.addcomp = FALSE,
     leveragelimit = c(NA, 0.99),
     cookdistlines = 1:2,
+    stamp=1, doc=TRUE, 
     printnotices = TRUE, debug = FALSE )
 ## -----------------------------------------------------------------------
 ploptionsCheck <-
@@ -5882,8 +5846,8 @@ ploptionsCheck <-
     stamp=list(clg(),cnr(c(-1,2))),
     mframesmax = cnr(c(4,100)), 
     innerrange = list(clg(),cnr()), innerrange.factor=cnr(c(0.5,10)),
-    innerrange.ext=cnr(c(0,0.5)),
-    plext=cnr(c(0,0.5)), plextext=cnr(c(0,0.5)),
+    innerrange.ext = cnr(c(0,0.5)),
+    plext = cnr(c(0,0.5)), plsymbolext = cnr(c(0,0.5)),
     ## plcond options
     plcond.panel = cfn(),
     plcond.ninterval = cnr(0,50), plcond.extend=list(cfn(), cnr(c(0,10))),

@@ -1,6 +1,6 @@
 \name{plres2x}
 \alias{plres2x}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Plot Residuals vs. Two Explanatory Variables}
 \description{
   Plot 2 variables, showing a third one with line symbols. Most suitable
@@ -8,10 +8,9 @@
 }
 \usage{
 plres2x(formula = NULL, reg = NULL, data = NULL, restrict = NULL,
-  size = 1, xlab = NULL, ylab = NULL, plextext = NULL, pale = 0.2,
+  size = 1, xlab = NULL, ylab = NULL, plsymbolext = NULL, pale = 0.2,
   plargs = NULL, ploptions = NULL, assign = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{formula}{a formula of the form \code{~x+y}, where
     \code{x, y} are the 2 variables shown by the coordinates of points,
@@ -34,7 +33,7 @@ plres2x(formula = NULL, reg = NULL, data = NULL, restrict = NULL,
     of the horizontal axis.}
   \item{xlab, ylab}{labels for horizontal and vertical axes.
     Default to the variable names (or labels)}.
-  \item{plextext}{scalar determining the proportion of the plotting area
+  \item{plsymbolext}{scalar determining the proportion of the plotting area
     that is used as an extension to accomodate the symbols representing
     the residuals}.
   \item{pale}{scalar between 0 and 1: The points are shown in a more
@@ -51,21 +50,17 @@ plres2x(formula = NULL, reg = NULL, data = NULL, restrict = NULL,
   }
   \item{\dots}{further arguments, passed to \code{plotregr.control}}
 }
-%%- \details{
-%%-   ~~ If necessary, more details than the description above ~~
-%%- }
+
 \value{
   none.
 }
 \author{Werner A. Stahel and Andreas Ruckstuhl}
-%\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+
 \examples{
   data(d.blast)
   t.r <- lm(log10(tremor)~location+log10(distance)+log10(charge),
             data=d.blast)
   plres2x(~distance+charge, t.r)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{hplot}
-\keyword{regression}% __ONLY ONE__ keyword per line
+\keyword{regression}

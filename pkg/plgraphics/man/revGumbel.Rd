@@ -25,16 +25,12 @@ rrevgumbel (n, location = 0, scale = 1)
   \item{n}{number of random variates, i.e., \code{\link{length}} of
     resulting vector of \code{rrevgumbel(..)}.}
 }
-%% \details{
-%% }
 \value{
   a numeric vector, of the same length as \code{x}, \code{q}, or
   \code{p} for the first three functions, and of length \code{n} for
   \code{rrevgumbel()}.
 }
-%% \references{
-%% }
-\author{Werner Stahel; partly inspired by package \pkg{VGAM}.
+\author{Werner A. Stahel; partly inspired by package \pkg{VGAM}.
   Martin Maechler for numeric cosmetic.
 }
 \seealso{

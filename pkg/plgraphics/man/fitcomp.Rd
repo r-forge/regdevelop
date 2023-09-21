@@ -1,6 +1,6 @@
 \name{fitcomp}
 \alias{fitcomp}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Component Effects for a Model Fit}
 \description{
   Determines effects of varying each of the given variables while all
@@ -13,7 +13,7 @@
 fitcomp(object, data = NULL, vars=NULL, transformed=FALSE, se = FALSE, 
   xm = NULL, xfromdata = FALSE, noexpand=NULL, nxcomp = 51)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{object}{a model fit, result of a fitting function}
   \item{data}{data frame in which the variables are found.
@@ -61,12 +61,8 @@ and the mode of factors).
   \item{se}{standard errors of the component effects, if required by the
     argument \code{se}. Same structure as \code{comp}}
 }
-%\references{ ~put references to the literature/web site here ~ }
+
 \author{Werner A. Stahel, ETH Zurich}
-%%- \note{ ~~further notes~~ 
-%%- 
-%%-  ~Make other sections like Warning with \section{Warning }{....} ~
-%%- }
 \seealso{\code{\link{predict}}}
 \examples{
 data(d.blast)
@@ -74,6 +70,4 @@ t.r <- lm(log10(tremor)~location+log10(distance)+log10(charge), data=d.blast)
 t.fc <- fitcomp(t.r,se=TRUE)
 t.fc$comp[1:10,]
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{regression}

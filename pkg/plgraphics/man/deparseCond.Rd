@@ -21,7 +21,7 @@ deparseCond(formula)
 \item{a}{(first) conditional variable, if any}
 \item{b}{second conditional variable, if any} 
 }
-\author{Werner Stahel
+\author{Werner A. Stahel
 }
 \note{This function is typically used for conditional plots
   and mixed models

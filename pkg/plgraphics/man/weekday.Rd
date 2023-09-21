@@ -5,13 +5,13 @@
 }
 \description{From Dates, obtain the day of the week or
   the year, month and day
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+
 }
 \usage{
 weekday(date, month = NULL, day = NULL, out = NULL, factor = FALSE)
 ymd(date)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{date}{date(s), given as a \code{Date} object, a character object
     that can be converted into a \code{Date}, or as julian,

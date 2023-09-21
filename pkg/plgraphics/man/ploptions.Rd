@@ -85,22 +85,6 @@ default.ploptions
     \item{colors:}{ The palette to be used by pl functions}
     \item{csize:}{ General character size, relative to \code{par("cex")}}
     \item{pale:}{ default argument for \code{\link{colorpale}}}
-    \item{linewidth:}{ vector of \code{lwd} values to be used for
-      the different line types (\code{lty}). The package
-      sets \code{lwd} to a value
-      \code{ploptions("linewidth")[lty]*lwd} intending to balance
-      the visual impact of the different line types, e.g.,
-      to allow a dotted line to make a similar impression as a solid
-      line.}
-    \item{ticklength:}{ vector of 4 scalars: tickmark length,
-      corresponding to \code{par("tcl")}. The first 2 elements
-      define the length of the regular tickmarks, the other two,
-      of the ``small'' tichmarks given by
-      \code{attr(ticksat, "small")} (\code{ticksat} is a possible
-      attribute of each variable).
-      There are two elements each in order to define tickmarks that
-      cross the axis.
-    }
     \item{tickintervals:}{ vector of length 2. The first element is the
       desired number of tick intervals for axes, to be used as argument
       \code{n} in \code{\link{pretty}}.

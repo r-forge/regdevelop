@@ -1,6 +1,6 @@
 \name{plcoord}
 \alias{plcoord}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{ Determines Values for Plotting with Limited "Inner" Plot Range }
 \description{
   For plots with an "inner plot range" (see Details) this function
@@ -10,7 +10,7 @@
 plcoord(x, range = NULL, innerrange.factor = NULL,
   innerrange.ext = NULL, plext = NULL, ploptions = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{ data to be represented }
   \item{range}{ vector of 2 elements giving the inner plot range. Data
@@ -49,8 +49,8 @@ plcoord(x, range = NULL, innerrange.factor = NULL,
   \code{range} or the values determined by default.}
   \item{attr(,"nouter")}{the number of modified observations}
 }
-% \references{ ~put references to the literature/web site here ~ }
-\author{Werner Stahel}
+
+\author{Werner A. Stahel}
 \seealso{ \code{\link{robrange}} }
 \examples{
   set.seed(0)

@@ -1,6 +1,6 @@
 \name{leverage}
 \alias{leverage}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Get leverage values}
 \description{
   Extracts the leverage component of a fit object using the
@@ -9,7 +9,7 @@
 \usage{
 leverage(object)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{object}{
     an object containing a component \code{fit$leverage} and possibly
@@ -47,7 +47,4 @@ r.blast <-
   lm(log10(tremor)~location+log10(distance)+log10(charge), data=d.blast)
 showd(leverage(r.blast))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{regression}
-% \keyword{diagnostics}

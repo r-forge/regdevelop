@@ -17,8 +17,10 @@
     "amsmath"
     "pldescr")
    (LaTeX-add-labels
-    "multiplex"
+    "sec:multipleyx"
+    "plyx-multiplex"
     "intro.plscale"
+    "sec:censored"
     "options.smooth"
     "plproperties"
     "options.dateaxis"))

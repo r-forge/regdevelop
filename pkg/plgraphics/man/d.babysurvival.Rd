@@ -32,14 +32,9 @@
     \item{\code{Weight}}{birth weight}
   }
 }
-%%- \details{
-%%- %%  ~~ If necessary, more details than the __description__ above ~~
-%%- }
 \source{Hibbard (1986)
 }
-%% \references{
-%% %%  ~~ possibly secondary sources and usages ~~
-%% }
+
 \examples{
 data(d.babysurvival)
 summary(d.babysurvival)

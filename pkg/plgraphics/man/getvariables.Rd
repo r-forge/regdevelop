@@ -32,9 +32,6 @@ getvarnames(formula, data = NULL, transformed = FALSE)
     used to create extra columns in the resulting data.frame, with
     names between dots such as '".offset."'}
 }
-%%- \details{
-%%- %%  ~~ If necessary, more details than the description above ~~
-%%- }
 \value{
   For \code{getvarnames}:
     names of all variables (\code{transformed=FALSE})
@@ -64,7 +61,5 @@ dd <- getvariables(log10(tremor)~log10(distance)*log10(charge),
                    data=d.blast, by=location)
 str(dd)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{auxiliary}% use one of  RShowDoc("KEYWORDS")
+\keyword{auxiliary}
 

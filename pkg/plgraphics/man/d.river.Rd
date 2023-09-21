@@ -25,9 +25,6 @@
     \item{\code{ra}}{radiation}
   }
 }
-%%- \details{
-%%-   The measurements stem from a station in the river Glatt near Zurich.
-%%- }
 \source{
   The measurements have been collected in the river Glatt near Zurich.
 }
@@ -36,9 +33,6 @@
   The date-time information is contained in the variables \code{date} and
   \code{hour}.
 }  
-%%- \references{
-%%- %%  ~~ possibly secondary sources and usages ~~
-%%- }
 \examples{
 data(d.river)
 range(d.river$date)

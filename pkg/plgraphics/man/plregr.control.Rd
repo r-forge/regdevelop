@@ -15,12 +15,12 @@ plregr.control(x, data = NULL, xvar = TRUE, transformed = FALSE,
   leveragelimit = NULL, condprob.range = NULL,
   testlevel = 0.05,
   refline = TRUE, 
-  smooth = 2, %% smoothPar = NA, smoothIter = NULL,
+  smooth = 2, 
   smooth.sim = NULL,
   xlabs = NULL, reslabs = NULL, markextremes = NULL,
   mf = TRUE, mfcol = FALSE, multnrow = 0, multncol = 0, marmult = NULL,
   oma = NULL, assign = TRUE, ...)
-} %%    jitter = TRUE, jitterbinary = TRUE, mbox = TRUE,
+} 
 \arguments{
   \item{x}{an object (result of a call to a model fitting function
     such as \code{lm, glm, ...}. This is the only argument
@@ -71,8 +71,6 @@ plregr.control(x, data = NULL, xvar = TRUE, transformed = FALSE,
   \item{smooth}{if TRUE (or 1), smooths are added to the plots where
     appropriate. If \code{==2}, smmooths to positive and negative
     residuals-from-smooth are also shown.}
-%%-   \item{smoothPar}{argument to the smooth function. In case of default
-%%-     smooth function, it is the argument \code{span} of \code{loess}}
   \item{smooth.sim}{number of simulated smooths added to each plot.
     If NULL (the default) 19 simulated smooths will be generated if
     possible and sensible (i.e., none if \code{smooth.group} is set).}
@@ -103,9 +101,7 @@ plregr.control(x, data = NULL, xvar = TRUE, transformed = FALSE,
   \item{...}{further arguments in the call, to be ignored by
     'plotregr.control'}
 }
-%%- \details{
-%%- %%  ~~ If necessary, more details than the description above ~~
-%%- }
+
 \value{A list containing all the items needed to specify plotting
   in \code{\link{plregr}} and \code{\link{plresx}}
 }
@@ -131,7 +127,5 @@ showd(plargs$pdata)
 names(plargs)
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{utilities}
 

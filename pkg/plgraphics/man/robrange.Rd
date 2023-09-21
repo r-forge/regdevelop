@@ -1,6 +1,6 @@
 \name{robrange}
 \alias{robrange}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{ Robust Range of Data }
 \description{
   Determines a robust range of the data on the basis of the trimmed mean
@@ -9,7 +9,7 @@
 \usage{
 robrange(data, trim = 0.2, fac = 5.0, na.rm=TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{data}{ a vector of data. Missing values are dropped }
   \item{trim}{ trimming proportion }
@@ -26,14 +26,12 @@ robrange(data, trim = 0.2, fac = 5.0, na.rm=TRUE)
 \value{
   The robust range.
 }
-%\references{ ~put references to the literature/web site here ~ }
-\author{Werner Stahel, ETH Zurich}
+
+\author{Werner A. Stahel}
 \seealso{ \code{\link{plcoord}} }
 \examples{
   x <- c(rnorm(20),rnorm(3,5,20))
   robrange(x)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{univar}
 

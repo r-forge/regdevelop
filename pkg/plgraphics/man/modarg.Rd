@@ -1,6 +1,6 @@
 \name{modarg}
 \alias{modarg}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Modify default arguments according to named vector or list
 }
@@ -21,9 +21,7 @@ modarg(arg = NULL, default)
   \item{default}{named vector or list of default settings
   }
 }
-%% \details{
-%% 
-%% }
+
 \value{
   Same as the argument 'default' with elements replaced according to
   'arg'

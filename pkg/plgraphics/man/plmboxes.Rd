@@ -201,15 +201,8 @@ Specific arguments for 'plmbox':
     multiplied for plotting, 
   and, as attributes, the quantiles and widths used to draw the boxes
 }
-%% \references{
-%% %% ~put references to the literature/web site here ~
-%% }
 \author{Werner A. Stahel
 }
-%% \note{
-%% %%  ~~further notes~~
-%% }
-
 \seealso{
 \code{\link{boxplot}}
 }

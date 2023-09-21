@@ -29,9 +29,6 @@ plscale(x, plscale = "log10", ticksat = NULL, logscale = NULL,
   \item{ploptions}{See \code{\link{ploptions}}
   }
 }
-%%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%%}
 \value{
   The \code{x} data is returned, augmented by the following attributes:
   \describe{
