@@ -8,7 +8,7 @@
 }
 \usage{
 plres2x(formula = NULL, reg = NULL, data = NULL, restrict = NULL,
-  size = 1, xlab = NULL, ylab = NULL, plsymbolext = NULL, pale = 0.2,
+  size = 1, xlab = NULL, ylab = NULL, pale = 0.2,
   plargs = NULL, ploptions = NULL, assign = TRUE, ...)
 }
 \arguments{
@@ -33,9 +33,6 @@ plres2x(formula = NULL, reg = NULL, data = NULL, restrict = NULL,
     of the horizontal axis.}
   \item{xlab, ylab}{labels for horizontal and vertical axes.
     Default to the variable names (or labels)}.
-  \item{plsymbolext}{scalar determining the proportion of the plotting area
-    that is used as an extension to accomodate the symbols representing
-    the residuals}.
   \item{pale}{scalar between 0 and 1: The points are shown in a more
     pale color than the segments as determined by
     \code{\link{colorpale}} with argument \code{pale=pale}.}

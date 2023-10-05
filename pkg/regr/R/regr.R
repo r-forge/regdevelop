@@ -1,3 +1,4 @@
+
 ##  regr.R  Functions that are useful for regression, W. Stahel,
 ## ==========================================================================
 regr <- #F
@@ -224,7 +225,7 @@ regr <- #F
   if (length(lreg$AIC)==0) {
     laic <- try(extractAIC(lreg), silent=TRUE)
     if (!inherits(laic, "try-error"))
-      lreg$AIC <- last(laic) ## at least for lmrob has 2 elements
+      lreg$AIC <- tail(laic,1) ## at least for lmrob has 2 elements
   }
   lreg$response <- lyy
 ##-     if (length(lnaaction)) {
@@ -1919,7 +1920,7 @@ add1.regr <- #F
   ## ----------------------------------------------------------------------
   if (!is.null(scope)) {
     if (is.character(scope)) scope <- paste(scope,collapse="+")
-    if (is.formula(scope)) scope <- last(as.character(scope))
+    if (is.formula(scope)) scope <- tail(as.character(scope),1)
     scope <- as.formula(paste("~ ",formula(object)[3],"+",scope))
   }
   drop1.regr(object, scope=scope, scale=scale, test=test, k=k,
@@ -2867,7 +2868,7 @@ plot.regrAllEqns <- #F
     llab <- x$codes
     if (is.logical(legend)&&legend) {
       lcmin <- sapply(split(lcr,ldf), min)
-      legend <- if (lcmin[1]>last(lcmin)) "bottomleft" else "bottomright"
+      legend <- if (lcmin[1]>tail(lcmin,1)) "bottomleft" else "bottomright"
     }
     if (is.character(legend)) {
       if (legend%nin%c("topleft","topright","bottomleft","bottomright"))
@@ -3300,10 +3301,10 @@ shift <- function(x, k = 1)
   if(length(dim(x))) {
     lna <- matrix(NA,abs(k),ncol(x))
     if (is.data.frame(x)) lna <- setNames(as.data.frame(lna), names(x))
-    if (k>0) rbind(lna, last(x,-k)) else rbind(x[-(1:(-k)),], lna)
+    if (k>0) rbind(lna, head(x,-k)) else rbind(x[-(1:(-k)),], lna)
   } else {
-    if (k>0) c(rep(NA, k), last(x, -k))
-    else c(last(x, k), rep(NA, -k))
+    if (k>0) c(rep(NA, k), head(x, -k))
+    else c(tail(x, k), rep(NA, -k))
   }
 }
 ## --------------------------------------------------------------------------

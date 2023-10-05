@@ -339,7 +339,8 @@ pl.control <- #f
   ## smooth color
   lsmcol <- ploptions$smooth.col
   lgrcol <- ploptions$group.col
-  if (is.numeric(lsmcol)) ploptions$smooth.col <- lsmcol <- lgrcol[1+(lsmcol-1)%%lsmcol]
+  if (is.numeric(lsmcol))
+    ploptions$smooth.col <- lsmcol <- lgrcol[1+(lsmcol-1)%%lsmcol]
   if (length(lsmcol)==1)
     ploptions$smooth.col[2] <-
       colorpale(lsmcol, ploptions$smooth.pale[1])
@@ -451,7 +452,9 @@ genvarattributes <- #f
   ## varlabel
   llb <- NULL
   ## jitter (prep)
-  ljt <- i.getploption("jitter")
+  ljt <-
+    i.def(i.getploption("jitter"),
+          ifelse(i.getploption("factor.show")=="jitter", "iffactor", FALSE) )
   lljt <- length(ljt)
   if (lljt)
     if (!is.list(ljt))
@@ -506,15 +509,15 @@ genvarattributes <- #f
         ## jitter
         if(replace || is.null(attr(lvv, "numvalues", exact=TRUE))) {
           lij <- ljt[lv]
-          if (is.na(lij))
-            lij <- i.getploption("factor.show")=="jitter"&&
-              max(table(lvv),rm.na=TRUE)>i.getploption("jitter.minnobs")
+          lij <- ((u.true(lij) || lij=="iffactor") &
+              max(table(lvv),rm.na=TRUE)>=i.getploption("jitter.minnobs"))
           attr(lvv, "numvalues") <-
-            if (u.notfalse(lij))
-              jitter(as.numeric(lvv), factor=jitter.factor,
-                     amount=if(is.numeric(lij)) lij else NULL)
-          else  as.numeric(lvv)
-          ## attr(lvv, "plrange") <- c(0.5, length(levels(lvv))+0.5)
+            if (u.notfalse(lij)) {
+              ldif <- diff(sort(as.numeric(lvv)))
+              lamdf <- quantile(ldif[ldif>0], 0.2)*jitter.factor/2
+              jitter(as.numeric(lvv), 
+                     amount=if(is.numeric(lij)) lij else lamdf)
+            } else  as.numeric(lvv)
         }
       }
       attr(lvv, "zeroline") <- i.def(attr(lvv, "zeroline"), FALSE)
@@ -809,8 +812,7 @@ function(x, transformed = FALSE, plscale = "log10", inverse = NULL,
 ## =====================================================================
 plframe <- #f
   function(x=NULL, y=NULL, xlab=NULL, ylab=NULL, xlim = NULL, ylim = NULL, 
-           mar = NULL, showlabels = TRUE, plext=NULL, plsymbolext=NULL,
-           axcol = rep(1,4), 
+           mar = NULL, showlabels = TRUE, plext=NULL, axcol = rep(1,4), 
            plargs = NULL, ploptions = NULL, marpar = NULL, xy=NULL, ...)
 {
   ## -------------------
@@ -846,7 +848,6 @@ plframe <- #f
   if (length(ploptions)==0) ploptions <- plargs$ploptions
   lcsize <- i.getploption("csize")
   lext <- rep(i.def(i.getplopt(plext),0.03), length=4)
-  plsymbolext <- rep(i.def(plsymbolext, 0, i.getploption("plsymbolext"), 0), length=4)
   ## --- margins
   if (!inherits(marpar, "i.marpar"))
     marpar <- i.getmarpar(marpar, mar=mar, plargs=plargs)
@@ -985,14 +986,11 @@ plaxis <- #f
   lmfg <- par("mfg")
   lIouter <-
     switch(side, lmfg[1]==lmfg[3], lmfg[2]==1, lmfg[1]==1, lmfg[2]==lmfg[4])
-  ##  lsure <- rep(i.def(i.def(sure, i.getploption("axes.sure")), FALSE), length=4)
   lmgsize <- rep(i.getploption("margin.csize"), length=2)
   llabsize <- lcsize*lmgsize[1]
   lticksize <- lcsize*lmgsize[2]
   lmar <- lcsize*marpar$mar
-  ## lmart <- lmar + lIouter*lcsize*marpar$oma
   lmgp <- lcsize*c(marpar$margin.line,0)
-  ## loldp <- NULL
   lparcex <- lcsize*par("cex")
   ## ---
   lx <- i.def(i.def(attr(x,"numvalues", exact=TRUE),
@@ -1011,10 +1009,9 @@ plaxis <- #f
     else ""
   col <- i.def(col, 1)
   ## --- do it!
-  ## if((showlabels && (lmart[1] >= lmgp[1]+1 || lIouter)) || showlabels > 1)
   if( lIouter || showlabels >= 1)
     mtext(varlabel, side=side, line=lmgp[1], xpd=TRUE, col=col,
-          cex=llabsize*lparcex)
+          cex=llabsize*lparcex, adj=i.def(attr(varlabel, "adj"), 0.5))
   ## ticks and tick labels
   if (length(lat)<=1) {
     ltk <- plticks(range, ploptions=ploptions)
@@ -1762,13 +1759,15 @@ plrefline <- #f
   llcol <- rep(i.getploption("refline.col"), length=2)
   lusr <- par("usr")
   ## ---
-  if (missing(refline)|u.isnull(refline)) {
+  if (missing(refline)||u.isnull(refline)) {
     warning(":plrefline: argument refline is NULL. No refline")
     return()
   }
+  ## a single refline is turned into a list of length 1
   if (is.list(refline)&&any(c("coefficients", "coef", "x", "y")%in%names(refline)))
     refline <- list(refline)
   if (!is.list(refline)) refline <- list(refline)
+  ##
   for (lirfl in seq_along(refline)) {
     lrfl <- refline[[lirfl]]
     lrfyb <- NULL
@@ -2678,8 +2677,6 @@ plyx <- #f
           lyg <- ly
           ## 'by' group
           if (lIby) {
-##-             plargs$ploptions$axes.sure <-
-##-               i.def(i.getploption("axes.sure"),c(TRUE,FALSE))
             if (lmar[3]>=1 | par("mfg")[1]==1) 
               pltitle(main="", sub=lgrplab[lg], ##paste(lgrpname, lgrplab[lg], sep=" "),
                       outer.margin=FALSE, xpd=TRUE, adj=ltadj[1], ## line=lgrptitline,
@@ -3961,7 +3958,6 @@ gensmooth <- #f
                   par=lpar[1], iterations=lsmiter, ...)
       if (is.list(lsm)) lsm <- fitted(lsm)
       if (length(lsm)==0) {
-  ##      browser()
         notice("gensmooth: too few observations for a smooth",
                printnotices=ploptions$printnotices)
       } else  lysm[lig,j] <- lsm^(1/power)
@@ -3980,7 +3976,6 @@ gensmooth <- #f
                         weights=if (lIwgt) lwgto[lig[lii]] else NULL,
                         par=lparband, iterations=liter)
         if (length(lsmh)==0) {
-   ##       browser()
           notice("gensmooth: too few observations for a 'high' smooth",
                  if(lngrp>1) paste(" for group ",lgr),
                  printnotices=ploptions$printnotices )
@@ -4956,14 +4951,15 @@ plmboxes.default <- #f
       ifelse(is.numeric(labelsperp), min(max(1,labelsperp),20), 10)
     lxmar <- c(i.def(xmar, NA), NA,NA)[1:3]
     if (is.na(lxmar[1]))
-      lxmar[1] <- ifelse(labelsperp,
-                           2 + 0.5*min(max(nchar(llev)), lmaxnchar), lxmardef) 
+      lxmar[1] <-
+        ifelse(labelsperp,
+               2 + 0.5*min(max(nchar(llev)), lmaxnchar), lxmardef) 
     lmar[1+lhoriz] <- lxm1 <- max(lxmar[1], lmar[1+lhoriz], na.rm=TRUE)
-    lxmline <- c(ifelse(is.na(lxmar[2]), max(lxm1-1, marpar$margin.line[1]), lxmar[2]),
-                 ifelse(is.na(lxmar[3]), marpar$margin.line[2], lxmar[3]) )
-    ##  if (is.na(lmararg[4]))  lmararg[4] <- if (4%in%i.getploption("axes")) lmar[4] else 1
-  ##  plargs$ploptions$mar <- lmar <- ifelse(is.na(lmararg), lmar, lmararg)
-    ## lmgp <- lcsize*c(lmarp[side,c("line.label","line.tickmark")],0)
+    lxmline <-
+      c(ifelse(is.na(lxmar[2]), max(lxm1-1, marpar$margin.line[1]),
+               lxmar[2]),
+        ifelse(is.na(lxmar[3]), marpar$margin.line[2], lxmar[3]) )
+    ##
     marpar$mar <- lmar
     plargs$plmarpar <- marpar
     loldp <- par(cex=lcsize*par("cex"), mar=lmar)
@@ -4977,6 +4973,7 @@ plmboxes.default <- #f
     llev <- levels(x[,1])
     attr(lx, "ticklabelsat") <- attr(lx, "ticksat") <- seq_along(llev)
     attr(lx, "ticklabels") <- llev
+    attr(lx, "varlabel") <- structure(attr(lx, "varlabel"), adj=1)
     ## ---------------------------------
     if (lhoriz)
       plframe(ly, xlim, plargs=plargs, ploptions=ploptions,
@@ -5059,7 +5056,7 @@ plcoordtrsf <- #f
 ## ====================================================================
 plres2x <- #f
   function(formula=NULL, reg=NULL, data=NULL, restrict=NULL, size = 1,
-           xlab = NULL, ylab= NULL, plsymbolext = NULL, pale = 0.2,
+           xlab = NULL, ylab= NULL, pale = 0.2,
            plargs = NULL, ploptions = NULL, assign = TRUE, ...)
 {
 ## Purpose:  plot residuals vs. two x`s
@@ -5157,8 +5154,9 @@ plres2x <- #f
 ##-   attr(ly, "plrange") <- llrg + c(-1,1)*diff(llrg)* 2*lratio
   ##--
   ##---------------
-  lplxx <- i.getploption("plsymbolext") * 2 * size
-  plframe(lx, ly, xlab=xlab[1], ylab=ylab[1], plsymbolext=lplxx,
+  ##  lplxx <- i.getploption("plsymbolext") * 2 * size
+  lplext <- i.getploption("plext") + 0.05*size
+  plframe(lx, ly, xlab=xlab[1], ylab=ylab[1], plext=lplext,
           ploptions=ploptions, xy=FALSE) ## !!!? marpar
   ##--- draw symbols: ---
   lpanel(lx, ly, zz=lzj, lwd=llwd, col=lpcol)
@@ -5730,8 +5728,7 @@ usr.ploptions <- default.ploptions <-
     ##
     innerrange = TRUE, innerrange.factor=4, innerrange.ext=0.1,
     innerrange.function = "robrange", 
-    plext=0.05, plsymbolext=0.03,
-    markextremes = markextremes, ## is a function...
+    plext=0.05, markextremes = markextremes, ## is a function...
     ## variables
     variables.pch=1:18, variables.col=c.colors, variables.lty=c.ltyvalues,
     variables.lcol=c.colors,
@@ -5751,7 +5748,7 @@ usr.ploptions <- default.ploptions <-
     mframesmax = 30, 
     panel = "plpanel", 
     ## frame
-    axes = 1:2, axes.sure = NA,
+    axes = 1:2, 
     mar = c(3,3,2,1)+0.2, mar.default = c(3,3,2,1)+0.2,
     oma=rep(NA,4), oma.default=c(0,0,2,0)+0.2, 
     margin.csize = c(1.2, 1), margin.line = c(2,0.8), 
@@ -5759,8 +5756,8 @@ usr.ploptions <- default.ploptions <-
     panelsep = 0.5, 
     date.origin = 1970, date.format=c("y-m-d", "h:m:s"), 
     ## time axes
-    timerangelim =
-      list(year=c(4,20), month=c(4,6), day=c(4,10), hour=4, min=4),
+##-     timerangelim =
+##-       list(year=c(4,20), month=c(4,6), day=c(4,10), hour=4, min=4),
     date.ticks = c.dateticks,
     ## grid
     grid = TRUE, grid.lty = 1, grid.lwd = 1, grid.col = "gray75",
@@ -5772,7 +5769,7 @@ usr.ploptions <- default.ploptions <-
     ## smooth
     smooth = TRUE, 
     smooth.function = "smoothRegr", smooth.par = smoothpar, smooth.iter = 50,
-    smooth.minobs = 8, smooth.band = TRUE,
+    smooth.minobs = 8, smooth.band = FALSE,
     ## smoothline
     smooth.lty = 1, smooth.lwd = c(2, 0.7),
     smooth.col = "blue", smooth.pale = c(0.7,-0.3),
@@ -5783,7 +5780,7 @@ usr.ploptions <- default.ploptions <-
     factor.show = "mbox", backback = TRUE,
     mbox.minnobs = 6, mbox.minheight = 0.02, 
     mbox.colors = c(box="lightblue",med="blue",na="gray90",refline="magenta"),
-    jitter = NA, jitter.minnobs = 6, jitter.factor = 2,
+    jitter = NA, jitter.minnobs = 6, jitter.factor = 0.8,
     ## condquant
     condquant = TRUE, condprob.range = c(0,1), condquant.pale = c(0.5, 0.5),
     condquant.pch = c(3,4),
@@ -5837,7 +5834,7 @@ ploptionsCheck <-
     title.csize=cnr(c(0.1,5)), title.csizemin=cnr(c(0.1,2)), title.adj = cnr(c(-0.2,1.2)),
     title.line=cnr(c(-5,5)), title.maxchars=cnr(c(5,200)),
     sub = list(clg(),cch()),
-    axes=list(cnr(c(1:4), na.ok=TRUE),clg()), axes.sure=clg(na.ok=TRUE),
+    axes=list(cnr(c(1:4), na.ok=TRUE),clg()), 
     mar=cnr(c(0,20), na.ok=TRUE), mar.default=cnr(c(0,20), na.ok=FALSE),
     oma=cnr(c(0,10), na.ok=TRUE), oma.default=cnr(c(0,10), na.ok=FALSE),
     mgp=cnr(c(0,5), na.ok=FALSE, length=3),
@@ -5847,7 +5844,7 @@ ploptionsCheck <-
     mframesmax = cnr(c(4,100)), 
     innerrange = list(clg(),cnr()), innerrange.factor=cnr(c(0.5,10)),
     innerrange.ext = cnr(c(0,0.5)),
-    plext = cnr(c(0,0.5)), plsymbolext = cnr(c(0,0.5)),
+    plext = cnr(c(0,0.5)), markextremes = list(cfn(), cnr(c(0,0.5))), 
     ## plcond options
     plcond.panel = cfn(),
     plcond.ninterval = cnr(0,50), plcond.extend=list(cfn(), cnr(c(0,10))),
@@ -5876,9 +5873,8 @@ ploptionsCheck <-
     mbox.minnobs = cnr(c(1,Inf)), mbox.minheight = cnr(c(0,0.1)),
     mbox.colors = ccl(),
     jitter = clg(), jitter.minnobs = cnr(c(1,Inf)),
-    jitter.factor = cnr(c(0.1,5)),
+    jitter.factor = cnr(c(0.1,1)),
     ## time axes
-    ## timerangelim = c(year=365*4, month=30*12, day=4),
     ## subset
     subset.rgratio = cnr(c(0.1,1)),
     ## condquant

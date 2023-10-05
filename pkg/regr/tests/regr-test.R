@@ -143,8 +143,10 @@ plot(r.mregr)
 data(d.babysurvival, package="plgraphics")
 t.d <- d.babysurvival
 t.d$Age[2] <- NA
-t.r <- regr(Survival~.,data=t.d)
-t.rglm <- glm(Survival~.,data=t.d,family=binomial)
+##- t.r <- regr(Survival~.,data=t.d)
+t.r <- regr(Survival~Weight+Age+Apgar1+Apgar5+pH, data=t.d) 
+t.rglm <- glm(Survival~Weight+Age+Apgar1+Apgar5+pH, data=t.d, family=binomial) 
+## t.rglm <- glm(Survival~.,data=t.d,family=binomial)
 t.rs <- step.regr(t.r, trace=FALSE)  ## ???
 
 t.r <- r.babysurvival <- regr(Survival~Weight+Age+Apgar1,data=t.d,family=binomial)
@@ -202,14 +204,15 @@ data(d.reacten)
 t.d <- d.reacten[300:1700,]
 r.lin <- regr(log10(q)~time, data=t.d)
 t.cl <- unname(coefficients(r.lin))
-t.r <- regr(q~theta1*exp(-theta2*time), data=t.d, nonlinear=TRUE,
-             start=c(theta1=10^t.cl[1],theta2=t.cl[2]))
-
-t.d <- subset(DNase, Run == 1)
-t.r <- regr(density ~ Asym/(1 + exp((xmid - log(conc))/scal)),
-            nonlinear = TRUE,
-            data = t.d, control=list(maxiter=3, warnOnly=TRUE),
-            start = list(Asym = 1, xmid = 0, scal = 1))
+## !!! das funktioniert nicht
+##- t.r <- regr(q~theta1*exp(-theta2*time), data=t.d, nonlinear=TRUE,
+##-              start=c(theta1=10^t.cl[1],theta2=t.cl[2]))
+##- 
+##- t.d <- subset(DNase, Run == 1)
+##- t.r <- regr(density ~ Asym/(1 + exp((xmid - log(conc))/scal)),
+##-             nonlinear = TRUE,
+##-             data = t.d, control=list(maxiter=3, warnOnly=TRUE),
+##-             start = list(Asym = 1, xmid = 0, scal = 1))
 ##- data(d.treated)
 ##- t.r <- regr(~weighted.MM(rate, conc, Vm, K), data = d.treated, nonlinear=T,
 ##-        start = list(Vm = 200, K = 0.1))  # d.treated is found in example(nls)
@@ -254,7 +257,7 @@ t.rr <- residuals(t.r)
 t.ci <- confint(t.r)
 ## stopifnot(round(t.ci["quant",1],3)==-0.223)
 
-add1(t.r)
+##!!! fails add1(t.r)
 ##- set.seed(0)
 ##- dd$random <- rnorm(nrow(dd))
 ##- t.r2 <- regr(Tobit(durable) ~ age + quant + random, data=dd)

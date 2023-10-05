@@ -16,7 +16,7 @@ importFrom("stats",
            resid, rnorm, rpois, runif, sd, setNames,
            symnum, terms, uniroot, update, update.formula, 
            var, vcov)
-importFrom("utils", getS3method, recover, str)
+importFrom("utils", getS3method, head, recover, str, tail)
 importFrom("graphics", plot, abline, axis, box, frame, legend,
            lines, matlines, mtext, par, points, polygon,
            segments, sunflowerplot, symbols, text)
@@ -24,7 +24,7 @@ importFrom("grDevices", col2rgb, grey, palette,
            rgb)
 importFrom("plgraphics", asinp, dropNA, fitted.regrpolr,
            getvariables, 
-           last, leverage, linear.predictors, linpred,  
+           leverage, linear.predictors, linpred,  
            nainf.exclude, "%nin%", ## notice, this keeps giving me an error
            plregr, predict.regrpolr,
            ## drevgumbel, prevgumbel, qrevgumbel, rrevgumbel, 

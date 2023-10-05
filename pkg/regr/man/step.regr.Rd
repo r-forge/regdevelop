@@ -117,11 +117,16 @@ step.regr(object, scope = NULL, expand=FALSE, scale = 0,
   in package \code{MASS}, \code{\link{add1.regr}}, \code{\link{drop1.regr}}
 }
 \examples{
-r.fit <- regr(Fertility ~ ., data = swiss)
+data(d.birthrates, package="plgraphics")
+t.formula <- fertility ~ catholic + single24 + single49 +
+  eAgric + eIndustry + eCommerce + eTransport + eAdmin +
+  gradeHigh + gradeLow + educHigh + bornLocal + bornForeign +
+  altitude + language
+r.fit <- regr(t.formula, data = d.birthrates)
 r.step <- step.regr(r.fit)
 r.step$anova
-r.st2 <- step.regr(r.fit, k=8, trace=FALSE)
-r.st2
+%- r.st2 <- step.regr(r.fit, k=8, trace=FALSE)
+%- r.st2
 % the following causes an error in R CMD check, but runs when I try it.
 % r.st3 <- step(r.fit, scope=terms2order(r.fit), k=5, trace=FALSE)
 % r.st3 

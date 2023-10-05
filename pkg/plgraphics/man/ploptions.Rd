@@ -191,7 +191,7 @@ default.ploptions
 }
 \examples{
 ## get options
-ploptions(c("jitterFactor", "gridlines"))
+ploptions(c("jitter.factor", "gridlines"))
 ploptions("stamp")  ## see example(stamp)
 ploptions()  ## all pl options, see '?ploptions.list'
 

@@ -19,10 +19,11 @@ warn()
 \author{Werner A. Stahel, ETH Zurich}
 \seealso{\code{\link{warnings}}}
 \examples{
-##  not to be run as an example()
-##  for (i in 3:6)
-##    m <- matrix(1:7, 3,i)
-##  warn()
+for (i in 3:6) m <- matrix(1:7, 3, i)
+
+suppressWarnings(  ## or set  options(warn=-1)
+for (i in 3:6) m <- matrix(1:7, 3, i))
+warn()
 }
 
 \keyword{utilities}

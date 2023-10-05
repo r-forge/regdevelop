@@ -12,7 +12,7 @@
 \usage{
 plframe(x = NULL, y = NULL, xlab = NULL, ylab = NULL,
   xlim = NULL, ylim = NULL, mar = NULL, showlabels = TRUE, 
-  plext = NULL, plsymbolext = NULL, axcol = rep(1, 4), 
+  plext = NULL, axcol = rep(1, 4), 
   plargs = NULL, ploptions = NULL, marpar = NULL, xy = NULL, ...)
 
 pltitle(main=NULL, sub=NULL, csize=NULL, csizemin=NULL, 
@@ -40,9 +40,6 @@ plaxis(side, x=NULL, showlabels=TRUE, range=NULL, varlabel=NULL, col=1,
     (by setting \code{xpd=TRUE}).}
   \item{plext}{extension of the plotting area beyond the range of the
     data. 
-  }
-  \item{plsymbolext}{extension of the plotting area beyond the possibly
-    already extended range. This helps to accomodate sybmbols.
   }
   \item{axcol}{colors for drawing axes scales
   }

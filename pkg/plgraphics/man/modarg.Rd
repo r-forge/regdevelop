@@ -2,7 +2,7 @@
 \alias{modarg}
 
 \title{
-Modify default arguments according to named vector or list
+Modify default arguments according to a named vector or list
 }
 \description{
   Makes it easy to modify one or a few elements of a vector or list
@@ -24,16 +24,19 @@ modarg(arg = NULL, default)
 
 \value{
   Same as the argument 'default' with elements replaced according to
-  'arg'
+  'arg'.
+  See the source code of \code{plmboxes.default} for a typical application.
 }
 \author{Werner A. Stahel}
 
 \examples{
-modarg(2, list(a=4, b="bb", c=NA))
-modarg(c(b=2, d=6), c(a="4", b="bb", c=NA))
-## This leads to a warning
+modarg(c(b="B", c=0), list(a=4, b="bb", c=NA))
 
-## modarg(c(b=2, d=6), c(a="4", b="bb", c=NA))
-## modarg(1:6, c(a="4", b="bb", c=NA))
+df <- ploptions("linewidth")
+cbind(df, modarg(c(dot=1.4, dashLongDot=1.3), df))
+
+## These statements lead to a warning:
+modarg(c(b=2, d=6), c(a="4", b="bb", c=NA)) 
+modarg(1:6, c(a="4", b="bb", c=NA))
 }
 \keyword{utilities}

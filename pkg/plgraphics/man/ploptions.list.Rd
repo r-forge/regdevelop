@@ -61,8 +61,6 @@
 	range}
     }
     \item{plext}{ extension of the data range to the plotting range}
-    \item{plsymbolext}{ further extension to allow for large symbols
-      near the limits of the plotting range}
     \item{markextremes}{ proportion of observations to be marked by
       their labels on the lower and upper extremes}
     \item{variables.pch, variables.col, variables.lty,
@@ -75,7 +73,9 @@
       combination.
     }
     \item{group.pch, group.col, group.lty, group.lcol:}{ vector of
-      colors used for lines in the different groups ...} %% !!!
+      symbols and colors used for observations and types and colors used
+      for lines in the different groups
+    }
     \item{***}{title parameters.
       \describe{
 	\item{title.line}{ line in margin[3] on which the title
@@ -93,7 +93,6 @@
     \item{panel}{ panel function to be used in high level pl functions}
 
     \item{axes:}{ axes to be shown}
-    \item{axes.sure:}{ !!!}
     \item{***}{margin parameters.
       \describe{
 	\item{mar, oma}{ ...}
@@ -113,7 +112,6 @@
 	\item{date.origin}{ The year which serves as origin of the
 	  internal (julian) date scale}
 	\item{date.format}{ format for showing dates}
-	\item{timerangelim:}{ ...} %% !!!
 	\item{date.ticks}{ data.frame ruling
 	  how many small and large ticks and tick labels will be shown.
 	  The first column determines the row that will be used}
@@ -136,7 +134,8 @@
     \item{zeroline.lty, zeroline.lwd, zeroline.col}{ line type, width
       and color of the zero line}
     \item{refline}{ reference line, any line to be added to the current
-      plot using the following properties. May be given as ...!!!}
+      plot using the following properties. See \code{\link{plrefline}}
+      for possible types of values}
     \item{refline.lty, refline.lwd, refline.col}{ line type, width
       and color of the ref line}
     \item{***}{smooth.
@@ -156,7 +155,8 @@
 	  the second element is the factor by which the line width is
 	  reduced for simulated smooths (that is, for the second to the last
 	  column of \code{smoothline$y}). It defaults to 0.7.}
-	\item{smooth.pale}{paling factors to be applied to ...} %% !!!
+	\item{smooth.pale}{paling factor to be applied for secondary
+	  smooth lines}
 	\item{smooth.xtrim:}{ proportion of fitted values
 	  to be trimmed off on both sides when drawing a smooth line,
 	  either a number or a function
@@ -177,16 +177,17 @@
     \item{***}{factors, multibox plots:
       \describe{
 	\item{factor.show:}{how should factors be plotted.
-	  Options are ...} %% !!!
+	  Options are \code{"mbox"}, \code{"jitter"} or \code{"asis"}}
 	\item{mbox.minobs}{minimal number of observations shown as a
 	  multibox plot}
-	\item{mbox.minheigth}{...} %% !!!
+	\item{mbox.minheigth}{see \code{?\link{plmboxes}}}
 	\item{mbox.colors}{colors to be used for multibox plots}
-	\item{jitter}{amount of jitter} %% !!!
+	\item{jitter}{amount of jitter,
+	  or logical: should jittering be applied?} 
 	\item{jitter.minobs}{minimal number of observations to which
 	  jittering should be applied}
-	\item{jitter.factor}{...} %% !!!
-	
+	\item{jitter.factor}{what proportion of the gap between
+	  different values will be filled by the jittering?}
       }
     }
     \item{***}{condquant: Conditional quantiles for censored residuals.
