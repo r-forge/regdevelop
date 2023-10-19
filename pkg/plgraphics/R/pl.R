@@ -2810,14 +2810,16 @@ plregr.control <- #f
   lsigma <- x$sigma
   if (length(lsigma)==0) lsigma <- c(x$scale, summary(x)$sigma)[1]
   if (length(lsigma)==0)
-    lsigma <- if (lfamcount) 0
-              else sqrt(apply(lres^2,2, function(x) sum(x[is.finite(x)]))/ldfres)
+    lsigma <-
+      if (lfamcount) 0
+      else sqrt(apply(lres^2,2, function(x) sum(x[is.finite(x)]))/ldfres)
   x$sigma <- lsigma
   ## --- standardized residuals
   llev <- x$leverage
   llevlim <- i.getplopt(leveragelimit)
-  if (length(llevlim)==1) llevlim <- c(llevlim, i.getploption("leveragelimit")[2])
-    lstdres <- attr(lres, "stdresiduals", exact=TRUE)
+  if (length(llevlim)==1)
+    llevlim <- c(llevlim, i.getploption("leveragelimit")[2])
+  lstdres <- attr(lres, "stdresiduals", exact=TRUE)
   if (stdresid) { ## not needed for plresx
     if (length(lstdres)==0) { 
       lstdres <- stdresiduals(x, residuals=lres, leveragelimit=llevlim[2])
@@ -3211,6 +3213,8 @@ plregr <- #f
     labsres <- if (lIabs) lstdres
     lstdresname <- paste("st.", lresname, sep = "")
     labsresname <- paste("|st.",lresname,"|", sep="")
+    lIqq <- lii[1]
+    lstdrsc <- if (lIqq) lstdres
     ##
     for (lj in seq_len(lmres)) {
       lrsj <- lres[,lj]
@@ -3233,18 +3237,26 @@ plregr <- #f
             attr(lrsj, "condquant") <- lcq
           }
         } else {
-          if (lIcq) {
-            lcq <- attr(lrsj, "condquant", exact=TRUE)
-            if (length(lcq)) {
-              lcq[,1:4] <- lcq[,1:4]*lstrratio[lcq[,"index"],lj]
-              attr(lrsj, "condquant") <- lcq
-            }
-          }
-        lstdres[,lj] <- lrsj
+##-           if (lIcq) {
+##-             lcq <- attr(lrsj, "condquant", exact=TRUE)
+##-             if (length(lcq)) {
+##-               lcq[,1:4] <- lcq[,1:4]*lstrratio[lcq[,"index"],lj]
+##-               attr(lrsj, "condquant") <- lcq
+##-             }
+##-           }
+          lstdres[,lj] <- lrsj
         }
         if (lnsims) lsimstdres <- lsimres * lstrratio[,lj] ## index needed for multiv
       } ## fi lregrft$smresid
       if (lIabs) labsres[,lj] <- abs(lrsj)
+      if (lIqq) { ## scale smoothed residuals by smoothed scale
+        lfsm <-
+          gensmooth(lfit[,lj], abs(lrsj), plargs=plargs, power=0.5)
+##-         if (lna <- sum(is.na(lsj)&!(is.na(lres[,lj])|is.na(lrsj))))
+##-           warning(":plregr: residuals from smooth have ",
+##-                   round(100*lna/lnobs,1), " % additional NAs")
+        lstdrsc[,lj] <- lrsj/lfsm[["ysmorig"]]
+      }
     }
     if (lregrft$smresid) {
       lstdresname <- paste("st.sm.", lresname, sep = "")
@@ -3329,14 +3341,15 @@ plregr <- #f
       ## --- Tukey Anscombe plot
       if(lpls=="resfit") {
         for (lj in seq_len(lmres)) {
-          plargs$plfeatures$smooth <- lpllevel-1
-          plargs$plfeatures$reflinecoord <-
+          lplargs <- plargs
+          lplargs$plfeatures$smooth <- lpllevel-1
+          lplargs$plfeatures$reflinecoord <-
             c(x=median(lfit[,lj], na.rm=TRUE),y=-1)
           lrsj <- lres[,lj]
           if(length(lsimres))
             lrsj <- structure(data.frame(lres[,lj], lsimres), primary=1)
           plpanel(lfit[,lj], lrsj, frame=TRUE,
-                  xlab="fitted values", plargs=plargs)
+                  xlab="fitted values", plargs=lplargs)
         }
 ##        lregrft$reflinecoord <- NULL
         ## par(cex=lcex)
@@ -3351,7 +3364,8 @@ plregr <- #f
           for (lj in seq_len(lmres)) {
             labsrj <- labsres[,lj, drop=FALSE]
             if (lnsims)
-              labsrj <- structure(data.frame(labsrj, abs(lsimstdres)), primary=1)
+              labsrj <- structure(data.frame(labsrj, abs(lsimstdres)),
+                                  primary=1)
             plpanel(lfit[,lj], labsrj, frame=TRUE, xlab="fitted values", 
                     plargs=c(plargs, list(smooth.power=0.5)) ) ## plsmooth needs 'power'
           }
@@ -3383,15 +3397,15 @@ plregr <- #f
       ## ------------------------------------------------------------
       ## --- normal plot qq plot
       if(lpls=="qq") {
-        lnsims <- if (length(lsimstdres)) ncol(lsimstdres) else 0 ##lregrft$smooth.sim
+        lnsims <- if (length(lsimstdres)) ncol(lsimstdres) else 0 
         if (lnsims)
           lsimstdr <-
             if (i.def(attr(lsimstdres, "type", exact=TRUE), "resampled")=="resampled")
               simresiduals.default(x, nrep=lnsims, simfunction=rnorm,
-                                   sigma=apply(lstdres, 2, mad, na.rm=TRUE) )
+                                   sigma=apply(lstdrsc, 2, mad, na.rm=TRUE) )
             else lsimstdres
         for (lj in seq_len(lmres)) {
-          llr <- lstdres[,lj]
+          llr <- lstdrsc[,lj]  ## residuals from smooth, smoothly scaled
           lio <- order(llr)[seq_len(lnobs)]
           llr <- plsubset(llr, lio)[,1]
           if (length(lat <- attr(llr, "numvalues", exact=TRUE)))
@@ -3400,15 +3414,11 @@ plregr <- #f
             attr(llr, "plcoord") <- lat[lio]
           lIcqj <- length(lcq <- attr(llr, "condquant", exact=TRUE))>0 ##!!! falsch ?
           lIcqu <- lIcq | lIcqj
-##-           lpch <-
-##-             if (lIcqu) i.pchcens(plargs, lcq)[order(llr)]
-##-             else i.getploption("pch")[1]
           lxx <- qnorm(ppoints(lnobs))
           attr(lxx, "zeroline") <- 0
           plframe(lxx, llr, xlab = "theoretical quantiles",
                   ylab = lstdresname[lj], ploptions=ploptions,
                   xy=FALSE) ## mar=lmar, 
-          ##-  lxy <- qqnorm(llr, ylab = lstdresname[lj], main="", type="n", )
           if (lnsims>0) {
             llcol <- colorpale(i.getploption("smooth.col"),
                                pale=i.getploption("smooth.pale"))
@@ -3417,9 +3427,6 @@ plregr <- #f
             apply(lsimstdr, 2,
                   function(x) lines(lxx,sort(x), lty=llty, lwd=llwd,
                                     col=llcol) )
-##-             for (lr in 1:lnsims) {
-##-               lines(lxx,sort(lsimstdr[,lr]), lty=llty, lwd=llwd, col=llcol)
-##-             }
           }
           plpoints(lxx, llr, plargs=list(pldata=plargs$pldata[lio,]),
                    ploptions=ploptions, marpar=marpar, xy=FALSE)
@@ -3432,7 +3439,6 @@ plregr <- #f
                    legend=c("uncensored","censored"))
         ##  pltitle(plargs=plargs, show=FALSE)
         }
-        ## par(cex=lcex)
       }
       ## ------------------------------------------------------------
       ## --- leverage plot. If weight are present, use "almost unweighted h"

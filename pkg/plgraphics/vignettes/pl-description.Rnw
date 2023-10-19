@@ -681,8 +681,15 @@ used for standardizing the ordinary residuals.
 The next plot is the normal quantile-quantile plot. It is only shown if the
 residuals are expected to follow a normal distribution.
 (QQ-plots for other distributions are planned.)
-The standardized residuals are used since a qq-plot for observations with 
-different scales does not make sense.
+Note that the residuals used here are NOT the raw or standardized residuals,
+but instead, they are generated as follows:
+The ``residuals from smooth'' as explained for the last plot are used to
+estimate a ``smoothed scale'' by obtaining a smooth fit to 
+the square roots of their absolute values against the model fit
+and squaring the resulting smoothed values. 
+They are then divided by these smooth-scale values in order to make them
+homoscedastic even in the presence of a scale that depends on the model
+fit. 
 
 \Tit{Residuals against leverage.}
 The influence of individual observations on the results of fitting the model
