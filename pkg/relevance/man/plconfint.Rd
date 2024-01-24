@@ -12,10 +12,10 @@
 }
 \usage{
 plconfint(x, y = NULL, select=NULL, overlap = NULL, pos = NULL,
-  xlim = NULL, refline = 0, add = FALSE, bty = "L", col = NULL,
-  plpars=list(lwd=c(2,3,1,4,2), posdiff=0.35,
-    markheight=c(1, 0.6, 0.6), extend=NA, reflinecol="gray70"),
-  label = TRUE, label2 = NULL, xlab="", ...)
+          xlim = NULL, refline = 0, add = FALSE, bty = "L", col = NULL,
+          plpars = list(lwd=c(2,3,1,4,2), posdiff=0.35,
+                        markheight=c(1, 0.6, 0.6), extend=NA, reflinecol="gray70"),
+          label = TRUE, label2 = NULL, xlab="", ...)
 
 pltwosamples(x, ...)
 \method{pltwosamples}{default}(x, y = NULL, overlap = TRUE, ...)
@@ -27,11 +27,11 @@ pltwosamples(x, ...)
     A vector of length >=2 or a matrix
     with this number of columns, containing
     \describe{
-      \item{[,1]}{ the estimate}
-      \item{[,2]}{ if \code{x} is of length 2:
+      \item{\code{[,1]}: }{the estimate}
+      \item{\code{[,2]}: }{if \code{x} is of length 2:
 	width of (symmetric) confidence interval}
-      \item{[,2:3]}{ if of length >2: the interval end points}
-      \item{[,4:5]}{ if of length >=5:
+      \item{\code{[,2:3]}: }{if of length >2: the interval end points}
+      \item{\code{[,4:5]}: }{if of length >=5:
 	values for additional ticks on the intervals,
 	typically indicating the end points of a
 	shortened interal, see Details}

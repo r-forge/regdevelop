@@ -45,10 +45,11 @@ relevance.modelclasses
   fitting results that can be handled by \code{termtable}.
   
   If \code{testtype} is not specified, it is determined by the class of
-  \code{object} and its attribute \code{family} as follows:\cr
-  --- {F}{or t for objects of class \code{lm, lmrob} and \code{glm}
-    with families \code{quasibinomial} and \code{quasipoisson},}\cr
-  --- {Chi-squared}{for other \code{glm}s and \code{survreg}}\cr
+  \code{object} and its attribute \code{family} as follows:\describe{
+    \item{\code{"F"}: }{or t for objects of class \code{lm, lmrob} and \code{glm}
+      with families \code{quasibinomial} and \code{quasipoisson},}
+    \item{\code{"Chi-squared"}: }{for other \code{glm}s and \code{survreg}}
+  }
 }
 \value{\code{\link{data.frame}} with columns
   \describe{

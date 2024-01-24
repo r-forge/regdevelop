@@ -2,7 +2,7 @@ Package: relevance
 Type: Package
 Title: Calculate Relevance and Significance Measures
 Version: 2.1
-Date: 2023-08-22
+Date: 2024-01-24
 Author: Werner A. Stahel
 Maintainer: Werner A. Stahel <stahel@stat.math.ethz.ch>
 Depends: R (>= 3.5.0)
