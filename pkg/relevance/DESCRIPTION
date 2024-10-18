@@ -1,10 +1,9 @@
 Package: relevance
 Type: Package
 Title: Calculate Relevance and Significance Measures
-Version: 2.1
-Date: 2024-01-24
-Author: Werner A. Stahel
-Maintainer: Werner A. Stahel <stahel@stat.math.ethz.ch>
+Version: 2.1-1
+Date: 2024-10-18
+Authors@R: person(c("Werner", "A."), "Stahel", role = c("aut", "cre"), email = "stahel@stat.math.ethz.ch")
 Depends: R (>= 3.5.0)
 Imports: stats, utils, graphics
 Suggests: MASS, survival, knitr
@@ -20,4 +19,8 @@ Description: Calculates relevance and significance values for
   'Stahel, Werner A.' (2022)
   "'Replicability': Terminology, Measuring Success, and Strategy"
   available in the documentation.
+URL: https://regdevelop.r-forge.r-project.org/,
+     https://r-forge.r-project.org/R/?group_id=555,
+     https://r-forge.r-project.org/scm/viewvc.php/pkg/relevance/?root=regdevelop,
+     svn://svn.r-forge.r-project.org/svnroot/regdevelop/pkg/relevance
 License: GPL-2

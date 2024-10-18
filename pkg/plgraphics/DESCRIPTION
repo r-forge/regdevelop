@@ -14,4 +14,8 @@ Description: Plots with high flexibility and easy handling, including
   informative regression diagnostics for many models.
 License: GPL-2
 LazyLoad: yes
+URL: https://regdevelop.r-forge.r-project.org/,
+     https://r-forge.r-project.org/R/?group_id=555,
+     https://r-forge.r-project.org/scm/viewvc.php/pkg/plgraphics/?root=regdevelop,
+     svn://svn.r-forge.r-project.org/svnroot/regdevelop/pkg/plgraphics
 VignetteBuilder: knitr
