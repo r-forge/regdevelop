@@ -45,7 +45,7 @@ A \code{Surv} object.
 Werner A. Stahel
 }
 \seealso{
-  \code{\link{Surv}()} from package \CRANpkg{survival}.
+  \code{\link[survival]{Surv}()} from package \CRANpkg{survival}.
 }
 \examples{
 

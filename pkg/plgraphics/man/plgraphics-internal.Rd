@@ -16,7 +16,7 @@
   They mostly are simple shortcuts, combining two or a few R commands.
   \describe{
     \item{is.formula}{Check if argument is of \code{mode} \code{formula}}
-    \item{RNAMES}{code{row.names} if \code{x} is a matrix or data.frame,
+    \item{RNAMES}{\code{row.names} if \code{x} is a matrix or data.frame,
       otherwise give the \code{names} back}
     \item{\%nin\%}{check which elements of \code{x} are not contaied in
       \code{y}}
