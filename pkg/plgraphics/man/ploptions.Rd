@@ -105,7 +105,7 @@ default.ploptions
       groups. The first element is usually black.
     }
     \item{colors:}{ the palette to be used}
-    \item{censored.pch, censored.size, censored.pale:}{ ...}
+    \item{censored.pch, censored.csize, censored.pale:}{ ...}
     \item{gridlines:}{  can be \cr 
       -- a logical indicating if gridlines should be drawn. If
       \code{TRUE}, gridlines will be drawn at the values given in

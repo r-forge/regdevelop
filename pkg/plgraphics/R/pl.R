@@ -693,14 +693,15 @@ function(x, plscale = "log10", ticksat = NULL, logscale = NULL,
   lplrg <- attr(x, "plrange", exact=TRUE)
   if (lscname=="logst") {
     lxt <- logst(lx, threshold=attr(lscname, "threshold", exact=TRUE))
-    if (length(lvlim))
-      lvlimsc <- logst(lvlim, threshold=attr(lxt, "threshold", exact=TRUE))
+    lvlimsc <- if (length(lvlim))
+      logst(lvlim, threshold=attr(lxt, "threshold", exact=TRUE))
+               else NULL
     attr(lscname, "threshold") <- attr(lxt, "threshold", exact=TRUE)
   } else {
     lxt <- lscfunc(lx)
     lvlimsc <- if (length(lvlim)) lscfunc(lvlim)
   }
-  lvlimsc <- i.def(attr(x, "vlimsc", exact=TRUE), lvlimsc)
+  lvlimsc <- i.def(attr(x, "vlimsc", exact=TRUE)  , lvlimsc)
   if (length(ticksat)) ticksat <- lscfunc(ticksat)
   if (valuesonly) return(lxt)
   ## ---
@@ -1319,7 +1320,7 @@ plpoints <- #f
     if (any(li)) {
       pch[li] <- rep(i.getploption("censored.pch"), length=8)[lipch[li]]
       pcol[li] <- colorpale(pcol[li], i.getploption("censored.pale")[1])
-      lspch[li] <- lspch[li]*i.getploption("censored.size")
+      lspch[li] <- lspch[li]*i.getploption("censored.csize")
     }
   }
   ## condquant
@@ -2032,6 +2033,7 @@ gendateaxis <- #f
     function(tickunit, tickint, llev, llvlg, ystart, mstart, lnlev) { ## , label=FALSE
       ## generate ticks in  tickint [tickunit]  intervals
       if (tickunit=="y") return(ystart)
+      lmtmin <- min(llev$m)
       llunit <- match(tickunit, names(lnlev))
       llev[[llunit]] <- ltatu <- ## units that may be used
         seq(llunit%in%2:3, lnlev[llunit], tickint) ## m and d start at 1
@@ -2047,8 +2049,10 @@ gendateaxis <- #f
       if (llvlg<llunit)
         ltatu <- c(outer(ltatu, lv1*100, "+")) ## information for getting label
       ## ---
-      if (tickunit=="m")  ltat <- mstart[seq(1, length(mstart), tickint)]
-      else { ## mstart contains start of month for whole year(s). select those needed
+      if (tickunit=="m") {
+        ltat <- mstart[lti <- seq(1, length(mstart), tickint)]
+        ltatu <- ltatu[seq_along(ltat)]+lmtmin-min(llev$m)
+      } else { ## mstart contains start of month for whole year(s). select those needed
         llday <- llev[["d"]]
         ltat <- c(outer(llday-1, mstart, "+"))
           ## day starts with 1 [llev[["m"]]]
@@ -5741,7 +5745,7 @@ usr.ploptions <- default.ploptions <-
     ## censored
     censored.pch =  c(62, 60, 2, 23, 23, 6, 23, 23),
     ##                 >,  <, Delta, q,q, nabla, q,quadrat 
-    censored.size=1.3, censored.pale = 0.3,
+    censored.csize=1.3, censored.pale = 0.3,
     ## group
     group.pch=TRUE, group.col=TRUE, group.lty=TRUE,
     group.lcol=TRUE,
@@ -5833,7 +5837,7 @@ ploptionsCheck <-
     variables.lcol=list(cnr(c(0,t.ncol)), ccl()),
     ## censored
     censored.pch = cnv(c.pchvalues),
-    censored.size=cnr(c(0.1,5)), censored.pale = cnr(c(0,1)),
+    censored.csize=cnr(c(0.1,5)), censored.pale = cnr(c(0,1)),
     ## frame
     panelsep=cnr(c(0,3)),
     ## title

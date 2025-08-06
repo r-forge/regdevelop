@@ -213,54 +213,6 @@ When there are outliers in the data, plots are dominated by them through
 their effect on the plotting range. This means that the user who would like to
 see more detail about the ``regular'' observations needs to generate a new
 plot, specifying the limits of the plotting range by \T{xlim} and \T{ylim},
-and the outliers will disappear.
-
-In order to avoid the urge for two versions of the plot, an ``inner
-plotting range'' is determined, based on robust measures of 
-location and scale. Outside this range, there is a plotting margin where
-coordinates are transformed with a highly nonlinear function in order to
-accommodate all outliers. 
-In these margins, the order of coordinates is still maintained, thus
-allowing to see which points are further out than others, but quantitative
-information is distorted by the transformation.
-The figure shows data from the blasting example with an added outlier,
-plotted without and with inner plotting limits.
-
-<<innerrange, fig.width=7, fig.height=3.5>>=
-data(d.blast)
-dd <- d.blast
-dd$distance[2] <- 500
-
-plmframes(1,3)
-
-plyx( tremor~distance, data=dd, innerrange=FALSE)
-plyx( tremor~distance, data=dd)
-plyx( tremor~distance, data=dd, innerrange.factor=5)
-@ 
-
-If \T{innerrange=TRUE}, which is the default, the \T{plgraphics} functions
-will determine an ``inner plotting range'' based on 
-the 20\% trimmed mean and a 20\% trimmed scale by default.
-
-
-%% innerrange
-\Detail{The function \T{robrange}, which is called by \T{plinnerrange},
-  determines the $\alpha$-trimmed mean with $\alpha=0.2$ as the location 
-  and the (one-sided) trimmed mean of the deviations from it. 
-  It adjusts this latter mean to obtain an approximately consistent
-  estimate of the standard deviation for normal observations. 
-  It then calculates the location plus-minus 
-  \T{innerrange.factor} times the scale to get a potential inner range.
-  The final inner plotting range will be the intersection of this and the
-  ordinary range of the values.
-}
-%% ------------------------------
-
-\subsection{Multiple y and x}
-\label{sec:multipleyx}
-Two or more variables may be given to be plotted on the vertical axis,
-in the sense of \T{matplot} of R.
-Often, these are parallel time series, and it is convenient to ask for 
 lines connecting the points, either \T{type="l"} or \T{type="b"}.
 \T{plyx} will choose different scales for the different variables unless
 \T{rescale=FALSE}.
@@ -470,7 +422,7 @@ in a number of equally long intervals.
 %% (The number is given by \T{ploptions("plcond.nintervals")}.)
 Each panel then shows the points in the interval in their ordinary appearance,
 and, in addition, some points of the neighboring intervals, with reduced size
-%% (\T{ploptions("plcond.cex")}) 
+%% (\T{ploptions("plcond.csize")}) 
 and paled color. The color is changed to predefined colors indicating whether 
 the point's conditioning variable(s) is (are) below or above the interval.
 All these features are controlled by pl options.
@@ -1132,19 +1084,19 @@ The components of these lists include
   If the line types are shown with the same \T{lwd}, they are perceived
   with different intensity. \T{linewidth} intends to compensate this effect.
 \item
-  \T{cex}, a factor applied to the current value of \T{par("cex")} to
+  \T{csize}, a factor applied to the current value of \T{par("cex")} to
   determine the general character expansion used by the pl functions.
 \item
-  \T{cex.pch}, the median character expansion.
-  The default is the function \T{cexSize}, with argument \T{n}, defined as
+  \T{csize.pch}, the median character expansion.
+  The default is the function \T{charSize}, with argument \T{n}, defined as
   \T{min(1.5/log10(n), 2)}, that is called when the number \T{n} of
   observations is available. Alternatively, a fixed scalar can be given.
 \item
   a group of basic components:
-  \T{pch, cex, cex.pch, cex.plab, lty, lwd, col}.\\
-  \T{cex} is a factor which will be applied to \T{cex.pch} above for
+  \T{pch, csize, csize.pch, csize.plab, lty, lwd, col}.\\
+  \T{csize} is a factor which will be applied to \T{csize.pch} above for
   showing points by a single symbol (\T{pch}),\\
-  \T{cex.plab} is an additional factor applied for the points that
+  \T{csize.plab} is an additional factor applied for the points that
   are shown by \T{plab}.
 \item
   a group of components named \T{group} (\T{group.pch, ...}).
@@ -1156,7 +1108,8 @@ The components of these lists include
   defining the elements to be used when different variables should be
   distinguishable;
 \item
-  \T{censored.pch} and \T{censored.cex} used to show censored observations;
+  \T{censored.pch} and \T{censored.csize} used to show 
+  censored observations;
 \item
   \T{mar, oma, mgp, thickintervals}, specifying the number of lines in the
   figure's margins and outer margins, the ``margin parameters'' as in
@@ -1181,11 +1134,11 @@ The components of these lists include
   If set to \code{TRUE}, the proportion depends on the number \T{n} of
   observations through \code{ceiling(sqrt(n)/2)/n}.
 \item
-  \T{title.cex} determines the character expansion of the plot title.
+  \T{title.csize} determines the character expansion of the plot title.
   By default, it adapts to the length of the title.
   For long titles, it will however never be smaller than
-  \T{title.cexmin}. 
-  If \T{title.cex} has 2 elements, the second refers to the subtitle.
+  \T{title.csizemin}. 
+  If \T{title.csize} has 2 elements, the second refers to the subtitle.
 \item
   a group \T{grid}. If \code{grid} is a list of two vectors,
   it contains the values where vertical and horizontal thin lines are drawn.
@@ -1295,7 +1248,7 @@ These specifications are
   \T{plab}: plotting label, an extension of \T{pch} to more than one symbol,
   often used to identify observations;
 \item
-  \T{psize}: plotting size, scaled by the pl option \T{cex};
+  \T{psize}: plotting size, scaled by the pl option \T{csize};
 \item
   \T{pcol}: color of the symbol. 
   This can be a factor. Then, the colors in \T{ploptions("group.color")}
@@ -1513,7 +1466,7 @@ generate a full plot. Low level plotting functions include:
   Values \T{NA} or \T{""} being replaced by the plotting symbol in \T{pch}.\\
   The size of the plotting symbols or strings is determined by
   \T{plargs\$pldata[,"psize"]} if available and by the ploptions
-  \T{cex} and \T{cex.pch}.
+  \T{csize} and \T{csize.pch}.
 
   If one or both coordinate variables contain censored values (that is,
   if they inherit from the class \T{"Surv"}), the censored observations are
@@ -1533,7 +1486,7 @@ generate a full plot. Low level plotting functions include:
 %%-   or a function that returns this list, such as \T{lm};
 \item
   \T{pltitle} adds a title. By default, the character size 
-  (given by the ploption \T{"title.cex"} is decreased
+  (given by the ploption \T{"title.csize"} is decreased
   for long titles (\T{main} or \T{sub}) to fit it onto one line.
 \item
   \T{pllimits} and \T{plcoord} determine inner plotting range 

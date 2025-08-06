@@ -39,7 +39,7 @@ response data. The function \code{survreg} is suitable for fitting.
 In \code{regr}, this is done automatically.
 }
 \value{
-A \code{Surv} object.
+A \code{survreg::Surv} object.
 }
 \author{
 Werner A. Stahel

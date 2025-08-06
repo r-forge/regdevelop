@@ -66,7 +66,7 @@
     \item{variables.pch, variables.col, variables.lty,
       variables.lcol:}{ vectors of symbols, color, line type, line color
       to be used for showing different y variables}
-    \item{censored.pch, censored.size, censored.pale:}{ plotting symbol
+    \item{censored.pch, censored.csize, censored.pale:}{ plotting symbol
       and size, and pale value to be applied to censored observations.
       Different symbols are used for distinguishing right and left
       censoring in vertical and horizontal direction and there
