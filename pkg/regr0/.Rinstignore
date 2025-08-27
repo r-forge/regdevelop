@@ -1,5 +1,0 @@
-doc/.*[.]tex
-misc/*
-tests/.RData
-tests/.Rhistory
-inst/doc/auto/*
