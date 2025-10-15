@@ -632,7 +632,7 @@ used for standardizing the ordinary residuals.
 \Tit{QQ-plot.}
 The next plot is the normal quantile-quantile plot. It is only shown if the
 residuals are expected to follow a normal distribution.
-(QQ-plots for other distributions are planned.)
+(QQ-plots for other distributions are lacking.)
 Note that the residuals used here are NOT the raw or standardized residuals,
 but instead, they are generated as follows:
 The ``residuals from smooth'' as explained for the last plot are used to

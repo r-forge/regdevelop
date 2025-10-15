@@ -1,7 +1,7 @@
 ##  R CMD build plgraphics
 ##  R CMD check plgraphics_1.3.tar.gz
 
-require(plgraphics, lib="/u/stahel/R/regdevelop/pkg/plgraphics.Rcheck")
+require(plgraphics) ## , lib="/u/stahel/R/regdevelop/pkg/plgraphics.Rcheck"
 ## require(plgraphics, lib="/u/stahel/R/regdevelop/pkg/plgraphics.Rcheck")
 
 ## packageDescription("plgraphics")
