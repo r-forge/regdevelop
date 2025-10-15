@@ -3253,14 +3253,17 @@ plregr <- #f
         if (lnsims) lsimstdres <- lsimres * lstrratio[,lj] ## index needed for multiv
       } ## fi lregrft$smresid
       if (lIabs) labsres[,lj] <- abs(lrsj)
+      ## xxx
       if (lIqq) { ## scale smoothed residuals by smoothed scale
-        lfsm <-
+        lfsmscale <-
           gensmooth(lfit[,lj], abs(lrsj), plargs=plargs, power=0.5)
 ##-         if (lna <- sum(is.na(lsj)&!(is.na(lres[,lj])|is.na(lrsj))))
 ##-           warning(":plregr: residuals from smooth have ",
-##-                   round(100*lna/lnobs,1), " % additional NAs")
-        lstdrsc[,lj] <- lrsj/lfsm[["ysmorig"]]
-      }
+        ##-                   round(100*lna/lnobs,1), " % additional NAs")
+        lrss <- lrsj/lfsmscale[["ysmorig"]]
+        ## restandardize
+        lstdrsc[,lj] <- lrss/median(abs(lrss), na.rm=TRUE)*0.6745 
+      } ## xxxend
     }
     if (lregrft$smresid) {
       lstdresname <- paste("st.sm.", lresname, sep = "")
@@ -3402,7 +3405,7 @@ plregr <- #f
       ## --- normal plot qq plot
       if(lpls=="qq") {
         lnsims <- if (length(lsimstdres)) ncol(lsimstdres) else 0 
-        if (lnsims)
+        if (lnsims) ## xxx
           lsimstdr <-
             if (i.def(attr(lsimstdres, "type", exact=TRUE), "resampled")=="resampled")
               simresiduals.default(x, nrep=lnsims, simfunction=rnorm,
@@ -3410,6 +3413,7 @@ plregr <- #f
             else lsimstdres
         for (lj in seq_len(lmres)) {
           llr <- lstdrsc[,lj]  ## residuals from smooth, smoothly scaled
+          ## xxx end
           lio <- order(llr)[seq_len(lnobs)]
           llr <- plsubset(llr, lio)[,1]
           if (length(lat <- attr(llr, "numvalues", exact=TRUE)))
